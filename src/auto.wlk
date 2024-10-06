@@ -9,7 +9,7 @@ object auto{
 
     method mover(direccion){
         const nuevaDireccion = direccion.siguiente(position)
-        //tablero.validarMovimiento(nuevaDireccion)
+        tablero.validarMovimiento(nuevaDireccion)
 
         position = nuevaDireccion
         image = direccion.imagen()
