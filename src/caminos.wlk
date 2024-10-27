@@ -70,7 +70,7 @@ class Casa{
 		return true
 	}
 
-    method image()
+    method image() = "vereda.png"
 
     method esAgarrable(){
         return false

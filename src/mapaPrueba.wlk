@@ -89,19 +89,19 @@ object v1 {
 }
 
 object h1 {
-    method dibujarEn(position) {
+   method dibujarEn(position) {
     game.addVisual(new Casa1(position = position))
   }
 }
 
 object h2 {
-    method dibujarEn(position) {
+   method dibujarEn(position) {
     game.addVisual(new Casa2(position = position))
   }
 }
 
 object h3 {
-    method dibujarEn(position) {
+   method dibujarEn(position) {
     game.addVisual(new Casa3(position = position))
   }
 }
