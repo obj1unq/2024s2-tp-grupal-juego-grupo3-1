@@ -6,7 +6,8 @@ import posiciones.*
 import reloj.*
 import barraSuperior.*
 import inicio.*
-import mapaPrueba.*
+//import mapaPrueba.*
+import supertablero.*
 
 
 program aventuraDelMate{
@@ -18,15 +19,15 @@ program aventuraDelMate{
 	//game.sound("musiJuego.mp3").play() //NO ME DEJA SUBIR EL ARCHIVO DE MUSICA A GITHUB, PERO LOGRÉ QUE SE REPRODUZCA
 
 	//barra superior
-	game.addVisual(frameTermo)
-	game.addVisual(frameYerba)
-	game.addVisual(frameAgua)
-	game.addVisual(frameMate)
+	//game.addVisual(frameTermo)
+	//game.addVisual(frameYerba)
+	//game.addVisual(frameAgua)
+	//game.addVisual(frameMate)
 
-	game.addVisual(new FramePregunta(position = game.at(5,9)))
-	game.addVisual(new FramePregunta(position = game.at(4,9)))
+	//game.addVisual(new FramePregunta(position = game.at(5,9)))
+	//game.addVisual(new FramePregunta(position = game.at(4,9)))
 	
-	mapa.dibujar()
+	superTablero.dibujar()
 
 
 
@@ -43,7 +44,7 @@ program aventuraDelMate{
 
 	//visual auto
 	//game.addVisual(auto)
-	game.addVisual(reloj)
+	//game.addVisual(reloj)
 
 	//fondo
 	game.addVisual(inicio)
@@ -53,7 +54,6 @@ program aventuraDelMate{
 	keyboard.a().onPressDo({auto.agarrarObjeto()})
 
 
-	
 	keyboard.up().onPressDo	  ({auto.mover(arriba)})
 	keyboard.left().onPressDo ({auto.mover(izquierda)})
 	keyboard.down().onPressDo ({auto.mover(abajo)})
@@ -63,6 +63,9 @@ program aventuraDelMate{
 
 	//Agrego el reloj
 	game.onTick(1000, "reloj", { reloj.tick() })
+
+	game.onTick(10000, "cambiar tamblero", {superTablero.cambiarMapa()})
+
 
 
 

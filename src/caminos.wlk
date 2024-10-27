@@ -40,6 +40,10 @@ class CalleVertical inherits Calle {
   override method image() = "calle-vertical.png"
 }
 
+class Cruce inherits Calle {
+  override method image() = "cruce.png"
+}
+
 class Vereda {
   const property position
   
