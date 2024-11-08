@@ -1,7 +1,6 @@
 import wollok.game.*
 import auto.*
 import tablero.*
-import randomizador.*
 import barraSuperior.*
 
 //FALTA ORDENAR Y REFACTORIZAR CLASES

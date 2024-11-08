@@ -1,118 +1,67 @@
 import wollok.game.*
 import auto.*
 import tablero.*
-import randomizador.*
 import barraSuperior.*
 
-
 class Cosa {
-  var property image 
-  var property position 
-  var property recogido = false 
-
+  var property image
+  var property position
+  var property recogido = false
+  
   method frame()
-
-  method cosaALaBarra(){
+  
+  method cosaALaBarra() {
     position = self.frame().position()
     recogido = true
-    
-  } 
-
-  method solida() {
-		return false
-	}
-
-  method esAgarrable(){
-    return true
   }
-
+  
+  method solida() = false
+  
+  method esAgarrable() = true
 }
 
-class Termo inherits Cosa(image = "termo_.png"){
-
-  override method frame(){
-    return frameTermo
-  }
-
-  // override method cosaALaBarra() {
-
-  // }
-
-  
+class Termo inherits Cosa (image = "termo_.png") {
+  override method frame() = frameTermo
 }
 
-class Yerba inherits Cosa(image = "yerba_.png") {
-  
-  // override method cosaALaBarra() {
-  //   position = frameYerba.position()
-  //   recogido = true
-  // }
-
-    override method frame(){
-    return frameYerba
-  }
+class Yerba inherits Cosa (image = "yerba_.png") {
+  override method frame() = frameYerba
 }
 
 class Dispenser inherits Cosa (image = "disp.png") {
-
-  override method cosaALaBarra() {
-    agua.position(frameAgua.position())
-    game.addVisual(agua)
-    recogido = true
+  override method frame() {
+    
   }
   
+  override method cosaALaBarra() {
+    super()
+    game.removeVisual(self)
+  }
 }
 
 object agua {
   var property image = "agua_.png"
   var property position = null
-
 }
 
-
-class Mate inherits Cosa(image = "mate.png") {
-
-  //  override method cosaALaBarra() {
-  //   position = frameMate.position()
-  //   recogido = true
-
-  // }
-
-    override method frame(){
-    return frameMate
-  }
-
-}
+class Mate inherits Cosa (image = "mate.png") {
+  override method frame() = frameMate
+} 
 
 //Bonusssssss
 
-class Manzanita inherits Cosa(image = "manzana_.png") {
-    
-
-  //   override method cosaALaBarra() {
-  //   position = game.at(5,9) 
-  //   recogido = true
-
-  // }
+class Manzanita inherits Cosa (image = "manzana_.png") {
+  override method frame() = frameManzanita
 }
 
-class Bizcochitos inherits Cosa(image = "bizcochitos_.png") {
-
-
-  // override method cosaALaBarra() {
-  //   position = game.at(4,9)
-  //   recogido = true
-    
-  // }
+class Bizcochitos inherits Cosa (image = "bizcochitos_.png") {
+  override method frame() = frameBizcochitos
 }
 
-
-class Palmeritas inherits Cosa(image = "palmeritas_.png") {
-
-  // override method cosaALaBarra() {
-  //   position = game.at(3,9)
-  //   recogido = true
-  // }
-
+class Palmeritas inherits Cosa (image = "palmeritas_.png") {
+  override method frame() = framePalmeritas
 }
 
+class Faso inherits Cosa (image = "faso.png") {
+  override method frame() = frameFaso
+}
