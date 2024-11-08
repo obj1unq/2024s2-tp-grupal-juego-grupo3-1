@@ -8,32 +8,27 @@ import reloj.*
 import inicio.*
 import mapaPrueba.*
 import caminos.*
-import mapa2.*
+import mapa2.* //ver
+import mapaFrame.*
 
 object superTablero {
-  //En un futuro mapa va a ser un randomizer de la lista de mapas y va a tener q borrar ese mapa de la lista para q no salga repetido el mapa
-  const frame = [fr, __, f1, f2, f3, f4, fa, fm, fy, ft]
-  const tablero = ([frame] + tab1).reverse()
-  //const mapas = [mapa1, mapa2, mapa3, mapa4, mapa5, mapa6, mapa7, mapa8]
-  var mapa = mapa1
-  //para querer probar nuestros mapas, cambiar mapa1 por el nombre de tu mapa
-  var tab1 = mapa.tablero()
-  
-  method dibujar() {
-    game.height(tablero.size())
-    game.width(tablero.get(0).size())
-    (0 .. (game.width() - 1)).forEach(
-      { x => (0 .. (game.height() - 1)).forEach(
-          { y => tablero.get(y).get(x).dibujarEn(game.at(x, y)) }
-        ) }
-    ) //mapa.ponerObjetos()
-    
-    game.addVisual(auto)
-  }
-  
+
+  const mapas = #{mapa1, mapa2} //faltan todos los demás
+  var mapaActual = mapa1 // inicializar como mapa inicio 
+
+  method nuevoMapa() {    
+    // agregar validación del final de los mapas
+    // si es el final asignar mapaFinal al mapaActual
+    mapaActual = mapas.anyOne()
+    mapas.remove(mapaActual)
+  }  
+
   method cambiarMapa() {
-    mapa = mapa2
-    mapa.dibujar()
+    // eliminar las visuales para hacer la transición entre mapas
+    game.allVisuals().forEach({v => game.removeVisual(v)})
+    self.nuevoMapa()
+    barraSuperior.dibujar()
+    mapaActual.dibujar()
   }
 }
 
@@ -41,8 +36,9 @@ object __ {
   method dibujarEn(position) {
     
   }
-} //FRAME
+} 
 
+//FRAME
 object f1 { //frame preg manzanita
   method dibujarEn(position) {
     frameManzanita.position(position)
@@ -69,9 +65,6 @@ object f4 {
     game.addVisual(frameFaso)
   }
 }
-
-
-
 
 object ft {
   method dibujarEn(position) {
@@ -106,8 +99,9 @@ object fr {
     reloj.position(position)
     game.addVisual(reloj)
   }
-} //CALLES
+} 
 
+//CALLES
 object c1 {
   method dibujarEn(position) {
     game.addVisual(new Esquina1(position = position))
