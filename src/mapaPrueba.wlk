@@ -6,13 +6,14 @@ import barraSuperior.*
 import caminos.*
 import supertablero.*
 import superMapa.*
+
 object mapa1 inherits SuperMapa{
 
   override method mapa(){
     return 
     [
       [__, __, __, __, __, __, __, __, __, __],
-      [__, __, v1, c6, v1, __, __, __, __, __],
+      [__, __, v1, tu, v1, __, __, __, __, __],
       [h1, __, v1, c6, v1, __, h1, __, __, a1],
       [__, __, v1, c6, v1, __, __, __, h2, __],
       [h1, __, v1, c6, v1, __, __, __, __, __],

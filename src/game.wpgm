@@ -26,7 +26,7 @@ program aventuraDelMate {
 	keyboard.down().onPressDo({ auto.mover(abajo) })
 	keyboard.right().onPressDo({ auto.mover(derecha) })
 	
-	keyboard.s().onPressDo({ inicio.cambiar() }) //Agrego el reloj
+	keyboard.enter().onPressDo({ inicio.cambiar() }) //Agrego el reloj
 	
 	
 	game.onTick(1000, "reloj", { reloj.tick() })
