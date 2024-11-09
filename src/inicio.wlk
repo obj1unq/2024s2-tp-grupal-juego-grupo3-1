@@ -7,6 +7,18 @@ object inicio {
   method position() = game.at(0, 0)
   method image() = estado.image()
   
+  method ejecutarInicio(){
+
+    game.addVisual(self)
+    keyboard.enter().onPressDo({self.cambiar()})
+      
+  }
+
+
+
+
+
+
   method cambiar() {
     estado = estado.siguiente()
     self.iniciarJuegoSiTermino()
@@ -61,6 +73,7 @@ object intro5 inherits Introduccion {
   const property image = "controles.png"
   
   override method siguiente() = intro6
+  
 }
 
 

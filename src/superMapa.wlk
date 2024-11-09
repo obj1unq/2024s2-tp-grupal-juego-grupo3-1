@@ -3,6 +3,8 @@ import tablero.*
 import auto.*
 
 class SuperMapa {
+
+  method posicionAuto()
   
   method mapa()
 
@@ -14,6 +16,8 @@ class SuperMapa {
           { y => self.mapa().get(y).get(x).dibujarEn(game.at(x, y)) }
         ) }
     )
+
+    auto.position(self.posicionAuto())
   }
   
 }

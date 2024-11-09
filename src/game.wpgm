@@ -16,18 +16,28 @@ program aventuraDelMate {
 	game.boardGround("boardGame.png")
 	//game.sound("musiJuego.mp3").play() //NO ME DEJA SUBIR EL ARCHIVO DE MUSICA A GITHUB, PERO LOGRÉ QUE SE REPRODUZCA
 
-	game.addVisual(inicio) //agarrar
+	inicio.ejecutarInicio()
 	
-	keyboard.a().onPressDo({ auto.agarrarObjeto() })
+
+	// en el metodo ejecutarInicio
+	// game.addVisual(inicio) //agarrar
+
 	
 	
-	keyboard.up().onPressDo({ auto.mover(arriba) })
-	keyboard.left().onPressDo({ auto.mover(izquierda) })
-	keyboard.down().onPressDo({ auto.mover(abajo) })
-	keyboard.right().onPressDo({ auto.mover(derecha) })
+	//LOS PUSE EN EL SUPERTABLERO!! En  method iniciarComandos() que se ejecuta cuadno si inicializa el primer mapa!
+	// keyboard.a().onPressDo({ auto.agarrarObjeto() })
 	
-	keyboard.enter().onPressDo({ inicio.cambiar() }) //Agrego el reloj
 	
+	// keyboard.up().onPressDo({ auto.mover(arriba) })
+	// keyboard.left().onPressDo({ auto.mover(izquierda) })
+	// keyboard.down().onPressDo({ auto.mover(abajo) })
+	// keyboard.right().onPressDo({ auto.mover(derecha) })
+	
+
+	//Lo puse en el objeto inicio! en el metodo ejecutarInicio()
+	// keyboard.enter().onPressDo({if(inicio.estado().seguirMostrando()){ 
+	// 								inicio.cambiar()
+	// 							}}) // xq tiraba un error si se apertaba enter una vez iniciado el juego
 	
 	game.onTick(1000, "reloj", { reloj.tick() })
 	

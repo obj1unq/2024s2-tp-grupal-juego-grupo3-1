@@ -14,20 +14,45 @@ import traslador.*
 
 object superTablero {
 
-  const mapas = #{mapa1, mapa2} //faltan todos los demás
+  const mapas = #{mapa2} //faltan todos los demás
   var mapaActual = mapa1 // inicializar como mapa inicio 
+  var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
+
+
   
   method inicioDeJuego(){
+    self.iniciarComandos()
+
     game.removeVisual(inicio)
     barraSuperior.dibujar()
     mapaActual.dibujar()
+
+    auto.position(mapaActual.posicionAuto())
     game.addVisual(auto)
+  }
+  
+
+  method iniciarComandos(){
+    keyboard.a().onPressDo({ auto.agarrarObjeto() })
+    
+    keyboard.up().onPressDo({ auto.mover(arriba) })
+    keyboard.left().onPressDo({ auto.mover(izquierda) })
+    keyboard.down().onPressDo({ auto.mover(abajo) })
+    keyboard.right().onPressDo({ auto.mover(derecha) })
   }
 
   method finDeJuego(){
     barraSuperior.dibujar()
-  //  mapaFinal.dibujar()
+    self.agregarObjetosAgarradosEnBarraSuperior() // solo para ver si agrega todos, dsps hay q borrarlo
+
+    //mapaFinal.dibujar()
     //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
+
+
+
+    //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
+    game.addVisual(finDeJuego)
+    game.stop() 
   }
 
   method siguienteMapa() {    
@@ -36,12 +61,23 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.finalizarSiEsElUltimoMapa()
+    
     self.removerTodasLasVisuales()
+
+    self.finalizarSiEsElUltimoMapa()
     self.siguienteMapa()
     barraSuperior.dibujar()
     mapaActual.dibujar()
+    
+    auto.position(mapaActual.posicionAuto())
     game.addVisual(auto)
+
+    self.agregarObjetosAgarradosEnBarraSuperior()
+
+  }
+
+  method agregarObjetosAgarradosEnBarraSuperior(){
+    objetosRecogidos.forEach({obj => game.addVisual(obj)})
   }
 
   method finalizarSiEsElUltimoMapa() {

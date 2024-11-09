@@ -1,38 +1,48 @@
+import wollok.game.*
 import barraSuperior.*
-import elementos.*
+//import elementos.Elemento
 
-
-class CalleMadre inherits Elemento{
+class Elemento{
+//ESTO ESTA MAL, PERO WOLLOK NOS MARCA ERROR EN LA CLASE CALLE AL IMPORTAR EL ARCHIVO ELEMENTOS
+//VER COMO SOLUCIONARLOS CON LOS PROFES
+  method image()
+  var property position
+  method solida()
+  method esAgarrable()
+  method esTraslador() //??? capaz va mejor en la clase calle
+}
+class Calle inherits Elemento{
   override method esAgarrable() = false
   override method solida() = false
+  override method esTraslador() = false
 }
 
-class Esquina1 inherits CalleMadre {
+class Esquina1 inherits Calle {
   //
   const property image = "esquina-1.png"
 }
 
-class Esquina2 inherits CalleMadre {
+class Esquina2 inherits Calle {
   const property image = "esquina-2.png"
 }
 
-class Esquina3 inherits CalleMadre {
+class Esquina3 inherits Calle {
   const property image = "esquina-3.png"
 }
 
-class Esquina4 inherits CalleMadre {
+class Esquina4 inherits Calle {
   const property image = "esquina-4.png"
 }
 
-class CalleHorizontal inherits CalleMadre {
+class CalleHorizontal inherits Calle {
   const property image = "calle-horizontal.png"
 }
 
-class CalleVertical inherits CalleMadre {
+class CalleVertical inherits Calle {
   const property image = "calle-vertical.png"
 }
 
-class Cruce inherits CalleMadre {
+class Cruce inherits Calle {
   const property image = "cruce.png"
 }
 
@@ -40,6 +50,8 @@ class Vereda inherits Elemento{
 
   override method solida() = true
   override method esAgarrable() = false
+  override method esTraslador() = false
+
   const property image = "vereda.png"
 }
 
@@ -47,7 +59,7 @@ class Casa inherits Elemento{
   
   override method solida() = true
   override method esAgarrable() = false
-
+  override method esTraslador() = false
 }
 
 class Casa1 inherits Casa {
@@ -87,6 +99,7 @@ class Arbol inherits Elemento{
   override method solida() = false
   
   const property image = "arbol.png"
-  
   override method esAgarrable() = false
+  
+  override method esTraslador() = false
 }
