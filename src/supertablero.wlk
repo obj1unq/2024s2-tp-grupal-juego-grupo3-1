@@ -15,26 +15,46 @@ object superTablero {
 
   const mapas = #{mapa1, mapa2} //faltan todos los demás
   var mapaActual = mapa1 // inicializar como mapa inicio 
+  
+  method inicioDeJuego(){
+    game.removeVisual(inicio)
+    barraSuperior.dibujar()
+    mapaActual.dibujar()
+    game.addVisual(auto)
+  }
 
-  method nuevoMapa() {    
-    // agregar validación del final de los mapas
-    // si es el final asignar mapaFinal al mapaActual
+  method finDeJuego(){
+    barraSuperior.dibujar()
+  //  mapaFinal.dibujar()
+    //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
+  }
+
+  method siguienteMapa() {    
     mapaActual = mapas.anyOne()
     mapas.remove(mapaActual)
   }  
 
   method cambiarMapa() {
-    // eliminar las visuales para hacer la transición entre mapas
-    game.allVisuals().forEach({v => game.removeVisual(v)})
-    self.nuevoMapa()
+    self.finalizarSiEsElUltimoMapa()
+    self.removerTodasLasVisuales()
+    self.siguienteMapa()
     barraSuperior.dibujar()
     mapaActual.dibujar()
+    game.addVisual(auto)
   }
+
+  method finalizarSiEsElUltimoMapa() {
+    if (mapas.size() == 0) self.finDeJuego()
+  }
+
+  method removerTodasLasVisuales() {
+    game.allVisuals().forEach({v => game.removeVisual(v)})
+  }
+
 }
 
 object __ {
   method dibujarEn(position) {
-    
   }
 } 
 

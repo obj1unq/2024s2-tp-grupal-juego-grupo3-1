@@ -1,37 +1,34 @@
 import wollok.game.*
 
-object frameTermo {
+class Frame {
+  method image()
+  var property position = null 
+}
+
+object frameTermo inherits Frame{
   const property image = "frameTermo.png"
-  var property position = null
 }
 
-object frameMate {
+object frameMate inherits Frame {
   const property image = "frameMate.png"
-  var property position = null
 }
 
-object frameYerba {
+object frameYerba inherits Frame {
   const property image = "frameYerba.png"
-  var property position = null
 }
 
-object frameAgua {
-  const property image = "frameAgua.png"
-  var property position = null
+object frameAgua inherits Frame {
+  const property image =  "frameAgua.png"
 }
 
-class FramePregunta {
+class FramePregunta inherits Frame {
   const property image = "framePregunta.png"
-  var property position
 }
 
-object frameManzanita inherits FramePregunta(position = null){
+object frameManzanita inherits FramePregunta{}
 
-}
+object frameBizcochitos inherits FramePregunta{}
 
-object frameBizcochitos inherits FramePregunta(position = null){}
+object framePalmeritas inherits FramePregunta{}
 
-object framePalmeritas inherits FramePregunta(position = null){}
-
-object frameFaso inherits FramePregunta(position = null){}
-
+object frameFaso inherits FramePregunta{}
