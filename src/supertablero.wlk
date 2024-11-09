@@ -10,6 +10,7 @@ import mapaPrueba.*
 import caminos.*
 import mapa2.* //ver
 import mapaFrame.*
+import traslador.*
 
 object superTablero {
 
@@ -250,4 +251,28 @@ object a1 {
   }
 }
 
+//TRASLADORES
 
+object tu {
+  method dibujarEn(position) {
+    game.addVisual(new TrasladorArriba(position = position))
+  }
+}
+
+object td {
+  method dibujarEn(position) {
+    game.addVisual(new TrasladorAbajo(position = position))
+  }
+}
+
+object tl {
+  method dibujarEn(position) {
+    game.addVisual(new TrasladorIzquierda(position = position))
+  }
+}
+
+object tr {
+  method dibujarEn(position) {
+    game.addVisual(new TrasladorDerecha(position = position))
+  }
+}

@@ -25,40 +25,48 @@ class Introduccion {
 
 // Imágenes de introducción
 object intro0 inherits Introduccion {
-  const property image = "intro-0.png"
+  const property image = "portadaEnter.png"
   
   override method siguiente() = intro1
 }
 
 object intro1 inherits Introduccion {
-  const property image = "intro_1.png"
+  const property image = "introEnter1.png"
   
   override method siguiente() = intro2
 }
 
 object intro2 inherits Introduccion {
-  const property image = "intro_2.png"
+  const property image = "introEnter2.png"
   
   override method siguiente() = intro3
   
 }
 
 object intro3 inherits Introduccion {
-  const property image = "intro_-3.png"
+  const property image = "introEnter3.png"
   
   override method siguiente() = intro4
   
 }
 
 object intro4 inherits Introduccion {
-  const property image = "intro_4.png"
+  const property image = "introEnter4.png"
   
   override method siguiente() = intro5
   
 }
 
 object intro5 inherits Introduccion {
-  const property image = "intro5.png"
+  const property image = "controles.png"
+  
+  override method siguiente() = intro6
+}
+
+
+//Este objeto es necesario para que se muestre la pantalla de controles!! Sino pasa directamente al mapa y la saltea.
+object intro6 inherits Introduccion {
+  const property image = "controles.png"
   
   override method siguiente() = self
   

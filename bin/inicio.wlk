@@ -1,65 +1,74 @@
+import supertablero.*
 import wollok.game.*
+
 
 object inicio {
   var property estado = intro0
-  
   method position() = game.at(0, 0)
-  
   method image() = estado.image()
   
   method cambiar() {
     estado = estado.siguiente()
-    if(not estado.seguirMostrando()){
-        game.removeVisual(self)
-    }
-    
-    }
+    self.iniciarJuegoSiTermino()
+  }
+
+  method iniciarJuegoSiTermino() {
+    if (not estado.seguirMostrando()) superTablero.inicioDeJuego()
+  }
 }
 
-
-object intro0 {
-    const property image = "intro-0.png"
-    method siguiente() = intro1
-    method seguirMostrando() = true
-
+class Introduccion {
+  method image() 
+  method siguiente()
+  method seguirMostrando() = true
 }
 
-
-object intro1 {
-    const property image = "intro_1.png"
-    method siguiente() = intro2
-    method seguirMostrando() = true
-
+// Imágenes de introducción
+object intro0 inherits Introduccion {
+  const property image = "portadaEnter.png"
   
+  override method siguiente() = intro1
 }
-object intro2 {
-    const property image = "intro_2.png"
-    method siguiente() = intro3
-    method seguirMostrando() = true
 
+object intro1 inherits Introduccion {
+  const property image = "introEnter1.png"
   
+  override method siguiente() = intro2
 }
 
-object intro3 {
-    const property image = "intro_-3.png"
-    method siguiente() = intro4
-    method seguirMostrando() = true
-
+object intro2 inherits Introduccion {
+  const property image = "introEnter2.png"
+  
+  override method siguiente() = intro3
   
 }
 
-object intro4 {
-    const property image = "intro_4.png"
-    method siguiente() = intro5
-    method seguirMostrando() = true
-
+object intro3 inherits Introduccion {
+  const property image = "introEnter3.png"
+  
+  override method siguiente() = intro4
   
 }
 
-object intro5 { //en realidad no existe, pero es para poder 
-    const property image = "intro5.png"
-    method siguiente() = self
-
-    method seguirMostrando() = false
+object intro4 inherits Introduccion {
+  const property image = "introEnter4.png"
   
+  override method siguiente() = intro5
+  
+}
+
+object intro5 inherits Introduccion {
+  const property image = "controles.png"
+  
+  override method siguiente() = intro6
+}
+
+
+//Este objeto es necesario para que se muestre la pantalla de controles!! Sino pasa directamente al mapa y la saltea.
+object intro6 inherits Introduccion {
+  const property image = "controles.png"
+  
+  override method siguiente() = self
+  
+  override method seguirMostrando() = false
 }
