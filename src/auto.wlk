@@ -1,3 +1,4 @@
+import supertablero.*
 import wollok.game.*
 import tablero.*
 import cosas.*
@@ -11,6 +12,7 @@ object auto {
   // const objetosARecoger = [termo, yerba, bizcochitos, dispenser, agua, manzanita, mate]
   method mover(direccion) {
     const nuevaDireccion = direccion.siguiente(position)
+
     tablero.validarMovimiento(nuevaDireccion)
     self.validarAtravesables(nuevaDireccion)
     reloj.validarContinuarJuego()
@@ -19,9 +21,7 @@ object auto {
     image = direccion.imagen()
   }
   
-  method haySolido(_position) = game.getObjectsIn(_position).any(
-    { cosa => cosa.solida() }
-  )
+  method haySolido(_position) = game.getObjectsIn(_position).any({ cosa => cosa.solida() })
   
   method validarAtravesables(_position) {
     if (self.haySolido(_position)) tablero.error("No puedo ir ahí")
@@ -30,7 +30,10 @@ object auto {
   method agarrarObjeto() {
     self.validarAgarrar()
     const objeto = game.colliders(self).find({ objeto => objeto.esAgarrable() })
+    superTablero.objetosRecogidos().add(objeto) // para poder volver a dibujarlos cuando se cambie de mapa
+
     objeto.cosaALaBarra() // self.verSiGane()
+    
   }
   
   // method verSiGane(){

@@ -6,6 +6,7 @@ class Cosa inherits Elemento{
 
   override method esAgarrable() = true
   override method solida() = false
+  override method esTraslador() = false
 
   var property recogido = false
 

@@ -11,8 +11,9 @@ object reloj {
   
   method textColor() = "FFFF00FF"
   
-  method sigueEnTiempo() = segundos > 0
-  
+  method sigueEnTiempo(){
+    return segundos > 0
+ } 
   method tick() {
     self.validarContinuarJuego()
     
@@ -24,12 +25,7 @@ object reloj {
   method validarContinuarJuego() {
     if (not self.sigueEnTiempo()) {
       game.addVisual(finDeJuego)
-      //game.stop() //NO MUESTRA EL CARTEL DE "FIN DE JUEGO"
-      
-      
-      
-      
-      game.onTick(1000, "fin de juego", { game.stop() })
+      game.stop()
     }
   }
   

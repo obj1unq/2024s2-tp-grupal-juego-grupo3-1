@@ -3,6 +3,8 @@ import wollok.game.*
 class Frame {
   method image()
   var property position = null 
+
+  method solida() = true // lo puse xq con las nuevas validaciones de los trasladores daba error al querer pasar d mapa por la parte superior del mapa!!
 }
 
 object frameTermo inherits Frame{

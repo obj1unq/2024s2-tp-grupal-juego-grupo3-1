@@ -1,8 +1,10 @@
+import wollok.game.*
+
 import supertablero.*
 import superMapa.*
 
 object barraSuperior inherits SuperMapa{
-  
+  override method posicionAuto() = game.at(0,0)
   override method mapa (){
    return 
     [
@@ -18,5 +20,7 @@ object barraSuperior inherits SuperMapa{
       [__, __, __, __, __, __, __, __, __, __]
     ].reverse()
   }
+
+  
 
 }
