@@ -18,7 +18,7 @@ object mapa2 inherits SuperMapa{
         [v1, v1, v1, c6, v1, h1, __, __, __, __],
         [c2, c5, c5, c3, v1, __, __, __, __, __],
         [c6, v1, v1, v1, v1, __, __, a1, __, __]
-      ]
+      ].reverse()
   }
   
 }
