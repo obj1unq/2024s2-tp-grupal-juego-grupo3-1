@@ -22,8 +22,6 @@ object tablero {
       superTablero.cambiarMapa()
     }
   }
-
-
-
+  
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 2)
 }

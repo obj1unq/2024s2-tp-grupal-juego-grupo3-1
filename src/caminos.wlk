@@ -75,7 +75,7 @@ class Casa3 inherits Casa {
 }
 
 class Obstaculo inherits Elemento {  
-
+  override method esTraslador() = false
   override method solida() = true
   override method esAgarrable() = false
 }
@@ -86,7 +86,6 @@ class Pozo inherits Obstaculo {
 }
 
 class Patrullero inherits Obstaculo {
-
   const property image = "patrullero-.png"
 }
 

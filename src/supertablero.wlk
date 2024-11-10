@@ -250,12 +250,31 @@ object cb {
 }
 
 object cp {
-  //Calle con mate
+  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
   method dibujarEn(position) {
-    game.addVisual(new CalleVertical(position = position))
-    game.addVisual(new Mate(position = position))
+    game.addVisual(new Cruce(position = position))
+    game.addVisual(new Pozo (position = position))
   }
-} //VEREDAS
+} 
+object pp {//calle con patrullero
+  //uso cruce para no tener q hacer 2 (horizontal y vertical)
+  method dibujarEn(position) {
+    game.addVisual(new Cruce(position = position))
+    game.addVisual(new Patrullero (position = position))
+  }
+} 
+
+object cv {//calle con valla y pozo
+  method dibujarEn(position) {
+    game.addVisual(new Cruce(position = position))
+    game.addVisual(new Pozo (position = position))
+    game.addVisual(new Valla (position = position))
+  }
+} 
+
+
+
+//VEREDAS
 
 object v1 {
   method dibujarEn(position) {
