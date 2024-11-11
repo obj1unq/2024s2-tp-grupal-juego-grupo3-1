@@ -1,6 +1,6 @@
 import wollok.game.*
 import auto.*
-import tablero.*
+
 import cosas.*
 import posiciones.*
 import reloj.*

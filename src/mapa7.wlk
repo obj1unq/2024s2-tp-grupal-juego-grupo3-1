@@ -40,7 +40,7 @@ object policia inherits Elemento(position = game.at(2,3)){
   override method image() = "bizcochitos_.png"
   override method solida() = false
   override method esAgarrable() = false 
-  override method esTraslador() = false 
+  override method meTraslada() = false 
 
   
   var property recorrido = new Recorrido()

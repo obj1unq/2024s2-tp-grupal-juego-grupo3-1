@@ -6,12 +6,12 @@ class Elemento{
   var property position
   method solida()
   method esAgarrable()
-  method esTraslador() //??? capaz va mejor en la clase calle
+  method meTraslada() //??? capaz va mejor en la clase calle
 }
 class Calle inherits Elemento{
   override method esAgarrable() = false
   override method solida() = false
-  override method esTraslador() = false
+  override method meTraslada() = false
 }
 
 class Esquina1 inherits Calle {
@@ -47,7 +47,7 @@ class Vereda inherits Elemento{
 
   override method solida() = true
   override method esAgarrable() = false
-  override method esTraslador() = false
+  override method meTraslada() = false
 
   const property image = "vereda.png"
 }
@@ -56,7 +56,7 @@ class Casa inherits Elemento{
   
   override method solida() = true
   override method esAgarrable() = false
-  override method esTraslador() = false
+  override method meTraslada() = false
 }
 
 class Casa1 inherits Casa {
@@ -72,7 +72,7 @@ class Casa3 inherits Casa {
 }
 
 class Obstaculo inherits Elemento {  
-  override method esTraslador() = false
+  override method meTraslada() = false
   override method solida() = true
   override method esAgarrable() = false
 }
@@ -97,5 +97,5 @@ class Arbol inherits Elemento{
   const property image = "arbol.png"
   override method esAgarrable() = false
   
-  override method esTraslador() = false
+  override method meTraslada() = false
 }

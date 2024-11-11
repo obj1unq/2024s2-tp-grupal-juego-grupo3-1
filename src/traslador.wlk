@@ -2,7 +2,7 @@ import wollok.game.*
 import caminos.*
 
 class Traslador inherits Calle {
-  override method esTraslador() = true
+  override method meTraslada() = true
 }
 
 class TrasladorDerecha inherits Traslador {

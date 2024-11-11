@@ -14,25 +14,23 @@ object inicio {
       
   }
 
-
-
-
-
-
   method cambiar() {
-    estado = estado.siguiente()
-    self.iniciarJuegoSiTermino()
+    if (estado.seguirMostrando()){
+        estado = estado.siguiente()
+    }
+    else{
+        superTablero.inicioDeJuego()
+    }
+
   }
 
-  method iniciarJuegoSiTermino() {
-    if (not estado.seguirMostrando()) superTablero.inicioDeJuego()
-  }
+
 }
 
 class Introduccion {
   method image() 
   method siguiente()
-  method seguirMostrando() = true
+  method seguirMostrando() = self.siguiente() != null 
 }
 
 // Imágenes de introducción
@@ -72,16 +70,10 @@ object intro4 inherits Introduccion {
 object intro5 inherits Introduccion {
   const property image = "controles.png"
   
-  override method siguiente() = intro6
+  override method siguiente() = null 
+  
   
 }
 
 
-//Este objeto es necesario para que se muestre la pantalla de controles!! Sino pasa directamente al mapa y la saltea.
-object intro6 inherits Introduccion {
-  const property image = "controles.png"
-  
-  override method siguiente() = self
-  
-  override method seguirMostrando() = false
-}
+//Este objeto es necesario para que se muestre la pantalla de controles!! Sino pasa directamente al mapa y la saltea.//

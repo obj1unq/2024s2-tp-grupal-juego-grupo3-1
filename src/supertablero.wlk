@@ -17,7 +17,7 @@ object superTablero {
   var mapaActual = mapa7 // inicializar como mapa inicio 
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
 
-
+  
   
   method inicioDeJuego(){
     self.iniciarComandos()
@@ -90,6 +90,22 @@ object superTablero {
   method removerTodasLasVisuales() {
     game.allVisuals().forEach({v => game.removeVisual(v)})
   }
+
+
+  method validarMovimiento(positionSiguiente) {
+    if (not self.estaDentroDeLosLimites(positionSiguiente))
+    self.error("No puede salir el limite del tablero") 
+  }
+
+
+  method sePuedeTrasladarElAuto(){
+    return game.colliders(auto).any({ objeto => objeto.meTraslada() })
+  }
+
+
+  
+  method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 2)
+
 
 }
 
