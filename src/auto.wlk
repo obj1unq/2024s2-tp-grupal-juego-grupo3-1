@@ -1,28 +1,47 @@
 import wollok.game.*
 import supertablero.*
-import tablero.*
+
 import reloj.*
+import posiciones.*
+
 
 object auto {
   var property position = null
-  var property image = "autoHaciaArriba.png"
+  var property image = null
   
   // const objetosARecoger = [termo, yerba, bizcochitos, dispenser, agua, manzanita, mate]
   method mover(direccion) {
     const nuevaDireccion = direccion.siguiente(position)
 
-    tablero.validarMovimiento(nuevaDireccion)
-    self.validarAtravesables(nuevaDireccion)
-    reloj.validarContinuarJuego()
-    
-    position = nuevaDireccion
-    image = direccion.imagen()
+    //superTablero.validarMovimiento(nuevaDireccion)
+    if (self.sePuedeMover(nuevaDireccion)){
+        // self.validarAtravesables(nuevaDireccion)
+        // reloj.validarContinuarJuego()
+
+        self.trasladarOMover(nuevaDireccion, direccion)
+    }
+  }
+
+
+  method sePuedeMover(nuevaDireccion) {
+    return superTablero.estaDentroDeLosLimites(nuevaDireccion)  and 
+    not self.haySolido(nuevaDireccion) and reloj.sigueEnTiempo()
+  }
+
+  method trasladarOMover(nuevaDireccion, direccion) {
+    if (superTablero.sePuedeTrasladarElAuto()){
+       superTablero.cambiarMapa()
+    }
+    else {
+         self.position(nuevaDireccion)
+         self.image(direccion.image())
+    }
   }
   
   method haySolido(_position) = game.getObjectsIn(_position).any({ cosa => cosa.solida() })
   
   method validarAtravesables(_position) {
-    if (self.haySolido(_position)) tablero.error("No puedo ir ahí")
+    if (self.haySolido(_position)) superTablero.error("No puedo ir ahí")
   }
   
   method agarrarObjeto() {
