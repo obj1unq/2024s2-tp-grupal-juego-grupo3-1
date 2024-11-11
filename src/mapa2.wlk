@@ -1,5 +1,4 @@
 import wollok.game.*
-import caminos.*
 import supertablero.*
 import superMapa.*
 

@@ -1,8 +1,6 @@
-import supertablero.*
 import wollok.game.*
+import supertablero.*
 import auto.*
-import cosas.*
-import reloj.*
 
 object tablero {
   method validarMovimiento(positionSiguiente) {

@@ -1,9 +1,4 @@
 import wollok.game.*
-import auto.*
-import cosas.*
-import reloj.*
-import barraSuperior.*
-import caminos.*
 import supertablero.*
 import superMapa.*
 

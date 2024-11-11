@@ -1,6 +1,4 @@
 import wollok.game.*
-import auto.*
-import cosas.*
 import inicio.*
 
 object reloj {

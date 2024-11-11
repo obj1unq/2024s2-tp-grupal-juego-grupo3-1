@@ -1,16 +1,12 @@
-import barraSuperior.*
 import wollok.game.*
+import barraSuperior.*
 import auto.*
-import tablero.*
 import cosas.*
 import posiciones.*
 import reloj.*
-import inicio.*
 import mapaPrueba.*
 import caminos.*
-import mapa2.* //ver
 import mapa7.* //ver
-import mapa8.* //ver
 
 import mapaFrame.*
 import traslador.*

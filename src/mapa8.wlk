@@ -5,7 +5,8 @@ import superMapa.*
 
 object mapa8 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
-  override method posicionAuto() = game.at(3, 1)
+  override method posicionAuto() = game.at(0,0)
+  override method imagenAuto() = "autoHaciaArriba.png"
   override method mapa() {
     return 
       [ 
