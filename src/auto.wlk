@@ -1,8 +1,6 @@
-import supertablero.*
 import wollok.game.*
+import supertablero.*
 import tablero.*
-import cosas.*
-import posiciones.*
 import reloj.*
 
 object auto {

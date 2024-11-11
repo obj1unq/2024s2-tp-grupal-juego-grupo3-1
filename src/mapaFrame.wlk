@@ -5,6 +5,9 @@ import superMapa.*
 
 object barraSuperior inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
+  override method imagenAuto() = ""
+
+
   override method mapa (){
    return 
     [
