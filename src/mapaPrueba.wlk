@@ -8,7 +8,8 @@ import supertablero.*
 import superMapa.*
 
 object mapa1 inherits SuperMapa{
-  override method posicionAuto() = game.at(0, 0)
+  override method posicionAuto() = game.at(0,0)
+  override method imagenAuto() = "autoHaciaArriba.png"
 
   override method mapa(){
     return 

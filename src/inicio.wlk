@@ -38,7 +38,7 @@ class Introduccion {
 // Imágenes de introducción
 object intro0 inherits Introduccion {
   const property image = "portadaEnter.png"
-  
+
   override method siguiente() = intro1
 }
 

@@ -7,6 +7,8 @@ import reloj.*
 import barraSuperior.*
 import inicio.* //import mapaPrueba.*
 import supertablero.*
+import mapa7.*
+
 
 program aventuraDelMate {
 	game.title("Aventura del Mate")
@@ -18,13 +20,8 @@ program aventuraDelMate {
 
 	inicio.ejecutarInicio()
 	
-
-	// en el metodo ejecutarInicio
-	// game.addVisual(inicio) //agarrar
-
 	
-	
-	//LOS PUSE EN EL SUPERTABLERO!! En  method iniciarComandos() que se ejecuta cuadno si inicializa el primer mapa!
+	//LOS PUSE EN EL SUPERTABLERO!! En el method iniciarComandos() que se ejecuta cuando se inicializa el primer mapa!
 	// keyboard.a().onPressDo({ auto.agarrarObjeto() })
 	
 	
@@ -35,11 +32,9 @@ program aventuraDelMate {
 	
 
 	//Lo puse en el objeto inicio! en el metodo ejecutarInicio()
-	// keyboard.enter().onPressDo({if(inicio.estado().seguirMostrando()){ 
-	// 								inicio.cambiar()
-	// 							}}) // xq tiraba un error si se apertaba enter una vez iniciado el juego
+	// keyboard.enter().onPressDo({if(inicio.estado().seguirMostrando()){ inicio.cambiar()}}) // xq tiraba un error si se apretaba enter una vez iniciado el juego
 	
-	game.onTick(1000, "reloj", { reloj.tick() })
+	game.onTick(1000, "reloj", {reloj.tick()})
 	
 	//game.onTick(10000, "cambiar tamblero", { superTablero.cambiarMapa() })
 	

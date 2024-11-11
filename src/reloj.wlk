@@ -10,6 +10,10 @@ object reloj {
   method text() = if (self.sigueEnTiempo()) segundos.toString() else ""
   
   method textColor() = "FFFF00FF"
+
+  method descontarTiempo(segs){
+    segundos -= segs
+  }
   
   method sigueEnTiempo(){
     return segundos > 0

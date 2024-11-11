@@ -9,13 +9,16 @@ import inicio.*
 import mapaPrueba.*
 import caminos.*
 import mapa2.* //ver
+import mapa7.* //ver
+import mapa8.* //ver
+
 import mapaFrame.*
 import traslador.*
 
 object superTablero {
 
-  const mapas = #{mapa2} //faltan todos los demás
-  var mapaActual = mapa1 // inicializar como mapa inicio 
+  const mapas = #{mapa1} //faltan todos los demás
+  var mapaActual = mapa7 // inicializar como mapa inicio 
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
 
 
@@ -23,12 +26,13 @@ object superTablero {
   method inicioDeJuego(){
     self.iniciarComandos()
 
-    game.removeVisual(inicio)
+    self.removerTodasLasVisuales()
     barraSuperior.dibujar()
     mapaActual.dibujar()
 
-    auto.position(mapaActual.posicionAuto())
-    game.addVisual(auto)
+    auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
+
+    mapaActual.obstaculo().inicializar()
   }
   
 
@@ -65,15 +69,18 @@ object superTablero {
     self.removerTodasLasVisuales()
 
     self.finalizarSiEsElUltimoMapa()
+
+
     self.siguienteMapa()
+
+
     barraSuperior.dibujar()
     mapaActual.dibujar()
-    
-    auto.position(mapaActual.posicionAuto())
-    game.addVisual(auto)
+    auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
+    mapaActual.obstaculo().inicializar()
+
 
     self.agregarObjetosAgarradosEnBarraSuperior()
-
   }
 
   method agregarObjetosAgarradosEnBarraSuperior(){
