@@ -1,5 +1,3 @@
-import wollok.game.*
-
 class Elemento{
 
   method image()

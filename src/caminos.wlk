@@ -1,6 +1,3 @@
-import wollok.game.*
-import barraSuperior.*
-//import elementos.Elemento
 
 class Elemento{
 //ESTO ESTA MAL, PERO WOLLOK NOS MARCA ERROR EN LA CLASE CALLE AL IMPORTAR EL ARCHIVO ELEMENTOS

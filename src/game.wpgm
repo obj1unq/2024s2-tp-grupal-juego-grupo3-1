@@ -1,13 +1,6 @@
 import wollok.game.*
-import auto.*
-import tablero.*
-import cosas.*
-import posiciones.*
+import inicio.*
 import reloj.*
-import barraSuperior.*
-import inicio.* //import mapaPrueba.*
-import supertablero.*
-import mapa7.*
 
 
 program aventuraDelMate {

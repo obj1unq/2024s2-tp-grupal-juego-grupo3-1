@@ -1,5 +1,5 @@
-import supertablero.*
 import wollok.game.*
+import supertablero.*
 
 
 object inicio {

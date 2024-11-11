@@ -1,5 +1,4 @@
 import wollok.game.*
-import tablero.*
 import auto.*
 
 class SuperMapa {
