@@ -5,6 +5,8 @@ import auto.*
 class SuperMapa {
 
   method posicionAuto()
+  method imagenAuto()
+  method obstaculo() = obstaculoVacio
   
   method mapa()
 
@@ -20,4 +22,10 @@ class SuperMapa {
     auto.position(self.posicionAuto())
   }
   
+}
+
+object obstaculoVacio{
+  method inicializar(){
+
+  }
 }

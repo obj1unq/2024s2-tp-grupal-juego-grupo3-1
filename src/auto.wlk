@@ -6,7 +6,7 @@ import posiciones.*
 import reloj.*
 
 object auto {
-  var property position = game.at(0, 0)
+  var property position = null
   var property image = "autoHaciaArriba.png"
   
   // const objetosARecoger = [termo, yerba, bizcochitos, dispenser, agua, manzanita, mate]
@@ -52,6 +52,12 @@ object auto {
   method hayObjeto() = game.colliders(self).any(
     { objeto => objeto.esAgarrable() }
   )
+
+  method dibujar(posicion, imagen){
+    position = posicion
+    image = imagen
+    game.addVisual(self)
+  }
 }
 
 object ganeJuego {
