@@ -1,22 +1,22 @@
 import wollok.game.*
-import caminos.*
+import caminos2.*
 
 class Traslador inherits Calle {
-  override method meTraslada() = true
+  const property meTraslada = true
 }
 
 class TrasladorDerecha inherits Traslador {
-  const property image = "flecha-derecha.png"
+  override method image() = "flecha-derecha.png"
 }
 
 class TrasladorIzquierda inherits Traslador {
-  const property image = "flecha-izquierda.png"
+  override method image() = "flecha-izquierda.png"
 }
 
 class TrasladorArriba inherits Traslador {
-  const property image = "flecha-arriba.png"
+  override method image() = "flecha-arriba.png"
 }
 
 class TrasladorAbajo inherits Traslador {
-  const property image = "flecha-abajo.png"
+  override method image() = "flecha-abajo.png"
 }
