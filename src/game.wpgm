@@ -3,6 +3,7 @@ import inicio.*
 import reloj.*
 
 
+
 program aventuraDelMate {
 	game.title("Aventura del Mate")
 	game.height(10)

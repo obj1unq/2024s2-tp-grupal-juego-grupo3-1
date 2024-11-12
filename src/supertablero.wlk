@@ -7,6 +7,7 @@ import reloj.*
 import mapaPrueba.*
 import caminos.*
 import mapa7.* //ver
+import
 
 import mapaFrame.*
 import traslador.*
@@ -178,152 +179,16 @@ object fr {
 } 
 
 //CALLES
-object c1 {
-  method dibujarEn(position) {
-    game.addVisual(new Esquina1(position = position))
-  }
+class CalleDelMapa inherits Elemento{
+
+  const property image = "calle.png"
+  override method esAgarrable() = false
+  override method solida() = false
+  override method meTraslada() = false
+
 }
 
-object c2 {
-  method dibujarEn(position) {
-    game.addVisual(new Esquina2(position = position))
-  }
-}
 
-object c3 {
-  method dibujarEn(position) {
-    game.addVisual(new Esquina3(position = position))
-  }
-}
-
-object c4 {
-  method dibujarEn(position) {
-    game.addVisual(new Esquina4(position = position))
-  }
-}
-
-object c5 {
-  method dibujarEn(position) {
-    game.addVisual(new CalleHorizontal(position = position))
-  }
-}
-
-object c6 {
-  method dibujarEn(position) {
-    game.addVisual(new CalleVertical(position = position))
-  }
-}
-
-object cc {
-  method dibujarEn(position) {
-    game.addVisual(new Cruce(position = position))
-  }
-} //CALLES CON OBJETOS
-
-object cm {
-  //Calle con mate
-  method dibujarEn(position) {
-    game.addVisual(new CalleVertical(position = position))
-    game.addVisual(new Mate(position = position))
-  }
-}
-
-object cy {
-  //Calle con yerba
-  method dibujarEn(position) {
-    game.addVisual(new CalleHorizontal(position = position))
-    game.addVisual(new Yerba(position = position))
-  }
-}
-
-object ct {
-  //Calle con termo
-  method dibujarEn(position) {
-    game.addVisual(new CalleVertical(position = position))
-    game.addVisual(new Termo(position = position))
-  }
-}
-
-object cd {
-  //Calle con dispenser
-  method dibujarEn(position) {
-    game.addVisual(new CalleVertical(position = position))
-    game.addVisual(new Dispenser(position = position))
-  }
-}
-
-object mc {
-  //Calle con manzanita
-  method dibujarEn(position) {
-    game.addVisual(new CalleHorizontal(position = position))
-    game.addVisual(new Manzanita(position = position))
-  }
-}
-
-object cb {
-  //Calle con mate
-  method dibujarEn(position) {
-    game.addVisual(new CalleHorizontal(position = position))
-    game.addVisual(new Mate(position = position))
-  }
-}
-
-object cp {
-  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
-  method dibujarEn(position) {
-    game.addVisual(new Cruce(position = position))
-    game.addVisual(new Pozo (position = position))
-  }
-} 
-object pp {//calle con patrullero
-  //uso cruce para no tener q hacer 2 (horizontal y vertical)
-  method dibujarEn(position) {
-    game.addVisual(new Cruce(position = position))
-    game.addVisual(new Patrullero (position = position))
-  }
-} 
-
-object cv {//calle con valla y pozo
-  method dibujarEn(position) {
-    game.addVisual(new Cruce(position = position))
-    game.addVisual(new Pozo (position = position))
-    game.addVisual(new Valla (position = position))
-  }
-} 
-
-
-
-//VEREDAS
-
-object v1 {
-  method dibujarEn(position) {
-    game.addVisual(new Vereda(position = position))
-  }
-} //CASAS
-
-object h1 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa1(position = position))
-  }
-}
-
-object h2 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa2(position = position))
-  }
-}
-
-object h3 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa3(position = position))
-  }
-} //ARBOL
-
-object a1 {
-  method dibujarEn(position) {
-    game.addVisual(new Arbol(position = position))
-  }
-}
 
 //TRASLADORES
 
