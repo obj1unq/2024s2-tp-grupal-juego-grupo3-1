@@ -43,20 +43,26 @@ object policia inherits Elemento(position = game.at(2,3)){
   override method meTraslada() = false 
 
   
-  var property recorrido = new Recorrido()
+  var property instanciaRecorrido = 0
 
   method caminar(){
-    self.verSiAtrapoAuto()
-
-    self.crearNuevoRecorridoSiLlegueAlfin() //cambiar de un poli a otro
-    
     self.siguientePosicion()
+    
+    self.verSiAtrapoAuto()
   }
 
   method siguientePosicion(){
-    position = recorrido.siguientePosicion()
+    self.asignarInstancia(instanciaRecorrido)
 
-    recorrido.borrarPosicion(position)
+    position = recorrido.camino().get(instanciaRecorrido)
+  }
+
+  method asignarInstancia(nro){
+    if(recorrido.estasAlFnalDelCamino(instanciaRecorrido)){
+      instanciaRecorrido = 0
+    }else{
+      instanciaRecorrido += 1 
+    }
   }
 
   method inicializar(){
@@ -72,20 +78,32 @@ object policia inherits Elemento(position = game.at(2,3)){
     }
   }
 
-  method crearNuevoRecorridoSiLlegueAlfin(){
-    if (recorrido.seTerminoElCamino()){ //
-      recorrido = new Recorrido()
-    }
-  }
+  
 
   method atrapoAuto(){
+    return self.elAutoEstaEnMismaPosicion() or self.elAutoEstaAdelante() or self.elAutoEstaAtras() 
+  }
+
+  method elAutoEstaEnMismaPosicion(){
     return game.colliders(self).contains(auto)
   }
+
+  method elAutoEstaAdelante(){
+    return game.getObjectsIn(recorrido.posicionSiguiente(instanciaRecorrido)).contains(auto)
+  }
+
+  method elAutoEstaAtras(){
+    return game.getObjectsIn(recorrido.posicionAnterior(instanciaRecorrido)).contains(auto)
+
+  }
+
+
+
   
 }
 
 
-class Recorrido{
+object recorrido{
   const property ida = [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7),
                           /*calle arriba*/ game.at(3,7), game.at(4,7), game.at(5,7),  game.at(6,7), game.at(7,7), game.at(8,7), game.at(9,7), 
                           /*calle derecha*/  game.at(9,6), game.at(9,5), game.at(9,4), game.at(9,3), game.at(9,2), game.at(9,1),
@@ -95,15 +113,30 @@ class Recorrido{
 
   var property camino = ida + vuelta
 
-  method seTerminoElCamino(){
-    return camino.isEmpty()
+
+  method estasAlFnalDelCamino(nro){
+    return nro == 46 // son 23 posiciones * 2
   }
 
-  method borrarPosicion(position){
-    camino.remove(position)
+  method posicionAnteriorA(posicion){
+    return
+  }
+  method posicionSiguienteA(posicion){
+    return
   }
 
-  method siguientePosicion(){
-    return camino.first()
+  method posicionSiguiente(instancia) {
+    return if(instancia+1>=0 and instancia+1 <= 46){
+            camino.get(instancia+1)
+          }else{
+            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
+          }
+  }
+  method posicionAnterior(instancia){
+    return if(instancia-1 >= 0 and instancia-1 <= 46){
+            camino.get(instancia-1)
+          }else{
+            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
+          }
   }
 }
