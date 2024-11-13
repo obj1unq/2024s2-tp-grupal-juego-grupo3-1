@@ -1,6 +1,5 @@
 import wollok.game.*
 import supertablero.*
-
 import reloj.*
 import posiciones.*
 

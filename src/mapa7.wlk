@@ -1,10 +1,10 @@
 import wollok.game.*
 import supertablero.*
 import superMapa.*
-import elementos.*
 import reloj.*
 import auto.*
-
+import posiciones.*
+/*
 object mapa7 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,7)
@@ -103,40 +103,43 @@ object policia inherits Elemento(position = game.at(2,3)){
 }
 
 
-object recorrido{
-  const property ida = [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7),
-                          /*calle arriba*/ game.at(3,7), game.at(4,7), game.at(5,7),  game.at(6,7), game.at(7,7), game.at(8,7), game.at(9,7), 
-                          /*calle derecha*/  game.at(9,6), game.at(9,5), game.at(9,4), game.at(9,3), game.at(9,2), game.at(9,1),
-                          /*calle abajo*/ game.at(8,1), game.at(7,1), game.at(6,1),game.at(5,1), game.at(4,1), game.at(3,1)
-                        ] 
-  const property vuelta = ida.reverse() 
-
-  var property camino = ida + vuelta
-
-
-  method estasAlFnalDelCamino(nro){
-    return nro == 46 // son 23 posiciones * 2
-  }
-
-  method posicionAnteriorA(posicion){
-    return
-  }
-  method posicionSiguienteA(posicion){
-    return
-  }
-
-  method posicionSiguiente(instancia) {
-    return if(instancia+1>=0 and instancia+1 <= 46){
-            camino.get(instancia+1)
-          }else{
-            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
-          }
-  }
-  method posicionAnterior(instancia){
-    return if(instancia-1 >= 0 and instancia-1 <= 46){
-            camino.get(instancia-1)
-          }else{
-            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
-          }
-  }
-}
+*/
+///*
+//object recorrido{
+//  const property ida = [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7),
+//                          /*calle arriba*/ game.at(3,7), game.at(4,7), game.at(5,7),  game.at(6,7), game.at(7,7), game.at(8,7), game.at(9,7), 
+//                          /*calle derecha*/  game.at(9,6), game.at(9,5), game.at(9,4), game.at(9,3), game.at(9,2), game.at(9,1),
+//                          /*calle abajo*/ game.at(8,1), game.at(7,1), game.at(6,1),game.at(5,1), game.at(4,1), game.at(3,1)
+//                        ] 
+//  const property vuelta = ida.reverse() 
+//
+//  var property camino = ida + vuelta
+//
+//
+//  method estasAlFnalDelCamino(nro){
+//    return nro == 46 // son 23 posiciones * 2
+//  }
+//
+//  method posicionAnteriorA(posicion){
+//    return
+//  }
+//  method posicionSiguienteA(posicion){
+//    return
+//  }
+//
+//  method posicionSiguiente(instancia) {
+//    return if(instancia+1>=0 and instancia+1 <= 46){
+//            camino.get(instancia+1)
+//          }else{
+//            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
+//          }
+//  }
+//  method posicionAnterior(instancia){
+//    return if(instancia-1 >= 0 and instancia-1 <= 46){
+//            camino.get(instancia-1)
+//          }else{
+//            camino.get(instancia) // tiene que devolver algo, así q que devuelva la posicion en la que esta parado el policia
+//          }
+//  }
+//}
+//

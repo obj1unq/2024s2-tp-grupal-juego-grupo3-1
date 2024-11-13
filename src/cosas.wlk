@@ -1,73 +1,63 @@
 import wollok.game.*
 import barraSuperior.*
-import elementos.*
+import elementosDelMapa.*
 
 class Cosa inherits Elemento{
-
   override method esAgarrable() = true
   override method solida() = false
   override method meTraslada() = false
-
   var property recogido = false
 
   method frame()
   
   method cosaALaBarra() {
+    self.image(self.cosaEnElFrame()) 
     position = self.frame().position()
     recogido = true
   }
+
+  method cosaEnElFrame()
 }
 
-class Termo inherits Cosa{
-  const property image = "termo_.png"
+class Termo inherits Cosa (image = "termo__.png"){
   override method frame() = frameTermo
+  override method cosaEnElFrame() = "termo-verde.png"
 }
 
-class Yerba inherits Cosa {
-  const property image = "yerba_.png"
+class Yerba inherits Cosa (image =  "yerba_.png") {
   override method frame() = frameYerba
+  override method cosaEnElFrame() = "yerba-cara-unq.png"
 }
 
-class Dispenser inherits Cosa {
-  const property image = "disp.png"
-  override method frame() {
-    
-  }
-  
-  override method cosaALaBarra() {
-    super()
-    game.removeVisual(self)
-  }
+class Agua inherits Cosa (image =  "agua_.png") {
+  override method frame() = frameAgua
+  override method cosaEnElFrame() = "agua-para-mate.png"
 }
 
-object agua {
-  const property image = "agua_.png"
-  var property position = null
-}
 
-class Mate inherits Cosa{
-  const property image = "mate.png"
+class Mate inherits Cosa (image =  "mate.png"){
   override method frame() = frameMate
+  override method cosaEnElFrame() = "mate-lavado.png"
 } 
 
 //Bonusssssss
 
-class Manzanita inherits Cosa{
-  const property image = "manzana_.png"
+class Manzanita inherits Cosa (image =  "manzana_.png"){
   override method frame() = frameManzanita
+  override method cosaEnElFrame() = "mbrillante.png"
 }
 
-class Bizcochitos inherits Cosa {
-  const property image = "bizcochitos_.png"
+class Bizcochitos inherits Cosa (image = "bizcochitos_.png") {
   override method frame() = frameBizcochitos
+  override method cosaEnElFrame() = "bbrillante.png"
 }
 
-class Palmeritas inherits Cosa{
-  const property image = "palmeritas_.png"
+class Palmeritas inherits Cosa (image = "palmeritas_.png"){
   override method frame() = framePalmeritas
+  override method cosaEnElFrame() = "pbrillante.png"
 }
 
-class Faso inherits Cosa{
-  const property image = "faso.png"
+class Faso inherits Cosa (image = "fasito.png"){
   override method frame() = frameFaso
+  override method cosaEnElFrame() = "fbrillante.png"
 }

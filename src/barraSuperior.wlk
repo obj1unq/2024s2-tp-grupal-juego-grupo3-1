@@ -8,23 +8,23 @@ class Frame {
 }
 
 object frameTermo inherits Frame{
-  const property image = "frameTermo.png"
+  const property image = "frame-termo-verde-.png"
 }
 
 object frameMate inherits Frame {
-  const property image = "frameMate.png"
+  const property image = "frame-mate-lavado-.png"
 }
 
 object frameYerba inherits Frame {
-  const property image = "frameYerba.png"
+  const property image = "frame-yerba-cara-.png"
 }
 
 object frameAgua inherits Frame {
-  const property image =  "frameAgua.png"
+  const property image =  "frame-agua-mate-.png"
 }
 
 class FramePregunta inherits Frame {
-  const property image = "framePregunta.png"
+  const property image = "frame-bonus-.png"
 }
 
 object frameManzanita inherits FramePregunta{}
