@@ -1,7 +1,7 @@
 import wollok.game.*
 import supertablero.*
 import superMapa.*
-
+/*
 object mapa2 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,0)
@@ -25,3 +25,4 @@ object mapa2 inherits SuperMapa{
   }
   
 }
+*/

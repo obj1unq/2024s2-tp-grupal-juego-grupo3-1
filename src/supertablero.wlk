@@ -7,15 +7,13 @@ import reloj.*
 import mapaPrueba.*
 import caminos.*
 import mapa7.* //ver
-import
-
 import mapaFrame.*
 import traslador.*
 
 object superTablero {
 
   const mapas = #{mapa1} //faltan todos los demás
-  var mapaActual = mapa7 // inicializar como mapa inicio 
+  var mapaActual = mapa1 // inicializar como mapa inicio 
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
 
   
@@ -179,16 +177,144 @@ object fr {
 } 
 
 //CALLES
-class CalleDelMapa inherits Elemento{
-
-  const property image = "calle.png"
-  override method esAgarrable() = false
-  override method solida() = false
-  override method meTraslada() = false
-
+object c1 {
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+  }
 }
 
 
+
+//CALLES CON OBJETOS
+
+object cm {
+  //Calle con mate
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Mate(position = position))
+  }
+}
+
+object cy {
+  //Calle con yerba
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Yerba(position = position))
+  }
+}
+
+object ct {
+  //Calle con termo
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Termo(position = position))
+  }
+}
+
+object cd {
+  //Calle con dispenser
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Agua(position = position))
+  }
+}
+
+object mc {
+  //Calle con manzanita
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Manzanita(position = position))
+  }
+}
+
+object cb {
+  //Calle con mate
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Mate(position = position))
+  }
+}
+
+object cp {
+  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Pozo (position = position))
+  }
+} 
+//AGREGADOS
+
+
+object o2 {
+  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Bizcochitos (position = position))
+  }
+} 
+
+object o3 {
+  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Palmeritas (position = position))
+  }
+} 
+object o4 {
+  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Faso (position = position))
+  }
+} 
+
+object pp {//calle con patrullero
+  //uso cruce para no tener q hacer 2 (horizontal y vertical)
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Patrullero (position = position))
+  }
+} 
+
+object cv {//calle con valla y pozo
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual(new Pozo (position = position))
+    game.addVisual(new Valla (position = position))
+  }
+} 
+
+//VEREDAS
+
+object v1 {
+  method dibujarEn(position) {
+    game.addVisual(new Vereda(position = position))
+  }
+} //CASAS
+
+object h1 {
+  method dibujarEn(position) {
+    game.addVisual(new Casa1(position = position))
+  }
+}
+
+object h2 {
+  method dibujarEn(position) {
+    game.addVisual(new Casa2(position = position))
+  }
+}
+
+object h3 {
+  method dibujarEn(position) {
+    game.addVisual(new Casa3(position = position))
+  }
+} //ARBOL
+
+object a1 {
+  method dibujarEn(position) {
+    game.addVisual(new Arbol(position = position))
+  }
+}
 
 //TRASLADORES
 

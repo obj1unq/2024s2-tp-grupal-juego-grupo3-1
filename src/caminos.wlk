@@ -1,19 +1,26 @@
-import elementos.*
 
-
-class Calle inherits Elemento{
-  
-  override method image() = "calle.png"
+class Elemento{
+//ESTO ESTA MAL, PERO WOLLOK NOS MARCA ERROR EN LA CLASE CALLE AL IMPORTAR EL ARCHIVO ELEMENTOS
+//VER COMO SOLUCIONARLOS CON LOS PROFES
+  method image()
+  var property position
+  method solida()
+  method esAgarrable()
+  method meTraslada() //??? capaz va mejor en la clase calle
 }
-
-
+class Calle inherits Elemento{
+  override method esAgarrable() = false
+  override method solida() = false
+  override method meTraslada() = false
+  override method image () = "calle.png"
+}
 class Vereda inherits Elemento{
 
   override method solida() = true
   override method esAgarrable() = false
   override method meTraslada() = false
 
-  override method image() ="vereda.png"
+  const property image = "vereda.png"
 }
 
 class Casa inherits Elemento{
@@ -24,15 +31,15 @@ class Casa inherits Elemento{
 }
 
 class Casa1 inherits Casa {
-  override method image() = "casa1.png"
+  const property image = "casa1-.png"
 }
 
 class Casa2 inherits Casa {
-  override method image() = "casa2.png"
+  const property image = "casa2-.png"
 }
 
 class Casa3 inherits Casa {
-  override method image() = "casa3.png"
+  const property image = "casa3-.png"
 }
 
 class Obstaculo inherits Elemento {  
@@ -43,22 +50,22 @@ class Obstaculo inherits Elemento {
 
 class Pozo inherits Obstaculo {
   override method solida() = false
-  override method image() = "pozo.png"
+  const property image = "pozo.png"
 }
 
 class Patrullero inherits Obstaculo {
-  override method image() = "patrullero-.png"
+  const property image = "patrullero-.png"
 }
 
 class Valla inherits Obstaculo {
-  override method image() = "valla.png"
+  const property image = "valla.png"
 }
 
 class Arbol inherits Elemento{
   
   override method solida() = false
   
-  override method image() = "arbol.png"
+  const property image = "arbol.png"
   override method esAgarrable() = false
   
   override method meTraslada() = false

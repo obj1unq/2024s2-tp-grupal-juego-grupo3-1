@@ -1,9 +1,9 @@
 class Elemento{
-
-  method image()
-  method esAgarrable() = false
-  method solida() = false
-  method meTraslada() = false
+  var property image
+  var property position
+  method solida()
+  method esAgarrable()
+  method esTraslador() //??? capaz va mejor en la clase calle
 }
 
 

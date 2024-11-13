@@ -25,6 +25,5 @@ class SuperMapa {
 
 object obstaculoVacio{
   method inicializar(){
-
   }
 }

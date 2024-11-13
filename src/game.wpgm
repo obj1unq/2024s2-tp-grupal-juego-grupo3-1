@@ -6,8 +6,8 @@ import reloj.*
 
 program aventuraDelMate {
 	game.title("Aventura del Mate")
-	game.height(10)
-	game.width(10)
+	game.height(12)
+	game.width(20)
 	game.cellSize(50)
 	game.boardGround("boardGame.png")
 	//game.sound("musiJuego.mp3").play() //NO ME DEJA SUBIR EL ARCHIVO DE MUSICA A GITHUB, PERO LOGRÉ QUE SE REPRODUZCA

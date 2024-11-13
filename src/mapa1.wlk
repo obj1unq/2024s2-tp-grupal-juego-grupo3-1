@@ -27,7 +27,3 @@ object mapa1 inherits SuperMapa{
   }
   
 }
-
-object c1 inherits CalleDelMapa(image = "calle.png") {
-  
-}
