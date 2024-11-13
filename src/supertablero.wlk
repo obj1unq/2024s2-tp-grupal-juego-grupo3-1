@@ -12,11 +12,9 @@ import traslador.*
 
 object superTablero {
 
-  const mapas = #{mapa1} //faltan todos los demás
-  var mapaActual = mapa1 // inicializar como mapa inicio 
+  const mapas = #{mapaPrueba} //faltan todos los demás
+  var mapaActual = mapaPrueba // inicializar como mapa inicio 
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
-
-  
   
   method inicioDeJuego(){
     self.iniciarComandos()
@@ -30,7 +28,6 @@ object superTablero {
     mapaActual.obstaculo().inicializar()
   }
   
-
   method iniciarComandos(){
     keyboard.a().onPressDo({ auto.agarrarObjeto() })
     
@@ -46,8 +43,6 @@ object superTablero {
 
     //mapaFinal.dibujar()
     //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
-
-
 
     //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
     game.addVisual(finDeJuego)
@@ -65,15 +60,12 @@ object superTablero {
 
     self.finalizarSiEsElUltimoMapa()
 
-
     self.siguienteMapa()
-
 
     barraSuperior.dibujar()
     mapaActual.dibujar()
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
     mapaActual.obstaculo().inicializar()
-
 
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
@@ -90,22 +82,16 @@ object superTablero {
     game.allVisuals().forEach({v => game.removeVisual(v)})
   }
 
-
   method validarMovimiento(positionSiguiente) {
     if (not self.estaDentroDeLosLimites(positionSiguiente))
     self.error("No puede salir el limite del tablero") 
   }
 
-
   method sePuedeTrasladarElAuto(){
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
   }
 
-
-  
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 2)
-
-
 }
 
 object __ {
@@ -183,8 +169,6 @@ object c1 {
   }
 }
 
-
-
 //CALLES CON OBJETOS
 
 object cm {
@@ -242,11 +226,8 @@ object cp {
     game.addVisual(new Pozo (position = position))
   }
 } 
-//AGREGADOS
-
 
 object o2 {
-  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Bizcochitos (position = position))
@@ -254,14 +235,12 @@ object o2 {
 } 
 
 object o3 {
-  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Palmeritas (position = position))
   }
 } 
 object o4 {
-  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Faso (position = position))
@@ -285,13 +264,13 @@ object cv {//calle con valla y pozo
 } 
 
 //VEREDAS
-
 object v1 {
   method dibujarEn(position) {
     game.addVisual(new Vereda(position = position))
   }
-} //CASAS
+} 
 
+//CASAS
 object h1 {
   method dibujarEn(position) {
     game.addVisual(new Casa1(position = position))

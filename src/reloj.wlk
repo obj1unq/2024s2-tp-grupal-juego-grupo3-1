@@ -15,7 +15,8 @@ object reloj {
   
   method sigueEnTiempo(){
     return segundos > 0
- } 
+  } 
+  
   method tick() {
     self.validarContinuarJuego()
     

@@ -3,6 +3,7 @@ import supertablero.*
 import superMapa.*
 import reloj.*
 import auto.*
+import posiciones.*
 /*
 object mapa7 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar

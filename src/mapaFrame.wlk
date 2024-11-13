@@ -1,11 +1,11 @@
 import wollok.game.*
-
+import posiciones.*
 import supertablero.*
 import superMapa.*
 
 object barraSuperior inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
-  override method imagenAuto() = "autoHaciaArriba.png"
+  override method imagenAuto() = arriba.image()
 
   override method mapa (){
    return 

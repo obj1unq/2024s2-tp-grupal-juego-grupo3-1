@@ -1,5 +1,6 @@
 import wollok.game.*
 import auto.*
+
 class SuperMapa {
 
   method posicionAuto()
