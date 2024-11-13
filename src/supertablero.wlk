@@ -5,7 +5,7 @@ import cosas.*
 import posiciones.*
 import reloj.*
 import mapaPrueba.*
-import caminos.*
+import elementosDelMapa.*
 import mapa7.* //ver
 import mapaFrame.*
 import traslador.*

@@ -1,11 +1,11 @@
 import wollok.game.*
 import barraSuperior.*
-import elementos.*
+import elementosDelMapa.*
 
 class Cosa inherits Elemento{
   override method esAgarrable() = true
   override method solida() = false
-  override method esTraslador() = false
+  override method meTraslada() = false
   var property recogido = false
 
   method frame()
@@ -19,12 +19,12 @@ class Cosa inherits Elemento{
   method cosaEnElFrame()
 }
 
-class Termo inherits Cosa (image =  "termo__.png"){
+class Termo inherits Cosa (image = "termo__.png"){
   override method frame() = frameTermo
   override method cosaEnElFrame() = "termo-verde.png"
 }
 
-class Yerba inherits Cosa(image =  "yerba_.png") {
+class Yerba inherits Cosa (image =  "yerba_.png") {
   override method frame() = frameYerba
   override method cosaEnElFrame() = "yerba-cara-unq.png"
 }

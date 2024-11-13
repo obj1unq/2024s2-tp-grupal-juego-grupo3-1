@@ -1,6 +1,5 @@
 import wollok.game.*
 import auto.*
-
 class SuperMapa {
 
   method posicionAuto()
@@ -22,7 +21,6 @@ class SuperMapa {
   }
   
 }
-
 object obstaculoVacio{
   method inicializar(){
   }

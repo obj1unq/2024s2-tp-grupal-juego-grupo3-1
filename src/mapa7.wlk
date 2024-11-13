@@ -1,7 +1,6 @@
 import wollok.game.*
 import supertablero.*
 import superMapa.*
-import elementos.*
 import reloj.*
 import auto.*
 /*
