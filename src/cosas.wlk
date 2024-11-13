@@ -4,8 +4,7 @@ import elementosDelMapa.*
 
 class Cosa inherits Elemento{
   override method esAgarrable() = true
-  override method solida() = false
-  override method meTraslada() = false
+  
   var property recogido = false
 
   method frame()

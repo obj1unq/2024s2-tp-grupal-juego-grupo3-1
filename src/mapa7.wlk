@@ -38,9 +38,6 @@ object policia inherits Elemento(position = game.at(2,3)){
   //se reduce el tiempo 10 segundos (a chequear cuanto segundos).
   // y manda al auto a la posicion inicial del mapa
   override method image() = "bizcochitos_.png"
-  override method solida() = false
-  override method esAgarrable() = false 
-  override method meTraslada() = false 
 
   
   var property instanciaRecorrido = 0
