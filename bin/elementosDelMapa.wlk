@@ -41,7 +41,7 @@ class Pozo inherits Obstaculo (image = "pozo.png") {
   override method solida() = false
 }
 
-class Patrullero inherits Obstaculo (image = "patrullero-.png") {
+class Patrullero inherits Obstaculo (image = "patrullero_.png") {
   
 }
 
