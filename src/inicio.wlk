@@ -23,8 +23,6 @@ object inicio {
     }
 
   }
-
-
 }
 
 class Introduccion {

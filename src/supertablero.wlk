@@ -13,7 +13,7 @@ import traslador.*
 object superTablero {
 
   const mapas = #{mapaPrueba} //faltan todos los demás
-  var mapaActual = mapaPrueba // inicializar como mapa inicio 
+  var mapaActual = mapa7 // inicializar como mapa inicio 
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
@@ -208,14 +208,6 @@ object mc {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Manzanita(position = position))
-  }
-}
-
-object cb {
-  //Calle con mate
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Mate(position = position))
   }
 }
 
