@@ -9,11 +9,16 @@ import elementosDelMapa.*
 import mapa7.* //ver
 import mapaFrame.*
 import traslador.*
+import mapa5.*
+import mapa6.*
+import mapa3.*
+import mapa4.*
 
 object superTablero {
 
   const mapas = #{mapaPrueba} //faltan todos los demás
   var mapaActual = mapa7 // inicializar como mapa inicio 
+  
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
@@ -25,7 +30,7 @@ object superTablero {
 
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
 
-    mapaActual.obstaculo().inicializar()
+    // mapaActual.obstaculo().inicializar()
   }
   
   method iniciarComandos(){
@@ -65,7 +70,7 @@ object superTablero {
     barraSuperior.dibujar()
     mapaActual.dibujar()
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
-    mapaActual.obstaculo().inicializar()
+    // mapaActual.obstaculo().inicializar()
 
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
@@ -195,8 +200,8 @@ object ct {
   }
 }
 
-object cd {
-  //Calle con dispenser
+object ca {
+  //Calle con agua
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Agua(position = position))
