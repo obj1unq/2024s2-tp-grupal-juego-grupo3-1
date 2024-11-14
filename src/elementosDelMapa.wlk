@@ -10,7 +10,6 @@ class Elemento {
 }
 
 class Calle inherits Elemento (image = "calle.png") {
-  
 }
 
 class Vereda inherits Elemento (image = "vereda.png") {

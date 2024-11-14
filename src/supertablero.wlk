@@ -16,8 +16,9 @@ import mapa4.*
 
 object superTablero {
 
-  const mapas = #{} //faltan todos los demás
-  var mapaActual = mapa3 // inicializar como mapa inicio 
+  const mapas = #{mapaPrueba} //faltan todos los demás
+  var mapaActual = mapa7 // inicializar como mapa inicio 
+  
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
