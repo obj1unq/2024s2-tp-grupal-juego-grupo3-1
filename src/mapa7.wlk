@@ -65,9 +65,6 @@ object policia inherits ObstaculoInteractivo(position = game.at(2,3), image = "e
     return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
 
   }
-
-
-
   
 }
 

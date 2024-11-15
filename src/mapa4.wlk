@@ -1,12 +1,17 @@
-import supertablero.*
+import elementosDelMapa.*
+import obstaculoInteractivo.*
 import wollok.game.*
+import supertablero.*
 import superMapa.*
+import reloj.*
+import auto.*
 import posiciones.*
 
 object mapa4 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(1,0)
   override method imagenAuto() = arriba.image()
+  override method obstaculo() = viejita 
 
 
   override method mapa() {
@@ -26,13 +31,26 @@ object mapa4 inherits SuperMapa{
       ].reverse()v1
   }
   
-}// calle : c1
-// vereda : v1
-// calle con manzana : mc
-// calle con agua : ca
-// casa : h1 h2 h3
-// arbol : a1 o4
-// valla : cv
-// pozo : cp
-// patrullero: pp
-// trasladores : tu td tl tr
+}
+
+
+object recorridoDeViejita inherits Recorrido{
+  override method ida(){ 
+        return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
+}
+}
+
+
+
+object viejita inherits ObstaculoInteractivo(position = game.at(3,4), image = "viejita.png",miRecorrido = recorridoDeViejita){
+  
+  override method casitigoPorAtraparlo(){
+    
+    game.say(self, " ME CHOCASTE!! SABANDIJA / 10 seg menos ")
+    reloj.descontarTiempo(15) 
+  }
+
+  override method atrapoAuto(){
+    return game.colliders(self).contains(auto)
+  }
+}
