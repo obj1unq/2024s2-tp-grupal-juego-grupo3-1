@@ -27,6 +27,9 @@ object auto {
     // y no se llega a ver el auto arriba de la flecha
     
   }
+  method tocarBocina(){
+    game.sound("bocina2.mp3").play()
+  }
 
   method seTrasladaSiPuede(){
     if (superTablero.sePuedeTrasladarElAuto()){
