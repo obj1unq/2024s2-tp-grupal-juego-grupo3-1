@@ -16,11 +16,13 @@ import mapa5.*
 import mapa6.*
 import mapa7.*
 import mapa8.*
+import mapa9.*
+
 
 object superTablero {
 
   const mapas = #{mapa8} //faltan todos los demás
-  var mapaActual = mapa4 // inicializar como mapa inicio 
+  var mapaActual = mapa9 // inicializar como mapa inicio 
   
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
@@ -290,11 +292,22 @@ object h3 {
   method dibujarEn(position) {
     game.addVisual(new Casa3(position = position))
   }
-} //ARBOL
+} //ARBOL, ARBUSTO Y LAGUNA
 
 object a1 {
   method dibujarEn(position) {
     game.addVisual(new Arbol(position = position))
+  }
+}
+
+object ar { //arbusto
+  method dibujarEn(position) {
+    game.addVisual(new Arbusto(position = position))
+  }
+}
+object lg { //laguna
+  method dibujarEn(position) {
+    game.addVisual(new Laguna(position = position))
   }
 }
 

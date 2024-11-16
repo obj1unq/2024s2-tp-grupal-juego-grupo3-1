@@ -11,6 +11,8 @@ class Elemento {
   method esAgarrable() = false
   
   method meTraslada() = false
+
+  method meLlevaAlLago() = false
 }
 class ObstaculoInteractivo inherits Elemento(){
 
@@ -49,11 +51,28 @@ class ObstaculoInteractivo inherits Elemento(){
 
   method inicializar(){
     game.addVisual(self)
-    game.onTick(600, "poli", {self.caminar()})
+    game.onTick(600, "object", {self.caminar()})
   }
 
   method atrapoAuto()
     //return game.colliders(self).contains(auto) 
+
+
+/*
+Los uso en policia y en fidel:
+*/
+  method elAutoEstaEnMismaPosicion(){
+        return game.colliders(self).contains(auto)
+    }
+
+  method elAutoEstaAdelante(){
+        return game.getObjectsIn(miRecorrido.posicionSiguienteEnLista(instanciaRecorrido)).contains(auto)
+    }
+
+  method elAutoEstaAtras(){
+        return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
+
+    }
 
 }
 
@@ -63,7 +82,7 @@ class ObstaculoInteractivo inherits Elemento(){
 class Recorrido{
  method ida() // declaras el camino de ida, y el objeto te crea el camino completo (lo hice así xq mi poli tenia como 50 posiciones, y era un montón ponerlas todas)
 
- const property camino = self.ida() + self.ida().reverse()
+ var property camino = self.ida() + self.ida().reverse()
 
  method largoCamino() = camino.size()
 
