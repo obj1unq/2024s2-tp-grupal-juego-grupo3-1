@@ -32,32 +32,37 @@ class Introduccion {
 }
 
 // Imágenes de introducción
-object intro0 inherits Introduccion (image = "portadaEnter.png"){
+object intro0 inherits Introduccion (image = "portadaNuevoSize.png"){
 
   override method siguiente() = intro1
 }
 
-object intro1 inherits Introduccion(image = "introEnter1.png"){  
+object intro1 inherits Introduccion(image = "00-intro.png"){  
   override method siguiente() = intro2
 }
 
-object intro2 inherits Introduccion (image = "introEnter2.png") {
+object intro2 inherits Introduccion (image = "01-rena.png") {
   
   override method siguiente() = intro3
   
 }
 
-object intro3 inherits Introduccion (image = "introEnter3.png"){  
+object intro3 inherits Introduccion (image = "02-mile.png"){  
   override method siguiente() = intro4
   
 }
 
-object intro4 inherits Introduccion(image = "introEnter4.png") {  
+object intro4 inherits Introduccion(image = "03-azu.png") {  
   override method siguiente() = intro5
   
 }
 
-object intro5 inherits Introduccion(image = "controles.png") {  
+object intro5 inherits Introduccion(image = "04-gonza.png") {  
+  override method siguiente() = intro6
+  
+}
+
+object intro6 inherits Introduccion(image = "controles.png") {  
   override method siguiente() = null // nos lo puso leo
 }
 
