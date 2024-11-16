@@ -38,7 +38,7 @@ object mapa7 inherits SuperMapa{
 
 
 
-object policia inherits ObstaculoInteractivo(position = game.at(2,3), image = "elPoli.png", miRecorrido = recorridoPoli){
+object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png"){
   // comportamiento: el poli va a hacer un camino de ida y vuelta, si el policia y el auto colisionan, 
   //se reduce el tiempo 10 segundos (a chequear cuanto segundos).
   // y manda al auto a la posicion inicial del mapa
@@ -46,7 +46,7 @@ object policia inherits ObstaculoInteractivo(position = game.at(2,3), image = "e
   override method casitigoPorAtraparlo(){
     game.say(self, " TE ATRAPÉ!! ")
     reloj.descontarTiempo(10) //reveer
-    auto.position(game.at(0,8)) //lo manda al principio del mapa
+    auto.position(mapa7.posicionAuto()) //lo manda al principio del mapa
   } 
 
   override method atrapoAuto(){

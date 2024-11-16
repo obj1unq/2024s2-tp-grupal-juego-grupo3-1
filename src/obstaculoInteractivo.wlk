@@ -3,6 +3,7 @@ import wollok.game.*
 import auto.*
 import reloj.*
 class Elemento {
+  //NO ME DEJA IMPORTAR la clase desde el import archivo!!
   var property image
   var property position
   
@@ -14,7 +15,7 @@ class Elemento {
 
   method meLlevaAlLago() = false
 }
-class ObstaculoInteractivo inherits Elemento(){
+class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get(0)){
 
 
   var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
