@@ -20,7 +20,7 @@ object mapaInicial inherits SuperMapa{
         [__, __, __, __, __, v1, c1, v1, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, a1, a1, __, v1, c1, v1, a1, a1, h2, __, h2, __, aa, a1, __, h3, __, aa],
         [__, __, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1],
-        [__, __, c2, c1, c1, c1, c1, c2, c1, c1, c1, c1, c2, c1, c1, c1, c1, c2, c1, tr],
+        [__, __, c2, c1, c1, c1, c1, c1, c1, c1, c1, c1, c2, c1, c1, c1, c1, c2, c1, tr],
         [__, __, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1],
         [es, __, aa, __, aa, v1, pp, v1, aa, __, aa, __, aa, __, __, __, __, __, __, __]
       ].reverse()
