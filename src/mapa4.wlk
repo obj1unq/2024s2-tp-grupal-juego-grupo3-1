@@ -42,7 +42,7 @@ object recorridoDeViejita inherits Recorrido{
 
 
 
-object viejita inherits ObstaculoInteractivo(position = game.at(3,4), image = "viejita.png",miRecorrido = recorridoDeViejita){
+object viejita inherits ObstaculoInteractivo(image = "viejita.png",miRecorrido = recorridoDeViejita){
   
   override method casitigoPorAtraparlo(){
     
