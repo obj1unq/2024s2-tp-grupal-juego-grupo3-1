@@ -34,11 +34,13 @@ object lagoFidel{
     method inicializar(){
         fidel1.inicializar()
         fidel2.inicializar()
+        fidel3.inicializar()
+
 
         transporte1.inicializar()
         transporte2.inicializar()
 
-        game.onTick(1, "ir al lago", {self.llevarAlAutoAlLagoSiPuede()})
+        game.onTick(1, "ir al lago", {self.llevarAlAutoAlLagoSiPuede()})// esto iria en la verificacion cuadno se mueve?? o lo dejamos aca??
     }
 
     method llevarAlAutoAlLagoSiPuede(){
