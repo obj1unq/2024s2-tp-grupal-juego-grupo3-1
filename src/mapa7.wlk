@@ -52,19 +52,6 @@ object policia inherits ObstaculoInteractivo(position = game.at(2,3), image = "e
   override method atrapoAuto(){
     return self.elAutoEstaEnMismaPosicion() or self.elAutoEstaAdelante() or self.elAutoEstaAtras() 
   }
-
-  method elAutoEstaEnMismaPosicion(){
-    return game.colliders(self).contains(auto)
-  }
-
-  method elAutoEstaAdelante(){
-    return game.getObjectsIn(miRecorrido.posicionSiguienteEnLista(instanciaRecorrido)).contains(auto)
-  }
-
-  method elAutoEstaAtras(){
-    return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
-
-  }
   
 }
 
