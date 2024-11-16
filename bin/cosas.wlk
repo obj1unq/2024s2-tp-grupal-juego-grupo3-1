@@ -10,6 +10,7 @@ class Cosa inherits Elemento{
   method frame()
   
   method cosaALaBarra() {
+    game.sound("sonidoAgarrar2.mp3").play()
     self.image(self.cosaEnElFrame()) 
     position = self.frame().position()
     recogido = true

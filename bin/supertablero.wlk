@@ -6,16 +6,24 @@ import posiciones.*
 import reloj.*
 import mapaPrueba.*
 import elementosDelMapa.*
-import mapa7.* //ver
 import mapaFrame.*
 import traslador.*
+import mapa1.*
+import mapa2.*
+import mapa3.*
+import mapa4.*
 import mapa5.*
 import mapa6.*
+import mapa7.*
+import mapa8.*
+import mapa9.*
+
 
 object superTablero {
 
-  const mapas = #{mapaPrueba} //faltan todos los demás
-  var mapaActual = mapaPrueba // inicializar como mapa inicio 
+  const mapas = #{mapa8} //faltan todos los demás
+  var mapaActual = mapa9 // inicializar como mapa inicio 
+  
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
@@ -27,11 +35,13 @@ object superTablero {
 
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
 
-    // mapaActual.obstaculo().inicializar()
+    mapaActual.obstaculo().inicializar()
   }
   
   method iniciarComandos(){
     keyboard.a().onPressDo({ auto.agarrarObjeto() })
+
+    keyboard.b().onPressDo({auto.tocarBocina()})
     
     keyboard.up().onPressDo({ auto.mover(arriba) })
     keyboard.left().onPressDo({ auto.mover(izquierda) })
@@ -57,8 +67,9 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    
     self.removerTodasLasVisuales()
+
+    //game.sound("teletransporte.mp3").play()
 
     self.finalizarSiEsElUltimoMapa()
 
@@ -67,7 +78,7 @@ object superTablero {
     barraSuperior.dibujar()
     mapaActual.dibujar()
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
-    // mapaActual.obstaculo().inicializar()
+    mapaActual.obstaculo().inicializar()
 
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
@@ -281,11 +292,22 @@ object h3 {
   method dibujarEn(position) {
     game.addVisual(new Casa3(position = position))
   }
-} //ARBOL
+} //ARBOL, ARBUSTO Y LAGUNA
 
 object a1 {
   method dibujarEn(position) {
     game.addVisual(new Arbol(position = position))
+  }
+}
+
+object ar { //arbusto
+  method dibujarEn(position) {
+    game.addVisual(new Arbusto(position = position))
+  }
+}
+object lg { //laguna
+  method dibujarEn(position) {
+    game.addVisual(new Laguna(position = position))
   }
 }
 

@@ -1,6 +1,4 @@
 import supertablero.*
-import supertablero.*
-import supertablero.*
 import wollok.game.*
 import superMapa.*
 import posiciones.*

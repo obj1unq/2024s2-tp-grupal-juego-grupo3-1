@@ -10,7 +10,6 @@ class Elemento {
 }
 
 class Calle inherits Elemento (image = "calle.png") {
-  
 }
 
 class Vereda inherits Elemento (image = "vereda.png") {
@@ -51,4 +50,10 @@ class Valla inherits Obstaculo (image = "valla.png") {
 
 class Arbol inherits Elemento (image = "arbol.png") {
   
+}
+class Arbusto inherits Elemento (image = "arbusto_2.png") {
+  override  method solida() = true
+}
+
+class Laguna inherits Elemento (image = "laguna-2.png") {  
 }
