@@ -19,23 +19,23 @@ class Cosa inherits Elemento{
   method cosaEnElFrame()
 }
 
-class Termo inherits Cosa (image = "termo__.png"){
+class Termo inherits Cosa (image = "termo--.png"){
   override method frame() = frameTermo
   override method cosaEnElFrame() = "termo-verde.png"
 }
 
-class Yerba inherits Cosa (image =  "yerba_.png") {
+class Yerba inherits Cosa (image =  "yerba--.png") {
   override method frame() = frameYerba
   override method cosaEnElFrame() = "yerba-cara-unq.png"
 }
 
-class Agua inherits Cosa (image =  "agua_.png") {
+class Agua inherits Cosa (image =  "agua--.png") {
   override method frame() = frameAgua
   override method cosaEnElFrame() = "agua-para-mate.png"
 }
 
 
-class Mate inherits Cosa (image =  "mate.png"){
+class Mate inherits Cosa (image =  "mate--.png"){
   override method frame() = frameMate
   override method cosaEnElFrame() = "mate-lavado.png"
 } 
