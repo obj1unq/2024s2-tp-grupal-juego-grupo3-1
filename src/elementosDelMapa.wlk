@@ -51,7 +51,7 @@ class Valla inherits Obstaculo (image = "valla.png") {
 class Arbol inherits Elemento (image = "arbol.png") {
   
 }
-class Arbusto inherits Elemento (image = "arbusto.png") {
+class Arbusto inherits Elemento (image = "arbusto_2.png") {
   override  method solida() = true
 }
 
