@@ -6,7 +6,6 @@ import posiciones.*
 import reloj.*
 import elementosDelMapa.*
 import mapaFrame.*
-import traslador.*
 import mapas.*
 
 object superTablero {
