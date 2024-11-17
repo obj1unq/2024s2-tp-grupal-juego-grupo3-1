@@ -7,10 +7,18 @@ class Elemento {
   method esAgarrable() = false
   
   method meTraslada() = false
+
+  method meLlevaAlLago() = false
+
 }
 
 class Calle inherits Elemento (image = "calle.png") {
 }
+
+class Inicio inherits Calle {
+  override method solida() = true
+}
+
 
 class Vereda inherits Elemento (image = "vereda.png") {
   override method solida() = true
@@ -48,12 +56,20 @@ class Valla inherits Obstaculo (image = "valla.png") {
   
 }
 
-class Arbol inherits Elemento (image = "arbol.png") {
+class Arbol inherits Elemento (image = "arbol2.png") {
   
 }
 class Arbusto inherits Elemento (image = "arbusto_2.png") {
-  override  method solida() = true
+  override method solida() = true
 }
 
 class Laguna inherits Elemento (image = "laguna-2.png") {  
+}
+
+class Arbusto2 inherits Elemento (image = "arbusto2.png"){
+
+}
+
+class Estacionamiento inherits Elemento(image = "estacionamiento.png"){
+  override method solida() = true
 }
