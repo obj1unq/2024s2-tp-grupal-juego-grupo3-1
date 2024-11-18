@@ -19,6 +19,9 @@ class Inicio inherits Calle {
   override method solida() = true
 }
 
+class Final inherits Elemento(image = "llegada.png"){
+}
+
 
 class Vereda inherits Elemento (image = "vereda.png") {
   override method solida() = true

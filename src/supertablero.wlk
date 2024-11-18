@@ -184,6 +184,11 @@ object c2 {
   }
 }
 
+object c3 {
+  method dibujarEn (position) {
+    game.addVisual(new Final(position = position))
+  }
+}
 
 //CALLES CON OBJETOS
 
@@ -254,6 +259,13 @@ object o4 {
     game.addVisual(new Faso (position = position))
   }
 } 
+
+object o5 {
+  method dibujarEn(position) {
+    game.addVisual(new Calle(position = position))
+    game.addVisual (new Medialuna(position = position))
+  }
+}
 
 object pp {//calle con patrullero
   //uso cruce para no tener q hacer 2 (horizontal y vertical)
