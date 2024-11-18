@@ -136,7 +136,7 @@ object recorridoDeViejita inherits Recorrido{
 
 
 
-object viejita inherits ObstaculoInteractivo(image = "viejita.png",miRecorrido = recorridoDeViejita){
+object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita){
   
   override method casitigoPorAtraparlo(){
     
@@ -180,7 +180,7 @@ object mapa5 inherits SuperMapa{
 object recorridoBondi inherits Recorrido{
 
   // No quiero que vuelva en reversa o, si vuelve en reversa habria que girar la imagen!
-
+  override method camino() = self.ida()
   override method ida(){ 
         return  [game.at(2,3) , game.at(3,3) , game.at(4,3) ,
                  game.at(5,3) , game.at(6,3) , game.at(7,3) ,
@@ -189,7 +189,6 @@ object recorridoBondi inherits Recorrido{
                  game.at(14,3), game.at(15,3), game.at(16,3),
                  game.at(17,3), game.at(18,3), game.at(19,3)] 
 }
-
 }
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi){

@@ -83,9 +83,9 @@ Los uso en policia y en fidel:
 class Recorrido{
  method ida() // declaras el camino de ida, y el objeto te crea el camino completo (lo hice así xq mi poli tenia como 50 posiciones, y era un montón ponerlas todas)
 
- var property camino = self.ida() + self.ida().reverse()
+ method camino() = self.ida() + self.ida().reverse()
 
- method largoCamino() = camino.size()
+ method largoCamino() = self.camino().size()
 
  method tieneQueReiniciarRecorrido(nro){
    return nro == self.largoCamino()-1 // xq las posiciones en la lista el el largo-1
@@ -96,9 +96,9 @@ class Recorrido{
     //devuelve la posicion que sigue en la lista, y en caso de no existir, osea q está al final de la lista,
     // devuelve el elemento de la posicion pasada por parametro, ya que debe devolver algo.
    return if(instancia+1 < self.largoCamino()){
-           camino.get(instancia+1)
+           self.camino().get(instancia+1)
          }else{
-           camino.get(instancia)
+           self.camino().get(instancia)
          }
  }
  method posicionAnteriorEnLista(instancia){
@@ -106,9 +106,9 @@ class Recorrido{
     //devuelve la posicion que sigue en la lista, y en caso de no existir, osea q está al principio de la lista,
     //devuelve el elemento de la posicion pasada por parametro, ya que debe devolver algo.
    return if(instancia-1 >= 0){
-           camino.get(instancia-1)
+           self.camino().get(instancia-1)
          }else{
-           camino.get(instancia) 
+           self.camino().get(instancia) 
          }
  }
 }
