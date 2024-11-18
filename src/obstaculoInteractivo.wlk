@@ -1,3 +1,4 @@
+import barraSuperior.*
 //import elementosDelMapa.*
 import wollok.game.*
 import auto.*
@@ -8,20 +9,16 @@ class Elemento {
   var property position
   
   method solida() = false
-  
   method esAgarrable() = false
-  
   method meTraslada() = false
-
   method meLlevaAlLago() = false
+  
 }
-class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get(0)){
 
+class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get(0)){
 
   var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
   const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
-    
-  
 
   method caminar(){
     self.siguientePosicion()
