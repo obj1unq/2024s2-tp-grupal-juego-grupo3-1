@@ -61,3 +61,8 @@ class Faso inherits Cosa (image = "fasito.png"){
   override method frame() = frameFaso
   override method cosaEnElFrame() = "fbrillante.png"
 }
+
+class Medialuna inherits Cosa (image = "medialuna-.png"){
+  override method frame() = frameMedialuna
+  override method cosaEnElFrame() = "mebrillante.png"
+}
