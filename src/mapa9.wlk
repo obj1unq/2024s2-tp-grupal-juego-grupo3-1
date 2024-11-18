@@ -73,8 +73,6 @@ object lagoFidel{
 }
 
 
-
-
 class Fidel inherits ObstaculoInteractivo{
     override method casitigoPorAtraparlo(){
         game.say(self, " Todavia no entregaste las practicas?! ")
@@ -89,7 +87,9 @@ object fidel1 inherits Fidel(miRecorrido = recorridoFidel1, image= "fidel.png"){
 object fidel2 inherits Fidel(miRecorrido = recorridoFidel2, image= "fidel.png"){}
 object fidel3 inherits Fidel(miRecorrido = recorridoFidel3, image= "fidel.png"){}
 
-object recorridoFidel1 inherits Recorrido(camino = self.ida()){
+object recorridoFidel1 inherits Recorrido{
+    override method camino() = self.ida()
+    
     override method ida(){
         return [game.at(15,6), game.at(16,6), game.at(17,6), game.at(18,6), game.at(19,6), game.at(19,5), game.at(19,4), game.at(19,3), game.at(19,2), game.at(19,1), game.at(19,0),
                 game.at(18,0), game.at(17,0), game.at(16,0), game.at(15,0), game.at(14,0), game.at(13,0), game.at(12,0), game.at(11,0),
@@ -98,7 +98,9 @@ object recorridoFidel1 inherits Recorrido(camino = self.ida()){
     }
 
 }
-object recorridoFidel2 inherits Recorrido(camino = self.ida()){
+object recorridoFidel2 inherits Recorrido{
+    override method camino() = self.ida()
+
     override method ida(){
         return [game.at(16,0), game.at(15,0), game.at(14,0), game.at(13,0), game.at(12,0), game.at(11,0),
                 game.at(11,1), game.at(11,2), game.at(11,3), game.at(11,4), game.at(11,5), game.at(11,6),
@@ -106,7 +108,9 @@ object recorridoFidel2 inherits Recorrido(camino = self.ida()){
                 game.at(18,0), game.at(17,0)]
     }
 
-}object recorridoFidel3 inherits Recorrido(camino = self.ida()){
+}object recorridoFidel3 inherits Recorrido{
+    override method camino() = self.ida()
+
     override method ida(){
         return [game.at(11,5), game.at(11,6), game.at(12,6), game.at(13,6), game.at(14,6), game.at(15,6), game.at(16,6), game.at(17,6),game.at(18,6), 
                 game.at(19,6), game.at(19,5), game.at(19,4), game.at(19,3), game.at(19,2), game.at(19,1), game.at(19,0), game.at(18,0), game.at(17,0), 
