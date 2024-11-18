@@ -134,27 +134,57 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png",miRecorrido =
 //Azu
 object mapa5 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
-  override method posicionAuto() = game.at(0,4)
+  override method posicionAuto() = game.at(0,3)
   override method imagenAuto() = derecha.image()
+  override method obstaculo() = bondi
+
 
 
   override method mapa() {
     return 
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, __, v1, tu, v1, __, __, __, __, __, v1, tu, v1, __, __, __, __, __, __, __],  
-        [__, __, v1, c1, v1, a1, __, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1],
-        [__, __, v1, mc, v1, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, pp, c1, tr],
-        [h1, __, v1, c1, v1, h3, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
-        [v1, v1, v1, c1, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __],
-        [c1, c1, c1, c1, c1, c1, c1, c1, cp, v1, __, __, a1, __, v1, c1, v1, __, __, __],
-        [v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, a1, __, __, __, v1, ca, v1, h3, a1, __],
-        [__, __, v1, cv, v1, __, __, __, __, __, __, __, h1, __, v1, c1, v1, v1, v1, v1],
-        [__, __, v1, c1, v1, __, a1, __, __, __, h2, __, __, __, v1, c1, c1, c1, c1, tr],
-        [h2, __, v1, td, v1, a1, __, __, h1, __, __, __, h1, __, v1, v1, v1, v1, v1, v1]
+        [__, aa, v1, tu, v1, aa, __, __, aa, aa, v1, tu, v1, __, aa, aa, __, __, __, aa],  
+        [__, __, v1, c1, v1, __, __, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1],
+        [a1, __, v1, mc, v1, a1, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, pp, c1, tr],
+        [__, __, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
+        [h1, __, v1, c1, v1, h3, __, v1, c1, v1, aa, aa, aa, aa, v1, c1, v1, aa, aa, aa],
+        [v1, v1, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
+        [c1, c1, c1, c1, c1, c1, c1, c1, cp, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
+        [v1, v1, v1, cv, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
+        [__, __, v1, c1, v1, __, __, __, __, __, __, __, __, __, v1, c1, c1, ca, c1, tr],
+        [h2, __, v1, td, v1, a1, __, aa, h1, __, h2, __, h1, __, v1, v1, v1, v1, v1, v1]
       ].reverse()
   }
   
+}
+
+object recorridoBondi inherits Recorrido{
+
+  // No quiero que vuelva en reversa o, si vuelve en reversa habria que girar la imagen!
+
+  override method ida(){ 
+        return  [game.at(2,3) , game.at(3,3) , game.at(4,3) ,
+                 game.at(5,3) , game.at(6,3) , game.at(7,3) ,
+                 game.at(8,3) , game.at(9,3) , game.at(10,3),
+                 game.at(11,3), game.at(12,3), game.at(13,3),
+                 game.at(14,3), game.at(15,3), game.at(16,3),
+                 game.at(17,3), game.at(18,3), game.at(19,3)] 
+}
+
+}
+
+object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi){
+  
+  override method casitigoPorAtraparlo(){
+    
+    game.say(self, "En el fondo hay lugar! Un pasito para atras asi nos vamos!")
+    reloj.descontarTiempo(5) 
+  }
+
+  override method atrapoAuto(){
+    return game.colliders(self).contains(auto)
+  }
 }
 
 //Rena

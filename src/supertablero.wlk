@@ -10,7 +10,7 @@ import mapas.*
 
 object superTablero {
 
-  const mapas = #{mapa3, mapa5, mapa7, mapa4}
+  const mapas = #{mapa3, mapa4, mapa5, mapa7}
   var mapaActual = mapaInicial // inicializar como mapa inicio 
   
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
