@@ -10,7 +10,7 @@ import mapas.*
 
 object superTablero {
 
-  const mapas = #{mapa3, mapa4, mapa5, mapa7}
+  const mapas = #{ mapa7, mapaFinal}
   var mapaActual = mapaInicial // inicializar como mapa inicio 
   
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
@@ -302,6 +302,34 @@ object h2 {
     game.addVisual(new Casa2(position = position))
   }
 }
+
+object m1{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas1(position = position))
+  }
+}
+object m2{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas2(position = position))
+  }
+}
+object m3{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas3(position = position))
+  }
+}
+object m4{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas4(position = position))
+  }
+}
+object m5{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas5(position = position))
+  }
+}
+
+
 
 object h3 {
   method dibujarEn(position) {

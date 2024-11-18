@@ -39,6 +39,13 @@ class Casa2 inherits Casa (image = "casa2-.png") {
   
 }
 
+class ModuloCasas1 inherits Casa(image = "modulo_casas_1.png"){}
+class ModuloCasas2 inherits Casa(image = "modulo_casas_2.png"){}
+class ModuloCasas3 inherits Casa(image = "modulo_casas_3.png"){}
+class ModuloCasas4 inherits Casa(image = "modulo_casas_4.png"){}
+class ModuloCasas5 inherits Casa(image = "modulo_casas_5.png"){}
+
+
 class Casa3 inherits Casa (image = "casa3-.png") {
   
 }
