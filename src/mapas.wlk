@@ -73,6 +73,8 @@ object mapaFinal inherits SuperMapa{
   }
 }
 
+
+
 //Gonza: ELEGIR UNO PARA CONSERVAR!
 
 object mapa3 inherits SuperMapa{
@@ -100,6 +102,17 @@ object mapa3 inherits SuperMapa{
   
 }
 
+object recorridoDeLibertario inherits Recorrido{
+  override method ida(){ 
+        return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
+}
+}
+
+object libertario {
+  var property image = "libertario.png"
+
+
+}
 
 object mapa4 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
@@ -127,19 +140,15 @@ object mapa4 inherits SuperMapa{
   
 }
 
-
 object recorridoDeViejita inherits Recorrido{
   override method ida(){ 
         return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
 }
 }
 
-
-
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita){
   
   override method casitigoPorAtraparlo(){
-    
     game.say(self, " ME CHOCASTE!! SABANDIJA / 10 seg menos ")
     reloj.descontarTiempo(15) 
   }
