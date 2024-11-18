@@ -12,8 +12,6 @@ class Elemento {
   
   method meTraslada() = false
 
-  method meLlevaAlLago() = false
-
 }
 
 class Calle inherits Elemento (image = "calle.png") {
