@@ -11,7 +11,6 @@ class Elemento {
   method esAgarrable() = false
   
   method meTraslada() = false
-
 }
 
 class Calle inherits Elemento (image = "calle.png") {
