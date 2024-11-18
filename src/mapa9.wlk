@@ -1,7 +1,7 @@
 import supertablero.*
 import wollok.game.*
 import superMapa.*
-import obstaculoInteractivo.*
+import elementosDelMapa.*
 import auto.*
 import posiciones.*
 

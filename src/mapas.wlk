@@ -2,9 +2,9 @@ import posiciones.*
 import supertablero.*
 import wollok.game.*
 import superMapa.*
-import obstaculoInteractivo.*
 import auto.*
 import reloj.*
+import elementosDelMapa.*
 
 object mapaPrueba inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
@@ -74,33 +74,6 @@ object mapaFinal inherits SuperMapa{
 }
 
 //Gonza: ELEGIR UNO PARA CONSERVAR!
-
-object mapa3 inherits SuperMapa{
-  // cada mapa le tiene que decir al auto donde tiene que arrancar
-  override method posicionAuto() = game.at(0,8)
-  override method imagenAuto() = derecha.image()
-
-
-  override method mapa() {
-    return 
-      [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [v1, v1, v1, __, __, __, __, __, __, __, __, __, __, __, __, __, __, v1, v1, v1],
-        [c1, c1, v1, __, __, v1, v1, v1, v1, v1, __, __, h3, __, v1, v1, v1, o4, c1, tr],
-        [v1, c1, v1, h3, __, v1, c1, c1, ct, v1, __, __, __, __, v1, c1, c1, c1, v1, v1], 
-        [v1, c1, v1, __, __, v1, c1, v1, c1, v1, a1, a1, __, __, v1, c1, v1, v1, __, __],
-        [v1, c1, v1, a1, __, v1, c1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, __, h2, __],
-        [v1, c1, v1, v1, v1, v1, c1, v1, c1, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __],
-        [tl, c1, c1, c1, c1, c1, c1, cp, c1, v1, c1, v1, v1, v1, v1, c1, v1, h2, __, __],
-        [v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1],
-        [__, __, __, __, __, __, v1, c1, c1, c1, c1, v1, __, __, v1, c1, c1, c1, c1, tr],
-        [h2, __, a1, __, h1, __, v1, v1, v1, v1, v1, v1, __, __, v1, v1, v1, v1, v1, v1]
-      ].reverse()
-  }
-  
-}
-
-
 object mapa4 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(1,0)
@@ -113,28 +86,25 @@ object mapa4 inherits SuperMapa{
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __], 
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __], 
         [__, __, __, v1, v1, v1, v1, v1, __, __, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1], 
-        [a1, __, __, v1, c1, c1, c1, v1, a1, __, v1, c1, c1, c1, c1, v1, o4, c1, c1, v1], 
+        [__, __, __, v1, c1, c1, c1, v1, __, __, v1, c1, c1, c1, c1, v1, c1, c1, c1, v1], 
         [__, __, __, v1, c1, v1, c1, v1, __, __, v1, c1, v1, v1, c1, v1, c1, v1, c1, v1], 
-        [__, h3, __, v1, c1, v1, c1, v1, v1, __, v1, c1, pp, c1, c1, c1, c1, c1, c1, tr], 
+        [m8, __, __, v1, c1, v1, c1, v1, m0, __, v1, c1, pp, ct, c1, c1, c1, c1, c1, tr], 
         [v1, v1, v1, c1, c1, v1, c1, c1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1], 
         [v1, c1, c1, c1, v1, v1, v1, c1, c1, c1, c1, c1, c1, v1, v1, v1, v1, v1, v1, v1], 
         [v1, c1, v1, v1, __, __, v1, c1, v1, v1, v1, v1, c1, c1, c1, c1, c1, c1, c1, tr], 
-        [v1, c1, v1, __, h1, __, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1], 
+        [v1, c1, v1, __, __, __, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1], 
         [v1, c1, v1, __, __, __, v1, c1, c1, cp, c1, c1, c1, c1, c1, o4, c1, v1, __, __], 
-        [v1, c1, v1, __, h1, __, v1, v1, v1, v1, td, v1, v1, v1, v1, v1, td, v1, a1, __]
-      ].reverse()v1
+        [v1, c1, v1, __, __, __, v1, v1, v1, v1, td, v1, v1, v1, v1, v1, td, v1, a1, __]
+      ].reverse()
   }
   
 }
-
 
 object recorridoDeViejita inherits Recorrido{
   override method ida(){ 
         return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
 }
 }
-
-
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita){
   
@@ -158,20 +128,20 @@ object mapa5 inherits SuperMapa{
 
 
 
-  override method mapa() {
+    override method mapa() {
     return 
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, aa, v1, tu, v1, aa, __, __, aa, aa, v1, tu, v1, __, aa, aa, __, __, __, aa],  
+        [__, __, v1, tu, v1, __, __, __, __, __, v1, tu, v1, __, __, __, __, __, __, __],  
         [__, __, v1, c1, v1, __, __, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1],
-        [a1, __, v1, mc, v1, a1, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, pp, c1, tr],
+        [__, __, v1, mc, v1, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, pp, c1, tr],
         [__, __, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
-        [h1, __, v1, c1, v1, h3, __, v1, c1, v1, aa, aa, aa, aa, v1, c1, v1, aa, aa, aa],
+        [m5, __, v1, c1, v1, m4, __, v1, c1, v1, aa, aa, aa, aa, v1, c1, v1, aa, aa, aa],
         [v1, v1, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
         [c1, c1, c1, c1, c1, c1, c1, c1, cp, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
         [v1, v1, v1, cv, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
         [__, __, v1, c1, v1, __, __, __, __, __, __, __, __, __, v1, c1, c1, ca, c1, tr],
-        [h2, __, v1, td, v1, a1, __, aa, h1, __, h2, __, h1, __, v1, v1, v1, v1, v1, v1]
+        [__, __, v1, td, v1, m7, __, __, __, __, __, __, __, __, v1, v1, v1, v1, v1, v1]
       ].reverse()
   }
   
@@ -222,7 +192,7 @@ object mapa7 inherits SuperMapa{
         [v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __, __],
         [c1, c1, c1, c1, c1, c1, c1, c1, cp, c1, c1, c1, c1, c1, v1, __, __, __, __, __],
         [v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, __, __],
-        [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, v1, __, __, __, __, __],
+        [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, v1, m9, __, __, __, __],
         [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, c1, c1, c1, c1, c1, tr],
         [__, v1, o2, v1, m2, __, __, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1],
@@ -233,7 +203,6 @@ object mapa7 inherits SuperMapa{
   }
   
 }
-
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png"){
   // comportamiento: el poli va a hacer un camino de ida y vuelta, si el policia y el auto colisionan, 
@@ -252,8 +221,6 @@ object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image 
   
 }
 
-
-
 object recorridoPoli inherits Recorrido{
  override method ida(){ 
         return  [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7), game.at(2,8),
@@ -262,7 +229,6 @@ object recorridoPoli inherits Recorrido{
                   /*calle abajo */    game.at(12,1), game.at(11,1), game.at(10,1), game.at(9,1), game.at(8,1), game.at(7,1), game.at(6,1), game.at(5,1), game.at(4,1), game.at(3,1), game.at(2,1)
                 ] 
 }
-
 
 }
 
