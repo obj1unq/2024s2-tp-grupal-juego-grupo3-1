@@ -58,11 +58,14 @@ object intro4 inherits Introduccion(image = "03-azu.png") {
 }
 
 object intro5 inherits Introduccion(image = "04-gonza.png") {  
-  override method siguiente() = intro6
+  //override method siguiente() = intro6
+    override method siguiente() = null // nos lo puso leo
+
   
 }
 
-object intro6 inherits Introduccion(image = "controles.png") {  
-  override method siguiente() = null // nos lo puso leo
-}
+// object intro6 inherits Introduccion(image = "controles.png") {  
+//   override method siguiente() = null // nos lo puso leo
+// }
 
+//FALTA DEFINIR LA PANTALLA CON CONTROLES NUEVA

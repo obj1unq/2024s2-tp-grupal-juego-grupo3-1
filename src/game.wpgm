@@ -2,6 +2,7 @@ import wollok.game.*
 import inicio.*
 import reloj.*
 
+
 program aventuraDelMate {
 
 	game.title("Aventura del Mate")
@@ -9,24 +10,13 @@ program aventuraDelMate {
 	game.width(20)
 	game.cellSize(50)
 	game.boardGround("boardGame.png")
-	//game.sound("musiJuego.mp3").play() //NO ME DEJA SUBIR EL ARCHIVO DE MUSICA A GITHUB, PERO LOGRÉ QUE SE REPRODUZCA
+	//game.sound("musiJuego.mp3").play() 
 
 	inicio.ejecutarInicio()
 		
-		//LOS PUSE EN EL SUPERTABLERO!! En el method iniciarComandos() que se ejecuta cuando se inicializa el primer mapa!
-		// keyboard.a().onPressDo({ auto.agarrarObjeto() })
-		
-		// keyboard.up().onPressDo({ auto.mover(arriba) })
-		// keyboard.left().onPressDo({ auto.mover(izquierda) })
-		// keyboard.down().onPressDo({ auto.mover(abajo) })
-		// keyboard.right().onPressDo({ auto.mover(derecha) })
-
-		//Lo puse en el objeto inicio! en el metodo ejecutarInicio()
-		// keyboard.enter().onPressDo({if(inicio.estado().seguirMostrando()){ inicio.cambiar()}}) // xq tiraba un error si se apretaba enter una vez iniciado el juego
-		
 	game.onTick(1000, "reloj", {reloj.tick()})
-	
-		//game.onTick(10000, "cambiar tamblero", { superTablero.cambiarMapa() })
-	
+
 	game.start()
 }
+
+

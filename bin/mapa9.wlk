@@ -15,31 +15,32 @@ object mapa9 inherits SuperMapa{
 
   override method mapa() {
     return [ 
-        [__, __, __, __, __, __, __,__, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [v1, v1, v1, v1, v1, v1, __, ar, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
-        [v1, c1, c1, c1, c1, v1, __, ar, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1],
-        [v1, c1, v1, v1, c1, v1, __, ar, __, __, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1],
-        [v1, c1, v1, v1, c1, v1, __, ar, __, __, v1, c1, ct, c1, c1, c1, c1, __, c1, c1],
-        [v1, c1, v1, v1, c1, v1, __, ar, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1],
-        [v1, c1, v1, v1, c1, v1, __, ar, __, __, v1, c1, v1, __, __, __, __, __, v1, c1],
-        [c1, c1, v1, v1, c1, v1, v1, ar, __, __, v1, c1, v1, __, __, __, __, __, v1, c1],
-        [v1, v1, v1, v1, c1, c1, c1, ar, __, __, v1, c1, v1, lg, __, __, __, __, v1, c1],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [v1, v1, v1, v1, v1, __, __, ar, ar, ar, ar, ar, ar, ar, ar, ar, ar, ar, ar, ar],
+        [v1, c1, c1, c1, v1, __, __, ar, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
+        [v1, c1, v1, c1, v1, __, __, ar, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1],
+        [v1, c1, v1, c1, v1, __, __, ar, __, __, v1, c1, ct, c1, c1, c1, c1, cv, c1, c1],
+        [v1, c1, v1, c1, v1, __, __, ar, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1],
+        [v1, c1, v1, c1, v1, __, __, ar, __, __, v1, c1, v1, __, __, __, __, __, v1, c1],
+        [c1, c1, v1, c1, v1, v1, v1, ar, __, __, v1, c1, v1, __, __, __, __, __, v1, c1],
+        [v1, v1, v1, c1, c1, c1, c1, ar, __, __, v1, c1, v1, lg, __, __, __, __, v1, c1],
         [__, __, __, v1, v1, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1],
-        [h1, __, a1, __, __, v1, __, v1, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1]
+        [h1, __, a1, __, __, v1, c1, v1, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1]
       ].reverse()
   }
-  
 }
 object lagoFidel{
     method inicializar(){
         fidel1.inicializar()
         fidel2.inicializar()
+        fidel3.inicializar()
+
 
         transporte1.inicializar()
         transporte2.inicializar()
 
-        game.onTick(1, "ir al lago", {self.llevarAlAutoAlLagoSiPuede()})
+        game.onTick(1, "ir al lago", {self.llevarAlAutoAlLagoSiPuede()})// esto iria en la verificacion cuadno se mueve?? o lo dejamos aca??
     }
 
     method llevarAlAutoAlLagoSiPuede(){
@@ -77,18 +78,16 @@ object lagoFidel{
 class Fidel inherits ObstaculoInteractivo{
     override method casitigoPorAtraparlo(){
         game.say(self, " Todavia no entregaste las practicas?! ")
-        auto.position(game.at(18,6))/*aca va a ir la posicion que le pongamos al transportador que lo envia al lago*/
+        auto.position(game.at(18,6))
     }   
-
-    
     override  method atrapoAuto(){
         return self.elAutoEstaEnMismaPosicion() or self.elAutoEstaAdelante() or self.elAutoEstaAtras() 
     }
 
 }
-object fidel1 inherits Fidel(miRecorrido = recorridoFidel1, image= "fidel.png", position = miRecorrido.camino().get(0) ){}
-
-object fidel2 inherits Fidel(miRecorrido = recorridoFidel2, image= "fidel.png", position= miRecorrido.camino().get(0)){}
+object fidel1 inherits Fidel(miRecorrido = recorridoFidel1, image= "fidel.png"){}
+object fidel2 inherits Fidel(miRecorrido = recorridoFidel2, image= "fidel.png"){}
+object fidel3 inherits Fidel(miRecorrido = recorridoFidel3, image= "fidel.png"){}
 
 object recorridoFidel1 inherits Recorrido(camino = self.ida()){
     override method ida(){
@@ -107,6 +106,13 @@ object recorridoFidel2 inherits Recorrido(camino = self.ida()){
                 game.at(18,0), game.at(17,0)]
     }
 
+}object recorridoFidel3 inherits Recorrido(camino = self.ida()){
+    override method ida(){
+        return [game.at(11,5), game.at(11,6), game.at(12,6), game.at(13,6), game.at(14,6), game.at(15,6), game.at(16,6), game.at(17,6),game.at(18,6), 
+                game.at(19,6), game.at(19,5), game.at(19,4), game.at(19,3), game.at(19,2), game.at(19,1), game.at(19,0), game.at(18,0), game.at(17,0), 
+                game.at(16,0), game.at(15,0), game.at(14,0), game.at(13,0), game.at(12,0), game.at(11,0), game.at(11,1), game.at(11,2), game.at(11,3), game.at(11,4)]
+    }
+
 }
 
 
@@ -115,20 +121,13 @@ class Transporte inherits Elemento(image = "pozo.png"){ //cambiar imagen!!
 
     method inicializar(){
         game.addVisual(self)
-
-        
-
     }
-
-
 }
 object transporte1 inherits Transporte(position = game.at(6,0)){
     method destino() = game.at(18,6)
 }
-object transporte2 inherits Transporte(position = game.at(17,6)){
-    method destino() = game.at(8,9)
-    
-
+object transporte2 inherits Transporte(position = game.at(16,6)){
+    method destino() = game.at(8,8)
 }
 
 

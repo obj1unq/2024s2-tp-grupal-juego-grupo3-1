@@ -4,25 +4,14 @@ import auto.*
 import cosas.*
 import posiciones.*
 import reloj.*
-import mapaPrueba.*
 import elementosDelMapa.*
 import mapaFrame.*
-import traslador.*
-import mapa1.*
-import mapa2.*
-import mapa3.*
-import mapa4.*
-import mapa5.*
-import mapa6.*
-import mapa7.*
-import mapa8.*
-import mapa9.*
-
+import mapas.*
 
 object superTablero {
 
-  const mapas = #{mapa8} //faltan todos los demás
-  var mapaActual = mapa9 // inicializar como mapa inicio 
+  const mapas = #{mapa3, mapa4, mapa5, mapa7}
+  var mapaActual = mapaInicial // inicializar como mapa inicio 
   
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
@@ -140,6 +129,13 @@ object f4 {
   }
 }
 
+object f5 {
+  method dibujarEn(position) {
+    frameMedialuna.position(position)
+    game.addVisual(frameMedialuna)
+  }
+}
+
 object ft {
   method dibujarEn(position) {
     frameTermo.position(position)
@@ -181,6 +177,13 @@ object c1 {
     game.addVisual(new Calle(position = position))
   }
 }
+
+object c2 {
+  method dibujarEn(position) {
+    game.addVisual(new Inicio(position = position))
+  }
+}
+
 
 //CALLES CON OBJETOS
 
@@ -305,6 +308,13 @@ object ar { //arbusto
     game.addVisual(new Arbusto(position = position))
   }
 }
+
+object aa {
+  method dibujarEn(position) {
+    game.addVisual(new Arbusto2(position = position))
+  }
+}
+
 object lg { //laguna
   method dibujarEn(position) {
     game.addVisual(new Laguna(position = position))
@@ -334,5 +344,18 @@ object tl {
 object tr {
   method dibujarEn(position) {
     game.addVisual(new TrasladorDerecha(position = position))
+  }
+}
+
+object ef {
+  method dibujarEn(position) {
+    extraFrame.position(position)
+    game.addVisual(extraFrame)
+  }
+}
+
+object es {
+  method dibujarEn(position) {
+    game.addVisual(new Estacionamiento(position = position))
   }
 }

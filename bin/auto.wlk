@@ -8,7 +8,6 @@ object auto {
   var property position = null
   var property image = null
   
-  // const objetosARecoger = [termo, yerba, bizcochitos, dispenser, agua, manzanita, mate]
   method mover(direccion) {
     const nuevaDireccion = direccion.siguiente(position)
 
@@ -20,11 +19,6 @@ object auto {
     // En caso de querer que se cambie el mapa en cuanto toca la flecha poner el metodo dsps del movimiento.
     // self.seTrasladaSiPuede()// en cuanto se mueve, se fija si se puede trasladar,
                             // si puede, en cuanto pisa la flecha se cambia el mapa
-    
-    
-    // hay un problema, no se refleja el cambio de posicion del auto. Tipo el auto se muve 
-    // arriba de la flecha y acomo automticamente se para sobre la flecha, el mapa cambia 
-    // y no se llega a ver el auto arriba de la flecha
     
   }
   method tocarBocina(){
