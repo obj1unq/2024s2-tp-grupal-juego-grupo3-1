@@ -49,12 +49,12 @@ object recorridoDeLibertario inherits Recorrido{
 object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario) {
   
   override method inicializar(){
-    game.onTick(1, "libertario", {self.inicializarSiPuede()})
+    game.onTick(1, "inicializar libertario", {self.inicializarSiPuede()})
   }
   
   method inicializarSiPuede(){
     if (self.elAutoEstaCerca()) {
-      game.removeTickEvent("libertario")
+      game.removeTickEvent("inicializar libertario")
 
       game.addVisual(self)
       self.interaccion()
@@ -69,7 +69,7 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
   }
 
   method elAutoEstaCerca(){
-    return auto.position() != self.posicionInicial()
+    return auto.position() != game.at(3,2)
   }
 
   override method caminar(){
@@ -88,10 +88,6 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
     return game.at(6, 2)
   }
 
-  method verSiPuedoEscapar(){
-    if (self.puedoEscapar()) {self.escapar()}
-  }
-
   method puedoEscapar() {
     return miRecorrido.camino().get(miRecorrido.largoCamino() - 1) == position
   }
@@ -102,9 +98,11 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
 
   }
 
-  override method asignarInstancia(){
-    if(not self.puedoEscapar()){
-      super()
+  override method siguienteInstancia(){
+    if(self.puedoEscapar()){
+      self.escapar()
+    } else {
+      instanciaRecorrido += 1 
     }
   }
 }
