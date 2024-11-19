@@ -86,25 +86,21 @@ class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 
 //OBSTACULO INTERACTIVO
 class Obstaculo inherits Elemento{
+  var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
+  const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
+  
 
   method inicializar(){
     game.addVisual(self)
     game.onTick(600, "object", {self.caminar()})
   }
   
-  var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
-  const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
-  
   method caminar(){
-    self.siguientePosicion()
-  }
-
-  method siguientePosicion(){
-    self.asignarInstancia()
+    self.siguienteInstancia()
     position = miRecorrido.camino().get(instanciaRecorrido)
   }
 
-  method asignarInstancia(){
+  method siguienteInstancia(){
     if(miRecorrido.tieneQueReiniciarRecorrido(instanciaRecorrido)){
       instanciaRecorrido = 0
     } else {
@@ -120,7 +116,7 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().ge
   
   method casitigoPorAtraparlo()
   method atrapoAuto()
-    
+
   override method caminar(){
     super()
     self.verificarSiChocoConAuto()
