@@ -23,21 +23,12 @@ class Inicio inherits Calle {
 class Final inherits Elemento(image = "llegada.png"){
 }
 
-
 class Vereda inherits Elemento (image = "vereda.png") {
   override method solida() = true
 }
 
 class Casa inherits Elemento {
   override method solida() = true
-}
-
-class Casa1 inherits Casa (image = "casa1-.png") {
-  
-}
-
-class Casa2 inherits Casa (image = "casa2-.png") {
-  
 }
 
 class ModuloCasas1 inherits Casa(image = "modulo_casas--1.png"){}
@@ -52,39 +43,25 @@ class ModuloCasas9 inherits Casa(image = "modulo_casas--9.png"){}
 class ModuloCasas0 inherits Casa(image = "modulo_casas--00.png"){}
 
 
-
-class Casa3 inherits Casa (image = "casa3-.png") {
-  
-}
-
-class Obstaculo inherits Elemento {
-  override method solida() = true
-}
-
-class Pozo inherits Obstaculo (image = "pozo.png") {
+class Pozo inherits Elemento (image = "pozo.png") {
   override method solida() = false
 }
 
-class Patrullero inherits Obstaculo (image = "patrullero_.png") {
-  
-}
 
-class Valla inherits Obstaculo (image = "valla.png") {
-  
-}
-
-class Arbol inherits Elemento (image = "arbol2.png") {
-  
-}
-class Arbusto inherits Elemento (image = "arbusto_2.png") {
+class Obstruccion inherits Elemento {
   override method solida() = true
 }
 
-class Laguna inherits Elemento (image = "laguna-2.png") {  
+class Patrullero inherits Obstruccion (image = "patrullero_.png") {
+}
+
+class Valla inherits Obstruccion (image = "valla.png") {
+}
+
+class Arbol inherits Elemento (image = "arbol2.png") { 
 }
 
 class Arbusto2 inherits Elemento (image = "arbusto2.png"){
-
 }
 
 class Estacionamiento inherits Elemento(image = "estacionamiento.png"){
@@ -107,18 +84,21 @@ class TrasladorArriba inherits Traslador (image = "flecha-arriba-.png"){
 class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 }
 
-
-
-
 //OBSTACULO INTERACTIVO
+class Obstaculo inherits Elemento(){
+  
+}
+
 class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get(0)){
 
   var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
   const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
+  
+  method casitigoPorAtraparlo()
+  method atrapoAuto()
     
   method caminar(){
     self.siguientePosicion()
-    
     self.verificarSiChocoConAuto()
   }
 
@@ -127,18 +107,16 @@ class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get
       self.casitigoPorAtraparlo()
     }
   }
-  method casitigoPorAtraparlo()
 
   method siguientePosicion(){
     self.asignarInstancia()
-
     position = miRecorrido.camino().get(instanciaRecorrido)
   }
 
   method asignarInstancia(){
     if(miRecorrido.tieneQueReiniciarRecorrido(instanciaRecorrido)){
       instanciaRecorrido = 0
-    }else{
+    } else {
       instanciaRecorrido += 1 
     }
   }
@@ -148,30 +126,19 @@ class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get
     game.onTick(600, "object", {self.caminar()})
   }
 
-  method atrapoAuto()
-    //return game.colliders(self).contains(auto) 
-
-
-/*
-Los uso en policia y en fidel:
-*/
   method elAutoEstaEnMismaPosicion(){
-        return game.colliders(self).contains(auto)
-    }
+    return game.colliders(self).contains(auto)
+  }
 
   method elAutoEstaAdelante(){
-        return game.getObjectsIn(miRecorrido.posicionSiguienteEnLista(instanciaRecorrido)).contains(auto)
-    }
+    return game.getObjectsIn(miRecorrido.posicionSiguienteEnLista(instanciaRecorrido)).contains(auto)
+  }
 
   method elAutoEstaAtras(){
-        return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
-
-    }
+    return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
+  }
 
 }
-
-
-
 
 class Recorrido{
  method ida() // declaras el camino de ida, y el objeto te crea el camino completo (lo hice así xq mi poli tenia como 50 posiciones, y era un montón ponerlas todas)
@@ -180,21 +147,22 @@ class Recorrido{
 
  method largoCamino() = self.camino().size()
 
- method tieneQueReiniciarRecorrido(nro){
-   return nro == self.largoCamino()-1 // xq las posiciones en la lista el el largo-1
+ method tieneQueReiniciarRecorrido(numero){
+   return numero == self.largoCamino()-1 // xq las posiciones en la lista el el largo-1
  }
 
  method posicionSiguienteEnLista(instancia) {
    return if(instancia+1 < self.largoCamino()){
            self.camino().get(instancia+1)
-         }else{
+         } else {
            self.camino().get(instancia)
          }
  }
+
  method posicionAnteriorEnLista(instancia){
    return if(instancia-1 >= 0){
            self.camino().get(instancia-1)
-         }else{
+         } else {
            self.camino().get(instancia) 
          }
  }

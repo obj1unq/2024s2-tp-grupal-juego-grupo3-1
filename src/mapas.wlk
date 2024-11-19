@@ -1,10 +1,10 @@
+import elementosDelMapa.*
 import posiciones.*
 import supertablero.*
 import wollok.game.*
 import superMapa.*
 import auto.*
 import reloj.*
-import elementosDelMapa.*
 
 object mapaPrueba inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
@@ -16,14 +16,14 @@ object mapaPrueba inherits SuperMapa{
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __],
-        [__, __, __, h2, __, v1, c1, c1, o4, c1, mc, c1, c1, cm, c1, v1, __, __, __, __],
-        [__, h1, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1, v1, a1, a1, __, __],
+        [__, __, __, __, __, v1, c1, c1, o4, c1, mc, c1, c1, cm, c1, v1, __, __, __, __],
+        [__, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1, v1, a1, a1, __, __],
         [__, __, __, a1, __, v1, c1, v1, __, __, __, __, __, v1, c1, v1, __, __, __, __],
         [__, __, __, __, __, v1, ct, v1, __, __, __, __, __, v1, cp, v1, __, __, a1, __],
-        [v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, h1, __, v1, c1, v1, v1, v1, v1, v1],
+        [v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1],
         [c1, c1, cm, o2, c1, cy, c1, v1, __, __, __, __, a1, v1, o3, v1, c1, cv, c1, c1],
-        [c1, v1, v1, v1, v1, v1, v1, v1, __, h3, __, __, __, v1, c1, v1, pp, v1, v1, v1],
-        [c1, v1, __, __, __, __, __, __, __, __, __, h2, __, v1, o4, c1, c1, v1, h1, __]
+        [c1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __, __, v1, c1, v1, pp, v1, v1, v1],
+        [c1, v1, __, __, __, __, __, __, __, __, __, __, __, v1, o4, c1, c1, v1, __, __]
       ].reverse()
   }
   
@@ -38,16 +38,82 @@ object mapaInicial inherits SuperMapa{
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, aa, __, __, v1, tu, v1, __, aa, __, __, v1, tu, v1, aa, __, __, aa, aa],
-        [__, __, __, h3, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
+        [__, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, __, __, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, o3, c1, c1, tr],
         [__, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, __, __, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
-        [__, __, a1, a1, __, v1, c1, v1, __, __, __, __, v1, c1, v1, h1, __, h2, __, a1],
+        [__, __, a1, a1, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, a1],
         [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, cy, v1, __, __, __, __, __],
-        [__, __, c2, c1, c1, c1, c1, v1, __, __, __, __, v1, c1, v1, a1, a1, __, h3, __],
-        [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
-        [es, __, aa, __, aa, v1, pp, v1, m1, __, __, __, v1, td, v1, h2, __, __, a1, a1]
+        [__, __, c2, c1, c1, c1, c1, v1, __, __, __, __, v1, c1, v1, a1, a1, __, __, __],
+        [__, __, v1, v1, v1, v1, pp, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
+        [es, __, aa, __, aa, v1, c1, v1, m1, __, __, __, v1, td, v1, __, __, __, a1, a1]
       ].reverse()
+  }
+}
+
+object recorridoDeLibertario inherits Recorrido{
+  override method ida(){ 
+    return  [game.at(6,2) , game.at(6,3) , game.at(6,4) ,
+             game.at(6,5) , game.at(6,6) , game.at(6,7) ,
+             game.at(7,7) , game.at(8,7) , game.at(9,7),
+             game.at(10,7), game.at(11,7), game.at(12,7),
+             game.at(13,7), game.at(14,7), game.at(15,7),
+             game.at(16,7), game.at(17,7), game.at(18,7),
+             game.at(19,7)] 
+  }
+}
+
+object libertario inherits ObstaculoInteractivo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario) {
+
+  override method casitigoPorAtraparlo(){}
+  override method atrapoAuto() = false
+
+  override method inicializar(){
+    game.onTick(1, "libertario", {self.inicializarSiPuede()})
+  }
+  
+  method inicializarSiPuede(){
+    if (self.elAutoEstaCerca()) {
+      game.addVisual(self)
+      self.interaccion()
+      game.onTick(200, "object", {self.caminar()}) 
+    }
+  }
+
+  method interaccion(){
+    //Agregar la visual de azu
+    reloj.descontarTiempo(10) 
+  }
+
+  method elAutoEstaCerca(){
+    return auto.position() == game.at(3,2)
+  }
+
+  override method caminar(){
+    if (self.elAutoEstaMasCerca()) {
+      image = ("libertario-corriendo.png")
+      self.siguientePosicion()// acá viene super cuando creemos la nueva clase obstaculo
+    }
+  }
+
+  method elAutoEstaMasCerca(){
+    return auto.position().x() >= (self.posicionInicial().x() - 1)
+  }
+
+  method posicionInicial(){
+    return game.at(6, 2)
+  }
+
+  method verSiPuedoEscapar(){
+    if (self.puedoEscapar()) self.escapar()
+  }
+
+  method puedoEscapar() {
+    return miRecorrido.camino().get(miRecorrido.largoCamino() - 1)
+  }
+
+  method escapar(){
+    game.removeVisual(self)
   }
 }
 
@@ -60,66 +126,46 @@ object mapaFinal inherits SuperMapa{
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, aa, __, __, v1, c2, v1, __, aa, __, __, v1, c2, v1, aa, __, __, aa, aa],
-        [__, __, __, h3, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
+        [__, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, __, __, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1],
-        [__, __, h1, __, aa, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
+        [__, __, __, __, aa, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, __, __, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
-        [__, __, a1, a1, __, v1, c1, v1, a1, a1, __, aa, v1, c1, v1, h1, __, h2, __, a1],
+        [__, __, a1, a1, __, v1, c1, v1, a1, a1, __, aa, v1, c1, v1, __, __, __, __, a1],
         [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
-        [__, __, c3, c1, c1, c1, c1, v1, h2, __, h3, __, v1, o5, v1, a1, a1, __, h3, __],
+        [__, __, c3, c1, c1, c1, c1, v1, __, __, __, __, v1, o5, v1, a1, a1, __, __, __],
         [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
-        [es, __, aa, __, aa, v1, pp, v1, h1, __, a1, __, v1, c2, v1, h2, __, __, a1, a1]
+        [es, __, aa, __, aa, v1, pp, v1, __, __, a1, __, v1, c2, v1, __, __, __, a1, a1]
       ].reverse()
   }
 }
 
-
-
-//Gonza: ELEGIR UNO PARA CONSERVAR!
-
 object mapa3 inherits SuperMapa{
-  // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,8)
   override method imagenAuto() = derecha.image()
-
 
   override method mapa() {
     return 
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [v1, v1, v1, __, __, __, __, __, __, __, __, __, __, __, __, __, __, v1, v1, v1],
-        [c1, c1, v1, __, __, v1, v1, v1, v1, v1, __, __, h3, __, v1, v1, v1, o4, c1, tr],
-        [v1, c1, v1, h3, __, v1, c1, c1, ct, v1, __, __, __, __, v1, c1, c1, c1, v1, v1], 
+        [c1, c1, v1, __, __, v1, v1, v1, v1, v1, __, __, __, __, v1, v1, v1, o4, c1, tr],
+        [v1, c1, v1, __, __, v1, c1, c1, ct, v1, __, __, __, __, v1, c1, c1, c1, v1, v1], 
         [v1, c1, v1, __, __, v1, c1, v1, c1, v1, a1, a1, __, __, v1, c1, v1, v1, __, __],
-        [v1, c1, v1, a1, __, v1, c1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, __, h2, __],
+        [v1, c1, v1, a1, __, v1, c1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, __, __, __],
         [v1, c1, v1, v1, v1, v1, c1, v1, c1, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __],
-        [tl, c1, c1, c1, c1, c1, c1, cp, c1, v1, c1, v1, v1, v1, v1, c1, v1, h2, __, __],
+        [tl, c1, c1, c1, c1, c1, c1, cp, c1, v1, c1, v1, v1, v1, v1, c1, v1, __, __, __],
         [v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1],
         [__, __, __, __, __, __, v1, c1, c1, c1, c1, v1, __, __, v1, c1, c1, c1, c1, tr],
-        [h2, __, a1, __, h1, __, v1, v1, v1, v1, v1, v1, __, __, v1, v1, v1, v1, v1, v1]
+        [__, __, a1, __, __, __, v1, v1, v1, v1, v1, v1, __, __, v1, v1, v1, v1, v1, v1]
       ].reverse()
   }
   
 }
 
-object recorridoDeLibertario inherits Recorrido{
-  override method ida(){ 
-        return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
-}
-}
-
-object libertario {
-  var property image = "libertario.png"
-
-
-}
-
 object mapa4 inherits SuperMapa{
-  // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(1,0)
   override method imagenAuto() = arriba.image()
   override method obstaculo() = viejita 
-
 
   override method mapa() {
     return 
@@ -137,13 +183,12 @@ object mapa4 inherits SuperMapa{
         [v1, c1, v1, __, __, __, v1, v1, v1, v1, td, v1, v1, v1, v1, v1, td, v1, a1, __]
       ].reverse()
   }
-  
 }
 
 object recorridoDeViejita inherits Recorrido{
   override method ida(){ 
-        return  [game.at(3,3), game.at(3,4), game.at(4,5)] 
-}
+        return [game.at(3,3), game.at(3,4), game.at(4,5)] 
+  }
 }
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita){
@@ -154,7 +199,7 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
   }
 
   override method atrapoAuto(){
-    return game.colliders(self).contains(auto)
+    return self.elAutoEstaEnMismaPosicion()
   }
 }
 
@@ -164,8 +209,6 @@ object mapa5 inherits SuperMapa{
   override method posicionAuto() = game.at(0,3)
   override method imagenAuto() = derecha.image()
   override method obstaculo() = bondi
-
-
 
     override method mapa() {
     return 
@@ -197,7 +240,7 @@ object recorridoBondi inherits Recorrido{
                  game.at(11,3), game.at(12,3), game.at(13,3),
                  game.at(14,3), game.at(15,3), game.at(16,3),
                  game.at(17,3), game.at(18,3), game.at(19,3)] 
-}
+  }
 }
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi){
@@ -209,11 +252,10 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
   }
 
   override method atrapoAuto(){
-    return game.colliders(self).contains(auto)
+    return self.elAutoEstaEnMismaPosicion()
   }
-}
 
-//Rena
+}
 
 object mapa7 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
