@@ -85,27 +85,18 @@ class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 }
 
 //OBSTACULO INTERACTIVO
-class Obstaculo inherits Elemento(){
+class Obstaculo inherits Elemento{
+
+  method inicializar(){
+    game.addVisual(self)
+    game.onTick(600, "object", {self.caminar()})
+  }
   
-}
-
-class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get(0)){
-
   var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
   const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
   
-  method casitigoPorAtraparlo()
-  method atrapoAuto()
-    
   method caminar(){
     self.siguientePosicion()
-    self.verificarSiChocoConAuto()
-  }
-
-  method verificarSiChocoConAuto(){
-    if(self.atrapoAuto()){
-      self.casitigoPorAtraparlo()
-    }
   }
 
   method siguientePosicion(){
@@ -120,10 +111,25 @@ class ObstaculoInteractivo inherits Elemento(position = miRecorrido.camino().get
       instanciaRecorrido += 1 
     }
   }
+}
 
-  method inicializar(){
-    game.addVisual(self)
-    game.onTick(600, "object", {self.caminar()})
+class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
+
+  //var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
+  //const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
+  
+  method casitigoPorAtraparlo()
+  method atrapoAuto()
+    
+  override method caminar(){
+    super()
+    self.verificarSiChocoConAuto()
+  }
+
+  method verificarSiChocoConAuto(){
+    if(self.atrapoAuto()){
+      self.casitigoPorAtraparlo()
+    }
   }
 
   method elAutoEstaEnMismaPosicion(){

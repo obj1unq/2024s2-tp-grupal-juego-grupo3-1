@@ -6,32 +6,10 @@ import superMapa.*
 import auto.*
 import reloj.*
 
-object mapaPrueba inherits SuperMapa{
-  override method posicionAuto() = game.at(0,0)
-  override method imagenAuto() = arriba.image()
-
-  override method mapa(){
-    return 
-     [  [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-        [__, __, __, __, __, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __],
-        [__, __, __, __, __, v1, c1, c1, o4, c1, mc, c1, c1, cm, c1, v1, __, __, __, __],
-        [__, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1, v1, c1, v1, a1, a1, __, __],
-        [__, __, __, a1, __, v1, c1, v1, __, __, __, __, __, v1, c1, v1, __, __, __, __],
-        [__, __, __, __, __, v1, ct, v1, __, __, __, __, __, v1, cp, v1, __, __, a1, __],
-        [v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1],
-        [c1, c1, cm, o2, c1, cy, c1, v1, __, __, __, __, a1, v1, o3, v1, c1, cv, c1, c1],
-        [c1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __, __, v1, c1, v1, pp, v1, v1, v1],
-        [c1, v1, __, __, __, __, __, __, __, __, __, __, __, v1, o4, c1, c1, v1, __, __]
-      ].reverse()
-  }
-  
-}
-
 object mapaInicial inherits SuperMapa{
   override method posicionAuto() = game.at(2,2)
   override method imagenAuto() = derecha.image()
+  override method obstaculo() = libertario
 
   override method mapa() {
     return 
@@ -52,6 +30,7 @@ object mapaInicial inherits SuperMapa{
 }
 
 object recorridoDeLibertario inherits Recorrido{
+  override method camino() = self.ida()
   override method ida(){ 
     return  [game.at(6,2) , game.at(6,3) , game.at(6,4) ,
              game.at(6,5) , game.at(6,6) , game.at(6,7) ,
@@ -61,22 +40,26 @@ object recorridoDeLibertario inherits Recorrido{
              game.at(16,7), game.at(17,7), game.at(18,7),
              game.at(19,7)] 
   }
+
+  override method tieneQueReiniciarRecorrido(numero) = false
+
+
 }
 
-object libertario inherits ObstaculoInteractivo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario) {
-
-  override method casitigoPorAtraparlo(){}
-  override method atrapoAuto() = false
-
+object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario) {
+  
   override method inicializar(){
     game.onTick(1, "libertario", {self.inicializarSiPuede()})
   }
   
   method inicializarSiPuede(){
     if (self.elAutoEstaCerca()) {
+      game.removeTickEvent("libertario")
+
       game.addVisual(self)
       self.interaccion()
-      game.onTick(200, "object", {self.caminar()}) 
+      
+      game.onTick(200, "Libertario camina", {self.caminar()}) 
     }
   }
 
@@ -86,13 +69,14 @@ object libertario inherits ObstaculoInteractivo(position = self.posicionInicial(
   }
 
   method elAutoEstaCerca(){
-    return auto.position() == game.at(3,2)
+    return auto.position() != self.posicionInicial()
   }
 
   override method caminar(){
     if (self.elAutoEstaMasCerca()) {
+
       image = ("libertario-corriendo.png")
-      self.siguientePosicion()// acá viene super cuando creemos la nueva clase obstaculo
+      super()
     }
   }
 
@@ -105,15 +89,23 @@ object libertario inherits ObstaculoInteractivo(position = self.posicionInicial(
   }
 
   method verSiPuedoEscapar(){
-    if (self.puedoEscapar()) self.escapar()
+    if (self.puedoEscapar()) {self.escapar()}
   }
 
   method puedoEscapar() {
-    return miRecorrido.camino().get(miRecorrido.largoCamino() - 1)
+    return miRecorrido.camino().get(miRecorrido.largoCamino() - 1) == position
   }
 
   method escapar(){
     game.removeVisual(self)
+    game.removeTickEvent("Libertario camina")
+
+  }
+
+  override method asignarInstancia(){
+    if(not self.puedoEscapar()){
+      super()
+    }
   }
 }
 
