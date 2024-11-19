@@ -93,7 +93,7 @@ object superTablero {
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
   }
 
-  method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 2)
+  method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
 }
 
 object __ {
