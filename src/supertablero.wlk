@@ -290,19 +290,7 @@ object v1 {
   }
 } 
 
-//CASAS
-object h1 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa1(position = position))
-  }
-}
-
-object h2 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa2(position = position))
-  }
-}
-
+//MODULOS
 object m1{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas1(position = position))
@@ -355,33 +343,16 @@ object m0{
   }
 }
 
-object h3 {
-  method dibujarEn(position) {
-    game.addVisual(new Casa3(position = position))
-  }
-} //ARBOL, ARBUSTO Y LAGUNA
-
+//ARBOL Y ARBUSTO
 object a1 {
   method dibujarEn(position) {
     game.addVisual(new Arbol(position = position))
   }
 }
 
-object ar { //arbusto
-  method dibujarEn(position) {
-    game.addVisual(new Arbusto(position = position))
-  }
-}
-
 object aa {
   method dibujarEn(position) {
     game.addVisual(new Arbusto2(position = position))
-  }
-}
-
-object lg { //laguna
-  method dibujarEn(position) {
-    game.addVisual(new Laguna(position = position))
   }
 }
 
