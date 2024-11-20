@@ -343,6 +343,60 @@ object m0{
   }
 }
 
+object n1{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas10(position = position))
+  }
+}
+
+object n2{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas11(position = position))
+  }
+}
+
+object n3{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas12(position = position))
+  }
+}
+
+object n4{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas13(position = position))
+  }
+}
+
+object n5{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas14(position = position))
+  }
+}
+
+object n6{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas15(position = position))
+  }
+}
+
+object n7{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas16(position = position))
+  }
+}
+
+object n8{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas17(position = position))
+  }
+}
+
+object n9{
+  method dibujarEn(position) {
+    game.addVisual(new ModuloCasas18(position = position))
+  }
+}
+
 //ARBOL Y ARBUSTO
 object a1 {
   method dibujarEn(position) {

@@ -31,16 +31,27 @@ class Casa inherits Elemento {
   override method solida() = true
 }
 
-class ModuloCasas1 inherits Casa(image = "modulo_casas--1.png"){}
-class ModuloCasas2 inherits Casa(image = "modulo_casas--2.png"){}
-class ModuloCasas3 inherits Casa(image = "modulo_casas--3.png"){}
-class ModuloCasas4 inherits Casa(image = "modulo_casas--4.png"){}
-class ModuloCasas5 inherits Casa(image = "modulo_casas--5.png"){}
-class ModuloCasas6 inherits Casa(image = "modulo_casas__6.png"){} // es el q sobra
-class ModuloCasas7 inherits Casa(image = "modulo_casas--7.png"){}
-class ModuloCasas8 inherits Casa(image = "modulo_casas--8.png"){}
-class ModuloCasas9 inherits Casa(image = "modulo_casas--9.png"){}
-class ModuloCasas0 inherits Casa(image = "modulo_casas--00.png"){}
+class ModuloCasas1 inherits Casa(image = "m1.png"){}
+class ModuloCasas2 inherits Casa(image = "m2.png"){}
+class ModuloCasas3 inherits Casa(image = "m3.png"){}
+class ModuloCasas4 inherits Casa(image = "m4.png"){}
+class ModuloCasas5 inherits Casa(image = "m5.png"){}
+class ModuloCasas6 inherits Casa(image = "m6.png"){} 
+class ModuloCasas7 inherits Casa(image = "m7.png"){}
+class ModuloCasas8 inherits Casa(image = "m8.png"){}
+class ModuloCasas9 inherits Casa(image = "m9.png"){}
+class ModuloCasas0 inherits Casa(image = "m0.png"){}
+
+class ModuloCasas10 inherits Casa(image = "n1.png"){}
+class ModuloCasas11 inherits Casa(image = "n2.png"){}
+class ModuloCasas12 inherits Casa(image = "n3.png"){}
+class ModuloCasas13 inherits Casa(image = "n4.png"){}
+class ModuloCasas14 inherits Casa(image = "n5.png"){}
+class ModuloCasas15 inherits Casa(image = "n6-.png"){}
+class ModuloCasas16 inherits Casa(image = "n7.png"){}
+class ModuloCasas17 inherits Casa(image = "n8.png"){}
+class ModuloCasas18 inherits Casa(image = "n9.png"){}
+
 
 
 class Pozo inherits Elemento (image = "pozo.png") {
