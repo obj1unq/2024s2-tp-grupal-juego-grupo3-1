@@ -6,8 +6,6 @@ import superMapa.*
 import auto.*
 import reloj.*
 
-cosas locas 
-
 object mapaInicial inherits SuperMapa{
   override method posicionAuto() = game.at(2,2)
   override method imagenAuto() = derecha.image()
