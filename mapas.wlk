@@ -8,7 +8,7 @@ import reloj.*
 
 object mapaInicial inherits SuperMapa{
   override method posicionAuto() = game.at(2,2)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = libertario
 
   override method mapa() {
@@ -109,7 +109,7 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
 
 object mapaFinal inherits SuperMapa{
   override method posicionAuto() = game.at(19,7)
-  override method imagenAuto() = izquierda.image()
+  override method imagenAuto() = izquierda
 
   override method mapa() {
     return 
@@ -131,7 +131,7 @@ object mapaFinal inherits SuperMapa{
 
 object mapa4 inherits SuperMapa{
   override method posicionAuto() = game.at(1,0)
-  override method imagenAuto() = arriba.image()
+  override method imagenAuto() = arriba
   override method obstaculo() = viejita 
 
   override method mapa() {
@@ -174,7 +174,7 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
 object mapa5 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,3)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = bondi
 
     override method mapa() {
@@ -227,7 +227,7 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
 object mapa7 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,8)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = policia
 
   override method mapa() {

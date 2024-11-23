@@ -16,6 +16,8 @@ object superTablero {
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
+    //game.clear()
+
     self.iniciarComandos()
 
     self.removerTodasLasVisuales()

@@ -20,7 +20,7 @@ object reloj {
   method tick() {
     self.validarContinuarJuego()
     
-    if (not inicio.estado().seguirMostrando()) {
+    if (not inicio.seguirMostrando()) {
       segundos = (segundos - 1) % 1000
     }
   }

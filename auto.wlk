@@ -21,6 +21,11 @@ object auto {
                             // si puede, en cuanto pisa la flecha se cambia el mapa
     
   }
+
+  method cambiarImagen(direccion){
+    image = "autoHacia" + direccion.orientacion() + ".png"
+  }
+
   method tocarBocina(){
     game.sound("bocina2.mp3").play()
   }
@@ -33,7 +38,7 @@ object auto {
   method moverSiPuede(direccion, nuevaDireccion){
     if(self.sePuedeMover(nuevaDireccion) ){
         self.position(nuevaDireccion)
-        self.image(direccion.image())
+        self.cambiarImagen(direccion)
     }
   }
   method sePuedeMover(nuevaDireccion) {
@@ -72,10 +77,10 @@ object auto {
     { objeto => objeto.esAgarrable() }
   )
 
-  method dibujar(posicion, imagen){
+  method dibujar(posicion, direccion){
     position = posicion
-    image = imagen
     game.addVisual(self)
+    self.cambiarImagen(direccion)
   }
 }
 
