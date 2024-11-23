@@ -8,7 +8,7 @@ import reloj.*
 
 object mapaInicial inherits SuperMapa{
   override method posicionAuto() = game.at(2,2)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = libertario
 
   override method mapa() {
@@ -109,7 +109,7 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
 
 object mapaFinal inherits SuperMapa{
   override method posicionAuto() = game.at(19,7)
-  override method imagenAuto() = izquierda.image()
+  override method imagenAuto() = izquierda
 
   override method mapa() {
     return 
@@ -129,32 +129,9 @@ object mapaFinal inherits SuperMapa{
   }
 }
 
-//object mapa3 inherits SuperMapa{
-//  override method posicionAuto() = game.at(0,8)
-//  override method imagenAuto() = derecha.image()
-//
-//  override method mapa() {
-//    return 
-//      [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-//        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
-//        [v1, v1, v1, __, __, __, __, __, __, __, __, __, __, __, __, __, __, v1, v1, v1],
-//        [c1, c1, v1, __, __, v1, v1, v1, v1, v1, __, __, __, __, v1, v1, v1, o4, c1, tr],
-//        [v1, c1, v1, __, __, v1, c1, c1, ct, v1, __, __, __, __, v1, c1, c1, c1, v1, v1], 
-//        [v1, c1, v1, __, __, v1, c1, v1, c1, v1, __, __, __, __, v1, c1, v1, v1, __, __],
-//        [v1, c1, v1, __, __, v1, c1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, __, __, __],
-//        [v1, c1, v1, v1, v1, v1, c1, v1, c1, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __],
-//        [tl, c1, c1, c1, c1, c1, c1, cp, c1, v1, c1, v1, v1, v1, v1, c1, v1, __, __, __],
-//        [v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1],
-//        [__, __, __, __, __, __, v1, c1, c1, c1, c1, v1, __, __, v1, c1, c1, c1, c1, tr],
-//        [__, __, __, __, __, __, v1, v1, v1, v1, v1, v1, __, __, v1, v1, v1, v1, v1, v1]
-//      ].reverse()
-//  }
-//  
-//}
-
 object mapa4 inherits SuperMapa{
   override method posicionAuto() = game.at(1,0)
-  override method imagenAuto() = arriba.image()
+  override method imagenAuto() = arriba
   override method obstaculo() = viejita 
 
   override method mapa() {
@@ -169,7 +146,7 @@ object mapa4 inherits SuperMapa{
         [v1, c1, c1, c1, v1, v1, v1, c1, c1, c1, c1, c1, c1, v1, v1, v1, v1, v1, v1, v1], 
         [v1, c1, v1, v1, __, __, v1, c1, v1, v1, v1, v1, c1, c1, c1, c1, c1, c1, c1, tr], 
         [v1, c1, v1, __, __, __, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, v1], 
-        [v1, c1, v1, __, __, __, v1, c1, c1, cp, c1, c1, c1, c1, c1, o4, c1, v1, __, __], 
+        [v1, c1, v1, __, __, __, v1, c1, c1, c1, c1, c1, c1, c1, c1, o4, c1, v1, __, __], 
         [v1, c1, v1, n9, __, __, v1, v1, v1, v1, td, v1, v1, v1, v1, v1, td, v1, n5, __]
       ].reverse()
   }
@@ -197,7 +174,7 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
 object mapa5 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,3)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = bondi
 
     override method mapa() {
@@ -210,7 +187,7 @@ object mapa5 inherits SuperMapa{
         [__, __, v1, c1, v1, __, __, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
         [m5, __, v1, c1, v1, m4, __, v1, c1, v1, n4, __, __, __, v1, c1, v1, n7, __, __],
         [v1, v1, v1, c1, v1, v1, v1, v1, c1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
-        [c1, c1, c1, c1, c1, c1, c1, c1, cp, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
+        [c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, tr],
         [v1, v1, v1, cv, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, v1, v1, v1],
         [__, __, v1, c1, v1, __, __, __, __, __, __, __, __, __, v1, c1, c1, ca, c1, tr],
         [n5, __, v1, td, v1, m7, __, __, __, __, __, __, __, __, v1, v1, v1, v1, v1, v1]
@@ -250,7 +227,7 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
 object mapa7 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,8)
-  override method imagenAuto() = derecha.image()
+  override method imagenAuto() = derecha
   override method obstaculo() = policia
 
   override method mapa() {
@@ -258,14 +235,14 @@ object mapa7 inherits SuperMapa{
       [ [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
         [v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, __, __, __, __, __],
-        [c1, c1, c1, c1, c1, c1, c1, c1, cp, c1, c1, c1, c1, c1, v1, __, __, __, __, __],
+        [c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __, __, __],
         [v1, v1, c1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, __, __],
         [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, v1, m9, __, __, __, __],
         [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1],
         [__, v1, c1, v1, __, __, __, __, __, __, __, __, v1, c1, c1, c1, c1, c1, c1, tr],
         [n8, v1, o2, v1, m2, __, __, __, __, __, __, __, v1, c1, v1, v1, v1, v1, v1, v1],
         [v1, v1, pp, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, c1, v1, __, __, __, __, __],
-        [tl, c1, c1, c1, cp, c1, cm, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __, __, __],
+        [tl, c1, c1, c1, c1, c1, cm, c1, c1, c1, c1, c1, c1, c1, v1, __, __, __, __, __],
         [v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, v1, m3, __, __, __, __]
       ].reverse()
   }

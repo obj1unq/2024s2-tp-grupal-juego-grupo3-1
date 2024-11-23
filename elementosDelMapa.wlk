@@ -43,11 +43,11 @@ class ModuloCasas9 inherits Casa(image = "m9.png"){}
 class ModuloCasas0 inherits Casa(image = "m0.png"){}
 
 class ModuloCasas10 inherits Casa(image = "n1.png"){}
-class ModuloCasas11 inherits Casa(image = "n2--.png"){}
+class ModuloCasas11 inherits Casa(image = "n2.png"){}
 class ModuloCasas12 inherits Casa(image = "n3.png"){}
 class ModuloCasas13 inherits Casa(image = "n4.png"){}
 class ModuloCasas14 inherits Casa(image = "n5.png"){}
-class ModuloCasas15 inherits Casa(image = "n6-.png"){}
+class ModuloCasas15 inherits Casa(image = "n6.png"){}
 class ModuloCasas16 inherits Casa(image = "n7.png"){}
 class ModuloCasas17 inherits Casa(image = "n8.png"){}
 class ModuloCasas18 inherits Casa(image = "n9.png"){}
