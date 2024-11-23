@@ -11,7 +11,7 @@ import mapas.*
 object superTablero {
 
   const mapas = #{mapa4, mapa5, mapa7}
-  var mapaActual = mapa5// inicializar como mapa inicio 
+  var mapaActual = mapaInicial// inicializar como mapa inicio 
   
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
@@ -232,13 +232,6 @@ object mc {
   }
 }
 
-object cp {
-  //Calle con pozo (uso cruce para no tener q hacer 2 (horizontal y vertical))
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Pozo (position = position))
-  }
-} 
 
 object o2 {
   method dibujarEn(position) {
