@@ -8,7 +8,7 @@ import gameSetUp.*
 
 object superTablero {
   const property mapas = #{mapa1, mapa2, mapa3}
-
+  const objetosImportantes = #{mate, yerba, termo, agua}
   var mapaActual = mapaInicial
 
   var property objetosRecogidos = []
@@ -112,7 +112,7 @@ object superTablero {
   }
 
   method recogioTodosLosObjetosimportantes(){
-    return objetosRecogidos.forEach()
+    return objetosImportantes.all({obj => objetosRecogidos.contains(obj)})
   }
 
 
