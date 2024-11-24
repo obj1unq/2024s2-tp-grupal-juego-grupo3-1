@@ -5,14 +5,15 @@ import posiciones.*
 import reloj.*
 import elementosDelMapa.*
 import mapas.*
+import gameSetUp.*
 
 object superTablero {
 
   const mapas = #{mapa1, mapa2, mapa3}
 
-  var mapaActual = mapaInicial// inicializar como mapa inicio 
+  var mapaActual = mapaInicial
 
-  var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
+  var property objetosRecogidos = #{}
   
   method inicioDeJuego(){
     self.iniciarComandos()
@@ -57,8 +58,8 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.siguienteMapa()
     self.finalizarSiEsElUltimoMapa()
+    self.siguienteMapa()
     self.inicializarMapa()
   }
 
@@ -75,9 +76,15 @@ object superTablero {
   }
 
   method finalizarSiEsElUltimoMapa() {
-    if (mapas.size() == 0) self.finDeJuego()
+    if (self.teOlvidasteObjetoImportante() or reloj.seQuedoSinTiempo() or self.ganaste()) self.finDeJuego()
+  }
+  method teOlvidasteObjetoImportante(){
+    return not objetosRecogidos.contains(mapaActual.objetoImportante())
   }
 
+  method ganaste(){
+    return 
+  }
   method sePuedeTrasladarElAuto(){
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
   }
@@ -91,308 +98,314 @@ object superTablero {
 
 // Vacío
 object __ {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
   }
+  
 } 
 
 //Objetos de la barra superior
 object f1 { 
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameManzanita.position(position)
-    game.addVisual(frameManzanita)
+    mapa.agregarElemento(frameManzanita)
   }
+
 }
 object f2 {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameBizcochitos.position(position)
-    game.addVisual(frameBizcochitos)
+    mapa.agregarElemento(frameBizcochitos)
   }
 }
 object f3 {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     framePalmeritas.position(position)
-    game.addVisual(framePalmeritas)
+    mapa.agregarElemento(framePalmeritas)
   }
 }
 object f4 {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameFaso.position(position)
-    game.addVisual(frameFaso)
+    mapa.agregarElemento(frameFaso)
   }
 }
 object f5 {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameMedialuna.position(position)
-    game.addVisual(frameMedialuna)
+    mapa.agregarElemento(frameMedialuna)
   }
 }
 object ft {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameTermo.position(position)
-    game.addVisual(frameTermo)
+    mapa.agregarElemento(frameTermo)
   }
 }
 object fy {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameYerba.position(position)
-    game.addVisual(frameYerba)
+    mapa.agregarElemento(frameYerba)
   }
 }
 object fm {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameMate.position(position)
-    game.addVisual(frameMate)
+    mapa.agregarElemento(frameMate)
   }
 }
 object fa {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     frameAgua.position(position)
-    game.addVisual(frameAgua)
+    mapa.agregarElemento(frameAgua)
   }
 }
 object fr {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     reloj.position(position)
-    game.addVisual(reloj)
+    mapa.agregarElemento(reloj)
   }
 } 
 
 // Calles
 object c1 {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
   }
 }
+
 // Calle inicial
 object c2 {
-  method dibujarEn(position) {
-    game.addVisual(new Inicio(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Inicio(position = position))
   }
+
 }
 // Calle final
 object c3 {
-  method dibujarEn (position) {
-    game.addVisual(new Final(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Final(position = position))
   }
 }
 
 //Calles con objetos
 object cm {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Mate(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Mate(position = position))
   }
 }
+
 object cy {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Yerba(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Yerba(position = position))
   }
 }
 object ct {
-  //Calle con termo
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Termo(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Termo(position = position))
   }
 }
 object ca {
-  //Calle con agua
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Agua(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Agua(position = position))
   }
 }
 object mc {
-  //Calle con manzanita
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Manzanita(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Manzanita(position = position))
   }
 }
 object o2 {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Bizcochitos (position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Bizcochitos(position = position))
   }
 } 
 object o3 {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Palmeritas (position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Palmeritas(position = position))
   }
+
 } 
 object o4 {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Faso (position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Yerba(position = position))
   }
 } 
 object o5 {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual (new Medialuna(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Medialuna(position = position))
   }
 }
 object pp {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Patrullero (position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Patrullero(position = position))
   }
 } 
 object cv {
-  method dibujarEn(position) {
-    game.addVisual(new Calle(position = position))
-    game.addVisual(new Pozo (position = position))
-    game.addVisual(new Valla (position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Calle(position = position))
+    mapa.agregarElemento(new Pozo(position = position))
+    mapa.agregarElemento(new Valla(position = position))
   }
 } 
 
 //Veredas
 object v1 {
-  method dibujarEn(position) {
-    game.addVisual(new Vereda(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Vereda(position = position))
   }
 } 
 
 //Módulos de casas
 object m1{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas1(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas1(position = position))
   }
 }
 object m2{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas2(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas2(position = position))
   }
+
 }
 object m3{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas3(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas3(position = position))
   }
 }
 object m4{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas4(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas4(position = position))
   }
 }
 object m5{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas5(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas5(position = position))
   }
 }
 object m6{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas6(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas6(position = position))
   }
 }
 object m7{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas7(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas7(position = position))
   }
 }
 object m8{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas8(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas8(position = position))
   }
 }
 object m9{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas9(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas9(position = position))
   }
 }
 object m0{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas0(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas0(position = position))
   }
 }
 object n1{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas10(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas10(position = position))
   }
 }
 object n2{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas11(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas11(position = position))
   }
 }
 object n3{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas12(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas12(position = position))
   }
 }
 object n4{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas13(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas13(position = position))
   }
 }
 object n5{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas14(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas14(position = position))
   }
 }
 object n6{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas15(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas15(position = position))
   }
 }
 object n7{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas16(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas16(position = position))
   }
 }
 object n8{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas17(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas17(position = position))
   }
 }
 object n9{
-  method dibujarEn(position) {
-    game.addVisual(new ModuloCasas18(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new ModuloCasas18(position = position))
   }
 }
 
 //Árbol y arbusto
 object a1 {
-  method dibujarEn(position) {
-    game.addVisual(new Arbol(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Arbol(position = position))
   }
 }
 object aa {
-  method dibujarEn(position) {
-    game.addVisual(new Arbusto2(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Arbusto2(position = position))
   }
 }
 
 //Trasladores
 object tu {
-  method dibujarEn(position) {
-    game.addVisual(new TrasladorArriba(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new TrasladorArriba(position = position))
   }
 }
 object td {
-  method dibujarEn(position) {
-    game.addVisual(new TrasladorAbajo(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new TrasladorAbajo(position = position))
   }
 }
 object tl {
-  method dibujarEn(position) {
-    game.addVisual(new TrasladorIzquierda(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new TrasladorIzquierda(position = position))
   }
+
 }
 object tr {
-  method dibujarEn(position) {
-    game.addVisual(new TrasladorDerecha(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new TrasladorDerecha(position = position))
   }
 }
 object ef {
-  method dibujarEn(position) {
+  method crearEn(mapa, position){
     extraFrame.position(position)
-    game.addVisual(extraFrame)
+    mapa.agregarElemento(extraFrame)
   }
+  
 }
 object es {
-  method dibujarEn(position) {
-    game.addVisual(new Estacionamiento(position = position))
+  method crearEn(mapa, position){
+    mapa.agregarElemento(new Estacionamiento(position = position))
   }
 }

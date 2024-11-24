@@ -2,20 +2,27 @@ import wollok.game.*
 import inicio.*
 
 object reloj {
-  var property segundos = 180
+  var property segundos = 100
   var property position = null
   
   method text() = if (self.sigueEnTiempo()) segundos.toString() else ""
   
   method textColor() = "FFFF00FF"
 
-  method descontarTiempo(segs){
-    segundos -= segs
+  method descontarTiempo(_segundos){
+    segundos -= _segundos
+  }
+  method agregarTiempo(_segundos){
+    segundos += _segundos
   }
   
   method sigueEnTiempo(){
     return segundos > 0
   } 
+
+  method seQuedoSinTiempo(){
+    return not self.sigueEnTiempo()
+  }
   
   method tick() {
     self.validarContinuarJuego()
@@ -36,6 +43,5 @@ object reloj {
 }
 
 object finDeJuego {
-  var property position = game.at(0, 0)
-  var property image = "finDelJuego.png"
+
 }

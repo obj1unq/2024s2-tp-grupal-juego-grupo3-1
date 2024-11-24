@@ -1,5 +1,6 @@
 import wollok.game.*
 import elementosDelMapa.*
+import reloj.*
 
 class Cosa inherits Elemento{
   var property recogido = false
@@ -23,6 +24,13 @@ class Cosa inherits Elemento{
 
   method sonidoAlAgarrar(){
     game.sound("sonidoAgarrar2.mp3").play()
+  }
+}
+
+class CosaConBonus inherits Cosa{
+  override method esAgarrada() {
+    super()
+    reloj.agregarTiempo(5)
   }
 }
 
