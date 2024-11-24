@@ -1,5 +1,4 @@
 import wollok.game.*
-import barraSuperior.*
 import auto.*
 import cosas.*
 import posiciones.*
@@ -13,7 +12,6 @@ object superTablero {
 
   var mapaActual = mapaInicial// inicializar como mapa inicio 
 
-  
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){

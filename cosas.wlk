@@ -1,5 +1,4 @@
 import wollok.game.*
-import barraSuperior.*
 import elementosDelMapa.*
 
 class Cosa inherits Elemento{
