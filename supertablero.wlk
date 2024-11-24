@@ -7,7 +7,6 @@ import mapas.*
 import gameSetUp.*
 
 object superTablero {
-
   const mapas = #{mapa1, mapa2, mapa3}
 
   var mapaActual = mapaInicial
@@ -39,17 +38,17 @@ object superTablero {
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
 
-  method finDeJuego(){
-    barraSuperior.dibujar()
-    self.agregarObjetosAgarradosEnBarraSuperior()
+  // method finDeJuego(){
+  //   barraSuperior.dibujar()
+  //   self.agregarObjetosAgarradosEnBarraSuperior()
 
-    //mapaFinal.dibujar()
-    //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
+  //   //mapaFinal.dibujar()
+  //   //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
 
-    //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
-    game.addVisual(finDeJuego)
-    game.stop() 
-  }
+  //   //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
+  //   game.addVisual(finDeJuego)
+  //   game.stop() 
+  // }
 
   method siguienteMapa() {    
     mapaActual = mapas.anyOne()
@@ -75,15 +74,48 @@ object superTablero {
   }
 
   method finalizarSiEsElUltimoMapa() {
-    if (self.teOlvidasteObjetoImportante() or reloj.seQuedoSinTiempo() or self.ganaste()) self.finDeJuego()
+    
+    self.finalSiOlvidasteObjetoImportante()
+    self.finalSiSeQuedoSinTiempo()
+    self.finalSiGanaste()
+
   }
+
+  method finalSiOlvidasteObjetoImportante(){
+      if(self.teOlvidasteObjetoImportante()){
+        game.addVisual(finDeJuegoNoAgarro)
+        game.stop()
+      }
+  }
+
+  method finalSiSeQuedoSinTiempo(){
+      if(reloj.seQuedoSinTiempo()){
+        game.addVisual(finDeJuegoSinTiempo)
+        game.stop()
+
+      }
+  }
+
+  method finalSiGanaste(){
+      if(self.ganaste()){
+        game.addVisual(finDeJuegogGano)
+        game.stop()
+      }
+  }
+
   method teOlvidasteObjetoImportante(){
     return not objetosRecogidos.contains(mapaActual.objetoImportante())
   }
 
   method ganaste(){
-    return 
+    return self.recogioTodosLosObjetosimportantes() and not reloj.seQuedoSinTiempo()
   }
+
+  method recogioTodosLosObjetosimportantes(){
+    return objetosRecogidos.forEach()
+  }
+
+
   method sePuedeTrasladarElAuto(){
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
   }

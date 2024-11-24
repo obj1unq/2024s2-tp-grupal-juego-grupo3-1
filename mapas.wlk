@@ -6,6 +6,7 @@ import superMapa.*
 import auto.*
 import reloj.*
 
+
 object barraSuperior inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
   override method imagenAuto() = derecha
@@ -29,7 +30,7 @@ object barraSuperior inherits SuperMapa{
   }
 }
 
-object mapaInicial inherits SuperMapa (objetoImportante = cy){
+object mapaInicial inherits SuperMapa(objetoImportante = yerba){
   override method posicionAuto() = game.at(2,2)
   override method imagenAuto() = derecha
   override method obstaculo() = libertario
@@ -127,6 +128,7 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
   }
 }
 
+
 object mapaFinal inherits SuperMapa{
   override method posicionAuto() = game.at(19,7)
   override method imagenAuto() = izquierda
@@ -149,7 +151,7 @@ object mapaFinal inherits SuperMapa{
   }
 }
 
-object mapa1 inherits SuperMapa{
+object mapa1 inherits SuperMapa(objetoImportante = termo){
   override method posicionAuto() = game.at(1,0)
   override method imagenAuto() = arriba
   override method obstaculo() = viejita 
@@ -189,7 +191,7 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
   }
 }
 
-object mapa2 inherits SuperMapa{
+object mapa2 inherits SuperMapa(objetoImportante = termo){
   override method posicionAuto() = game.at(0,3)
   override method imagenAuto() = derecha
   override method obstaculo() = bondi
@@ -237,7 +239,7 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
 
 }
 
-object mapa3 inherits SuperMapa{
+object mapa3 inherits SuperMapa(objetoImportante = mate){
   override method posicionAuto() = game.at(0,8)
   override method imagenAuto() = derecha
   override method obstaculo() = policia

@@ -6,6 +6,7 @@ class SuperMapa {
   method posicionAuto()
   method imagenAuto()
   method obstaculo() = obstaculoVacio
+
   var property elementosCreados = []
   const property objetoImportante = null
 
