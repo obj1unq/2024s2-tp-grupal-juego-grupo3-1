@@ -25,7 +25,7 @@ object superTablero {
 
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
 
-    mapaActual.obstaculo().inicializar()
+    mapaActual.inicializarObstaculo()
   }
   
   method iniciarComandos(){

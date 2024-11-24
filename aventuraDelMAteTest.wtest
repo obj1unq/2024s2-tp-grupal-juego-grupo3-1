@@ -89,6 +89,14 @@ describe "Testeo movilidad del auto" {
 }
 
 describe "Mapa Inicial"{
-
+  method inicialize(){
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    mapaInicial.inicializarObstaculo()
+  }
+  test "Movimiento Libertario"{
+    
+  }
 }
 
