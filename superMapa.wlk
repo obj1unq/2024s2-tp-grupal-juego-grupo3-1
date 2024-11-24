@@ -6,7 +6,7 @@ class SuperMapa {
   method posicionAuto()
   method imagenAuto()
   method obstaculo() = obstaculoVacio
-
+  
   var property elementosCreados = []
   const property objetoImportante = null
 
@@ -14,6 +14,10 @@ class SuperMapa {
 
   method dibujar() {
     elementosCreados.forEach({elem => game.addVisual(elem) })
+  }
+
+  method tieneObjetoImportante(){
+    return objetoImportante != null
   }
 
   method inicializarObstaculo(){

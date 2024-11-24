@@ -43,17 +43,17 @@ object reloj {
 }
 
 object finDeJuegoNoAgarro {
-  const position = game.at(0,0)
-  const image = "finDelJuego.png"
+  const property position = game.at(0,0)
+  const property image = "finDelJuego.png"
 }
 
 object finDeJuegoSinTiempo {
-  const position = game.at(5,5)
-  const image = "finDelJuego.png"
+  const property position = game.at(5,5)
+  const property image = "finDelJuego.png"
 }
 
 object finDeJuegogGano {
-  const position = game.at(0,0)
-  const image = "ganeJuego.png"
+  const property position = game.at(0,0)
+  const property image = "ganeJuego.png"
 }
 
