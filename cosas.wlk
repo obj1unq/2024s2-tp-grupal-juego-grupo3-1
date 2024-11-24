@@ -66,3 +66,5 @@ class Medialuna inherits Cosa (image = "medialuna-.png"){
   override method frame() = frameMedialuna
   override method cosaEnElFrame() = "mebrillante.png"
 }
+
+
