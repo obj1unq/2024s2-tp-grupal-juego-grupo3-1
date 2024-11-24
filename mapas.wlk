@@ -1,10 +1,37 @@
+import wollok.game.*
 import elementosDelMapa.*
 import posiciones.*
 import supertablero.*
-import wollok.game.*
 import superMapa.*
 import auto.*
 import reloj.*
+
+
+object barraSuperior inherits SuperMapa{
+  override method posicionAuto() = game.at(0,0)
+  override method imagenAuto() = derecha
+
+  override method mapa (){
+   return 
+     [  
+        [__, fr, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [ef, __, f5, __, f4, __, f3, __, f2, __, f1, __, fa, __, fm, __, fy, __, ft, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __],
+        [__, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __, __]
+      ].reverse()
+  }
+
+  
+
+}
 
 object mapaInicial inherits SuperMapa{
   override method posicionAuto() = game.at(2,2)
@@ -129,7 +156,7 @@ object mapaFinal inherits SuperMapa{
   }
 }
 
-object mapa4 inherits SuperMapa{
+object mapa1 inherits SuperMapa{
   override method posicionAuto() = game.at(1,0)
   override method imagenAuto() = arriba
   override method obstaculo() = viejita 
@@ -171,7 +198,7 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
 }
 
 //Azu
-object mapa5 inherits SuperMapa{
+object mapa2 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,3)
   override method imagenAuto() = derecha
@@ -224,7 +251,7 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
 
 }
 
-object mapa7 inherits SuperMapa{
+object mapa3 inherits SuperMapa{
   // cada mapa le tiene que decir al auto donde tiene que arrancar
   override method posicionAuto() = game.at(0,8)
   override method imagenAuto() = derecha
@@ -257,7 +284,7 @@ object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image 
   override method casitigoPorAtraparlo(){
     game.say(self, " TE ATRAPÉ!! ")
     reloj.descontarTiempo(10) //reveer
-    auto.position(mapa7.posicionAuto()) //lo manda al principio del mapa
+    auto.position(mapa3.posicionAuto()) //lo manda al principio del mapa
   } 
 
   override method atrapoAuto(){

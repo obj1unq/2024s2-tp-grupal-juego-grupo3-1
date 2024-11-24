@@ -1,9 +1,7 @@
 import auto.*
-import barraSuperior.*
 import cosas.*
 import elementosDelMapa.*
 import inicio.*
-import mapaFrame.*
 import mapas.*
 import posiciones.*
 import reloj.*
@@ -11,12 +9,12 @@ import superMapa.*
 import supertablero.*
 import wollok.game.*
 
-describe "Testeo del juego, La aventura del mate" {
+describe "Testeo movilidad del auto" {
 
     method initialize(){
-    mapa4.dibujar()
-    auto.position(mapa4.posicionAuto())
-    auto.image(mapa4.imagenAuto())
+    mapa1.dibujar()
+    auto.position(mapa1.posicionAuto())
+    auto.image(mapa1.imagenAuto())
 
     }
 
@@ -90,4 +88,7 @@ describe "Testeo del juego, La aventura del mate" {
 
 }
 
+describe "Mapa Inicial"{
+
+}
 
