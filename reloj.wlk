@@ -42,18 +42,3 @@ object reloj {
   method solida() = false
 }
 
-object finDeJuegoNoAgarro {
-  const property position = game.at(0,0)
-  const property image = "finDelJuego.png"
-}
-
-object finDeJuegoSinTiempo {
-  const property position = game.at(5,5)
-  const property image = "finDelJuego.png"
-}
-
-object finDeJuegogGano {
-  const property position = game.at(0,0)
-  const property image = "ganeJuego.png"
-}
-
