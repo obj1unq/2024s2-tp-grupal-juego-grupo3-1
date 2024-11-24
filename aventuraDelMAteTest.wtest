@@ -9,10 +9,85 @@ import posiciones.*
 import reloj.*
 import superMapa.*
 import supertablero.*
+import wollok.game.*
+
+describe "Testeo del juego, La aventura del mate" {
+
+    method initialize(){
+    mapa4.dibujar()
+    auto.position(mapa4.posicionAuto())
+    auto.image(mapa4.imagenAuto())
+
+    }
+
+  test "testeo de las funcionalidades del auto, mover derecha" {
+    auto.position(game.at(1,4))
+    assert.equals(auto.position(),game.at(1,4))
+
+    
+    auto.mover(derecha)// no hace nada
+
+    assert.that(auto.sePuedeMover(game.at(2,4)))
+  }
+  test "testeo de las funcionalidades del auto, mover derecha pero no puede" {
+    assert.equals(auto.position(),game.at(1,0))
+
+    
+    auto.mover(derecha)// no hace nada
+
+    assert.notThat(auto.sePuedeMover(game.at(2,0)))
+  }
+
+  test "testeo de las funcionalidades del auto, mover izquierda"{
+    auto.position(game.at(2,4))
+    assert.equals(auto.position(),game.at(2,4))
+    
+
+    auto.mover(izquierda)
+    assert.that(auto.sePuedeMover(game.at(1,4)))
+  }
+
+  test "testeo de las funcionalidades del auto, mover izquierda pero no puede"{
+    assert.equals(auto.position(),game.at(1,0))
+
+    auto.mover(izquierda)
+    assert.notThat(auto.sePuedeMover(game.at(0,0)))
+  }
+
+  test "testeo de las funcionalidades del auto, mover abajo" {
+    auto.position(game.at(1,1)) // ubico el auto para que pueda moverse hacia abajo.
+    assert.equals(auto.position(),game.at(1,1))
+
+    auto.mover(abajo)
+    assert.that(auto.sePuedeMover(game.at(1,0)))
+  }
+
+  test "testeo de las funcionalidades del auto, no puede mover abajo" {
+    auto.position(game.at(2,4)) // ubico el auto para que pueda moverse hacia abajo.
+    assert.equals(auto.position(),game.at(2,4))
+
+    auto.mover(abajo)
+    assert.notThat(auto.sePuedeMover(game.at(2,3)))
+  }
+
+
+    test "testeo de las funcionalidades del auto, mover arriba" {
+    assert.equals(auto.position(),game.at(1,0))
+
+    auto.mover(arriba)
+    assert.that(auto.sePuedeMover(game.at(1,1)))
+  }
+
+    test "testeo de las funcionalidades del auto, no puede mover arriba" {
+    auto.position(game.at(1,4))// en esta posicion no se puede mover arriba 
+    assert.equals(auto.position(),game.at(1,4))
+
+    auto.mover(arriba)
+    assert.notThat(auto.sePuedeMover(game.at(1,5)))
+  }
 
 
 
-
-
+}
 
 
