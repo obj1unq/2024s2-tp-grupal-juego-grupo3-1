@@ -1,3 +1,4 @@
+import gameSetUp.*
 import auto.*
 import elementosDelMapa.*
 import inicio.*
@@ -11,6 +12,7 @@ import wollok.game.*
 describe "Testeo movilidad del auto" {
 
     method initialize(){
+    setUp.crearMapa(mapa1)
     mapa1.dibujar()
     auto.position(mapa1.posicionAuto())
     auto.image(mapa1.imagenAuto())
@@ -81,6 +83,7 @@ describe "Testeo movilidad del auto" {
 describe "Agarrar y cambiar de imagen"{
 
     method initialize(){
+    setUp.crearMapa(mapaInicial)
     mapaInicial.dibujar()
     auto.position(mapaInicial.posicionAuto())
     auto.image(mapaInicial.imagenAuto())
@@ -127,14 +130,17 @@ describe "Agarrar y cambiar de imagen"{
 describe "Trasladar el auto hacia otro mapa desde el actual" {
 
     method initialize(){
+    setUp.crearMapa(mapaInicial)
     mapaInicial.dibujar()
     auto.position(mapaInicial.posicionAuto())
     auto.image(mapaInicial.imagenAuto())
     }
 
+
   test "se puede trasladar el auto a otro mapa" {
     assert.equals(3, superTablero.mapas().size())
     auto.position(game.at(6,9))
+    superTablero.agregarARecogidos(yerba)
     auto.mover(arriba)
    
 
@@ -145,6 +151,7 @@ describe "Trasladar el auto hacia otro mapa desde el actual" {
 describe "Probar si puede pasar por encima de un objeto que no es atravesable" {
 
     method initialize(){
+    setUp.crearMapa(mapaInicial)
     mapaInicial.dibujar()
     auto.position(mapaInicial.posicionAuto())
     auto.image(mapaInicial.imagenAuto())
@@ -156,5 +163,37 @@ describe "Probar si puede pasar por encima de un objeto que no es atravesable" {
     assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
   }
 }
+
+describe "Probar castigos de los obstaculos" {
+
+  test "Castigo de la vieja" {
+    assert.equals(100, reloj.segundos())
+
+    viejita.casitigoPorAtraparlo()
+    assert.equals(85, reloj.segundos())
+  }
+
+
+    test "Castigo del policia" {
+    assert.equals(100, reloj.segundos())
+
+    policia.casitigoPorAtraparlo()
+    assert.equals(90, reloj.segundos())
+    assert.equals(mapa3.posicionAuto(), auto.position())
+  }
+
+
+    test "Castigo del colectivo 324" {
+    assert.equals(100, reloj.segundos())
+
+    bondi.casitigoPorAtraparlo()
+    assert.equals(95, reloj.segundos())
+  }
+}
+
+
+
+
+
 
 
