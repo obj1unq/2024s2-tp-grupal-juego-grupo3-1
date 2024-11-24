@@ -6,14 +6,13 @@ class SuperMapa {
   method posicionAuto()
   method imagenAuto()
   method obstaculo() = obstaculoVacio
-  var property instanciacion = []
-  const property objetoImportante
+  var property elementosCreados = []
+  const property objetoImportante = null
 
-  
   method mapa()
 
   method dibujar() {
-    instanciacion.forEach({elem => game.addVisual(elem) })
+    elementosCreados.forEach({elem => game.addVisual(elem) })
   }
 
   method inicializarObstaculo(){
@@ -21,7 +20,7 @@ class SuperMapa {
   }
 
   method agregarElemento(elem){
-    instanciacion.add(elem)
+    elementosCreados.add(elem)
   } 
 }
 object obstaculoVacio{
