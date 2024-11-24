@@ -7,9 +7,7 @@ class Elemento {
   var property position
   
   method solida() = false
-  
   method esAgarrable() = false
-  
   method meTraslada() = false
 }
 
@@ -17,34 +15,24 @@ class Frame {
   const property image
   var property position = null 
 
-  method solida() = true // lo puse xq con las nuevas validaciones de los trasladores daba error al querer pasar d mapa por la parte superior del mapa!!
+  method solida() = true
 }
 
 object frameTermo inherits Frame(image = "frame-termo-verde--.png"){
 }
-
 object frameMate inherits Frame(image = "frame-mate-lavado--.png"){
 }
-
 object frameYerba inherits Frame(image = "frame-yerba-cara--.png"){
 }
-
 object frameAgua inherits Frame(image =  "frame-agua-mate---.png"){
 }
-
 class FramePregunta inherits Frame(image = "frame-bonus--.png") {
 }
-
 object frameManzanita inherits FramePregunta{}
-
 object frameBizcochitos inherits FramePregunta{}
-
 object framePalmeritas inherits FramePregunta{}
-
 object frameFaso inherits FramePregunta{}
-
 object frameMedialuna inherits FramePregunta{}
-
 object extraFrame inherits Frame(image = "realframe.png"){}
 
 
@@ -87,12 +75,9 @@ class ModuloCasas16 inherits Casa(image = "n7.png"){}
 class ModuloCasas17 inherits Casa(image = "n8.png"){}
 class ModuloCasas18 inherits Casa(image = "n9.png"){}
 
-
-
 class Pozo inherits Elemento (image = "pozo.png") {
   override method solida() = false
 }
-
 
 class Obstruccion inherits Elemento {
   override method solida() = true
@@ -132,10 +117,9 @@ class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 
 //OBSTACULO INTERACTIVO
 class Obstaculo inherits Elemento{
-  var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
-  const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
+  var instanciaRecorrido = 0
+  const miRecorrido
   
-
   method inicializar(){
     game.addVisual(self)
     game.onTick(600, "object", {self.caminar()})
@@ -143,7 +127,7 @@ class Obstaculo inherits Elemento{
   
   method caminar(){
     self.siguienteInstancia()
-    position = miRecorrido.camino().get(instanciaRecorrido)
+    position = miRecorrido.nuevaPosicion(instanciaRecorrido)
   }
 
   method siguienteInstancia(){
@@ -156,10 +140,6 @@ class Obstaculo inherits Elemento{
 }
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
-
-  //var instanciaRecorrido = 0 //contador para recorrer la lista de posiciones del recorrido
-  //const miRecorrido // cuando instancias tu objeto obstaculo, creas tambien el objeto recorrido desde la clase recorrido, poniendole las posiciones que vayas a usar
-  
   method casitigoPorAtraparlo()
   method atrapoAuto()
 
@@ -185,20 +165,22 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().ge
   method elAutoEstaAtras(){
     return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
   }
-
 }
 
 class Recorrido{
- method ida() // declaras el camino de ida, y el objeto te crea el camino completo (lo hice así xq mi poli tenia como 50 posiciones, y era un montón ponerlas todas)
+ method ida() 
 
- method camino() = self.ida() + self.ida().reverse() // REFACTORIZAR: lo ponemos como abstracto??
+ method camino() = self.ida() + self.ida().reverse()
 
  method largoCamino() = self.camino().size()
 
  method tieneQueReiniciarRecorrido(numero){
-   return numero == self.largoCamino()-1 // xq las posiciones en la lista el el largo-1
+   return numero == self.largoCamino()-1
  }
 
+ method nuevaPosicion(instancia) {
+   return self.camino().get(instancia)
+ }
  method posicionSiguienteEnLista(instancia) {
    return if(instancia+1 < self.largoCamino()){
            self.camino().get(instancia+1)

@@ -3,23 +3,15 @@ import supertablero.*
 import reloj.*
 import posiciones.*
 
-
 object auto {
   var property position = null
   var property image = null
   
   method mover(direccion) {
     const nuevaDireccion = direccion.siguiente(position)
-
-
+    
     self.seTrasladaSiPuede()
     self.moverSiPuede(direccion, nuevaDireccion)
-    
-
-    // En caso de querer que se cambie el mapa en cuanto toca la flecha poner el metodo dsps del movimiento.
-    // self.seTrasladaSiPuede()// en cuanto se mueve, se fija si se puede trasladar,
-                            // si puede, en cuanto pisa la flecha se cambia el mapa
-    
   }
 
   method cambiarImagen(direccion){
@@ -52,28 +44,14 @@ object auto {
   }
   
   method agarrarObjeto() {
-    self.validarAgarrar()
-    const objeto = game.colliders(self).find({ objeto => objeto.esAgarrable() })
-    superTablero.objetosRecogidos().add(objeto) // para poder volver a dibujarlos cuando se cambie de mapa
+    if (self.hayAlgo()){
+      const cosa = game.colliders(self).find({ c => c.esAgarrable() })
+      superTablero.agregarARecogidos(cosa)
+      cosa.esAgarrada()
+    }
+  }
 
-    objeto.cosaALaBarra() // self.verSiGane()
-    
-  }
-  
-  // method verSiGane(){
-  //   if (self.recogiTodosLosObjetos()){
-  //     game.addVisual(ganeJuego)
-  //     game.stop()
-  //   }
-  // }
-  // method recogiTodosLosObjetos(){
-  //   return objetosARecoger.all({objeto => objeto.recogido()})
-  // }
-  method validarAgarrar() {
-    if (not self.hayObjeto()) self.error("No nada para agarrar!")
-  }
-  
-  method hayObjeto() = game.colliders(self).any(
+  method hayAlgo() = game.colliders(self).any(
     { objeto => objeto.esAgarrable() }
   )
 
@@ -88,3 +66,14 @@ object ganeJuego {
   const property position = game.at(0, 0)
   const property image = "ganeJuego.png"
 }
+
+  
+  // method verSiGane(){
+  //   if (self.recogiTodosLosObjetos()){
+  //     game.addVisual(ganeJuego)
+  //     game.stop()
+  //   }
+  // }
+  // method recogiTodosLosObjetos(){
+  //   return objetosARecoger.all({objeto => objeto.recogido()})
+  // }

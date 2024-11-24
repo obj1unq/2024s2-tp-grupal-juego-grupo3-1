@@ -10,10 +10,8 @@ object inicio {
 // ver que aparezca milagrosamente la portada. (CAMBIO DE NOMBRES)
   
   method ejecutarInicio(){
-
     game.addVisual(self)
     keyboard.enter().onPressDo({self.cambiar()})
-      
   }
 
   method seguirMostrando(){
@@ -27,14 +25,5 @@ object inicio {
     else{
         superTablero.inicioDeJuego()
     }
-
   }
 }
-
-
-
-// object intro6 inherits Introduccion(image = "controles.png") {  
-//   override method siguiente() = null // nos lo puso leo
-// }
-
-//FALTA DEFINIR LA PANTALLA CON CONTROLES NUEVA

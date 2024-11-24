@@ -15,17 +15,8 @@ object superTablero {
   var property objetosRecogidos = #{} //el tablero se tiene q acordar a quienes ya fueron agarrados para poder dibujarlos en el frame!!
   
   method inicioDeJuego(){
-    //game.clear()
-
     self.iniciarComandos()
-
-    self.removerTodasLasVisuales()
-    barraSuperior.dibujar()
-    mapaActual.dibujar()
-
-    auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
-
-    mapaActual.inicializarObstaculo()
+    self.inicializarMapa()
   }
   
   method iniciarComandos(){
@@ -39,9 +30,18 @@ object superTablero {
     keyboard.right().onPressDo({ auto.mover(derecha) })
   }
 
+  method inicializarMapa(){
+    self.removerTodasLasVisuales()
+    barraSuperior.dibujar()
+    mapaActual.dibujar()
+    self.dibujarAuto()
+    mapaActual.obstaculo().inicializar()
+    self.agregarObjetosAgarradosEnBarraSuperior()
+  }
+
   method finDeJuego(){
     barraSuperior.dibujar()
-    self.agregarObjetosAgarradosEnBarraSuperior() // solo para ver si agrega todos, dsps hay q borrarlo
+    self.agregarObjetosAgarradosEnBarraSuperior()
 
     //mapaFinal.dibujar()
     //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
@@ -57,20 +57,17 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.removerTodasLasVisuales()
-
-    //game.sound("teletransporte.mp3").play()
-
-    self.finalizarSiEsElUltimoMapa()
-
     self.siguienteMapa()
+    self.finalizarSiEsElUltimoMapa()
+    self.inicializarMapa()
+  }
 
-    barraSuperior.dibujar()
-    mapaActual.dibujar()
+  method dibujarAuto() {
     auto.dibujar(mapaActual.posicionAuto(), mapaActual.imagenAuto())
-    mapaActual.obstaculo().inicializar()
+  }
 
-    self.agregarObjetosAgarradosEnBarraSuperior()
+  method agregarARecogidos(cosa) {
+    objetosRecogidos.add(cosa)
   }
 
   method agregarObjetosAgarradosEnBarraSuperior(){
@@ -81,29 +78,25 @@ object superTablero {
     if (mapas.size() == 0) self.finDeJuego()
   }
 
-  method removerTodasLasVisuales() {
-    game.allVisuals().forEach({v => game.removeVisual(v)})
-  }
-
-  method validarMovimiento(positionSiguiente) {
-    if (not self.estaDentroDeLosLimites(positionSiguiente))
-    self.error("No puede salir el limite del tablero") 
-  }
-
   method sePuedeTrasladarElAuto(){
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
+  }
+
+  method removerTodasLasVisuales() {
+    game.allVisuals().forEach({v => game.removeVisual(v)})
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
 }
 
+// Vacío
 object __ {
   method dibujarEn(position) {
   }
 } 
 
-//FRAME
-object f1 { //frame preg manzanita
+//Objetos de la barra superior
+object f1 { 
   method dibujarEn(position) {
     frameManzanita.position(position)
     game.addVisual(frameManzanita)
@@ -115,56 +108,48 @@ object f2 {
     game.addVisual(frameBizcochitos)
   }
 }
-
 object f3 {
   method dibujarEn(position) {
     framePalmeritas.position(position)
     game.addVisual(framePalmeritas)
   }
 }
-
 object f4 {
   method dibujarEn(position) {
     frameFaso.position(position)
     game.addVisual(frameFaso)
   }
 }
-
 object f5 {
   method dibujarEn(position) {
     frameMedialuna.position(position)
     game.addVisual(frameMedialuna)
   }
 }
-
 object ft {
   method dibujarEn(position) {
     frameTermo.position(position)
     game.addVisual(frameTermo)
   }
 }
-
 object fy {
   method dibujarEn(position) {
     frameYerba.position(position)
     game.addVisual(frameYerba)
   }
 }
-
 object fm {
   method dibujarEn(position) {
     frameMate.position(position)
     game.addVisual(frameMate)
   }
 }
-
 object fa {
   method dibujarEn(position) {
     frameAgua.position(position)
     game.addVisual(frameAgua)
   }
 }
-
 object fr {
   method dibujarEn(position) {
     reloj.position(position)
@@ -172,43 +157,38 @@ object fr {
   }
 } 
 
-//CALLES
+// Calles
 object c1 {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
   }
 }
-
+// Calle inicial
 object c2 {
   method dibujarEn(position) {
     game.addVisual(new Inicio(position = position))
   }
 }
-
+// Calle final
 object c3 {
   method dibujarEn (position) {
     game.addVisual(new Final(position = position))
   }
 }
 
-//CALLES CON OBJETOS
-
+//Calles con objetos
 object cm {
-  //Calle con mate
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Mate(position = position))
   }
 }
-
 object cy {
-  //Calle con yerba
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Yerba(position = position))
   }
 }
-
 object ct {
   //Calle con termo
   method dibujarEn(position) {
@@ -216,7 +196,6 @@ object ct {
     game.addVisual(new Termo(position = position))
   }
 }
-
 object ca {
   //Calle con agua
   method dibujarEn(position) {
@@ -224,7 +203,6 @@ object ca {
     game.addVisual(new Agua(position = position))
   }
 }
-
 object mc {
   //Calle con manzanita
   method dibujarEn(position) {
@@ -232,15 +210,12 @@ object mc {
     game.addVisual(new Manzanita(position = position))
   }
 }
-
-
 object o2 {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Bizcochitos (position = position))
   }
 } 
-
 object o3 {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
@@ -253,23 +228,19 @@ object o4 {
     game.addVisual(new Faso (position = position))
   }
 } 
-
 object o5 {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual (new Medialuna(position = position))
   }
 }
-
-object pp {//calle con patrullero
-  //uso cruce para no tener q hacer 2 (horizontal y vertical)
+object pp {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Patrullero (position = position))
   }
 } 
-
-object cv {//calle con valla y pozo
+object cv {
   method dibujarEn(position) {
     game.addVisual(new Calle(position = position))
     game.addVisual(new Pozo (position = position))
@@ -277,14 +248,14 @@ object cv {//calle con valla y pozo
   }
 } 
 
-//VEREDAS
+//Veredas
 object v1 {
   method dibujarEn(position) {
     game.addVisual(new Vereda(position = position))
   }
 } 
 
-//MODULOS
+//Módulos de casas
 object m1{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas1(position = position))
@@ -310,7 +281,6 @@ object m5{
     game.addVisual(new ModuloCasas5(position = position))
   }
 }
-
 object m6{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas6(position = position))
@@ -336,107 +306,91 @@ object m0{
     game.addVisual(new ModuloCasas0(position = position))
   }
 }
-
 object n1{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas10(position = position))
   }
 }
-
 object n2{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas11(position = position))
   }
 }
-
 object n3{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas12(position = position))
   }
 }
-
 object n4{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas13(position = position))
   }
 }
-
 object n5{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas14(position = position))
   }
 }
-
 object n6{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas15(position = position))
   }
 }
-
 object n7{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas16(position = position))
   }
 }
-
 object n8{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas17(position = position))
   }
 }
-
 object n9{
   method dibujarEn(position) {
     game.addVisual(new ModuloCasas18(position = position))
   }
 }
 
-//ARBOL Y ARBUSTO
+//Árbol y arbusto
 object a1 {
   method dibujarEn(position) {
     game.addVisual(new Arbol(position = position))
   }
 }
-
 object aa {
   method dibujarEn(position) {
     game.addVisual(new Arbusto2(position = position))
   }
 }
 
-//TRASLADORES
-
+//Trasladores
 object tu {
   method dibujarEn(position) {
     game.addVisual(new TrasladorArriba(position = position))
   }
 }
-
 object td {
   method dibujarEn(position) {
     game.addVisual(new TrasladorAbajo(position = position))
   }
 }
-
 object tl {
   method dibujarEn(position) {
     game.addVisual(new TrasladorIzquierda(position = position))
   }
 }
-
 object tr {
   method dibujarEn(position) {
     game.addVisual(new TrasladorDerecha(position = position))
   }
 }
-
 object ef {
   method dibujarEn(position) {
     extraFrame.position(position)
     game.addVisual(extraFrame)
   }
 }
-
 object es {
   method dibujarEn(position) {
     game.addVisual(new Estacionamiento(position = position))
