@@ -79,14 +79,7 @@ describe "Testeo movilidad del auto" {
   }
 }
 
- // method inicialize(){
- //   mapaInicial.dibujar()
- //   auto.position(mapaInicial.posicionAuto())
- //   auto.image(mapaInicial.imagenAuto())
- //   mapaInicial.inicializarObstaculo()
- // }
-
-describe "Agarrar"{
+describe "Agarrar y cambiar de imagen"{
 
     method initialize(){
     mapaInicial.dibujar()
@@ -102,5 +95,67 @@ describe "Agarrar"{
 
     assert.equals(1, superTablero.objetosRecogidos().size())
   }
+
+  test "cambiar imagen del auto Derecha"{
+    auto.position(game.at(5,2))
+    auto.mover(derecha)
+
+    assert.equals("autoHaciaDerecha.png", auto.image())
+  }
+
+  test "cambiar imagen del auto Izquierda"{
+    auto.position(game.at(6,2))
+    auto.mover(izquierda)
+
+    assert.equals("autoHaciaIzquierda.png", auto.image())
+  }
+
+    test "cambiar imagen del auto Arriba"{
+    auto.position(game.at(6,2))
+    auto.mover(arriba)
+
+    assert.equals("autoHaciaArriba.png", auto.image())
+  }
+
+    test "cambiar imagen del auto Abajo"{
+    auto.position(game.at(6,3))
+    auto.mover(abajo)
+
+    assert.equals("autoHaciaAbajo.png", auto.image())
+  }
 }
+
+describe "Trasladar el auto hacia otro mapa desde el actual" {
+
+    method initialize(){
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    }
+
+  test "se puede trasladar el auto a otro mapa" {
+    assert.equals(3, superTablero.mapas().size())
+    auto.position(game.at(6,9))
+    auto.mover(arriba)
+   
+
+    assert.equals(2, superTablero.mapas().size())
+  }
+}
+
+describe "Probar si puede pasar por encima de un objeto que no es atravesable" {
+
+    method initialize(){
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    }
+
+  test "no puede moverse hacia abajo porque esta la patrulla que es un objeto que no es atravesable" {
+    auto.position(game.at(6,2))
+   
+    assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
+  }
+}
+
 

@@ -8,7 +8,7 @@ import mapas.*
 
 object superTablero {
 
-  const mapas = #{mapa1, mapa2, mapa3}
+  const property mapas = #{mapa1, mapa2, mapa3}
 
   var mapaActual = mapaInicial// inicializar como mapa inicio 
 
