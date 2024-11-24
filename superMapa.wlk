@@ -3,13 +3,12 @@ import wollok.game.*
 import auto.*
 
 class SuperMapa {
+  var property instanciacion = []
+  var property objetoImportante = null
+
   method posicionAuto()
   method imagenAuto()
   method obstaculo() = obstaculoVacio
-  var property instanciacion = []
-  const property objetoImportante
-
-  
   method mapa()
 
   method dibujar() {

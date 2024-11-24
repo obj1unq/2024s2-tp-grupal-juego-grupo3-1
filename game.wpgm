@@ -12,8 +12,8 @@ program aventuraDelMate {
 	game.width(20)
 	game.cellSize(50)
 	game.boardGround("boardGame.png")
-    setUp.crearMapas()
-    game.start()
+	setUp.crearMapas()
+	game.start()
 	
 	
 	game.schedule(0, { game.sound("musiJuego.mp3").play() })
