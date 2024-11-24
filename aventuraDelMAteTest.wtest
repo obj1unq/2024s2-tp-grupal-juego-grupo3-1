@@ -17,85 +17,144 @@ describe "Testeo movilidad del auto" {
 
     }
 
-  test "testeo de las funcionalidades del auto, mover derecha" {
+  test "Mover derecha" {
     auto.position(game.at(1,4))
     assert.equals(auto.position(),game.at(1,4))
 
-    
-    auto.mover(derecha)// no hace nada
-
-    assert.that(auto.sePuedeMover(game.at(2,4)))
+    assert.that(auto.sePuedeMover(derecha.siguiente(auto.position())))
+    auto.mover(derecha)
   }
-  test "testeo de las funcionalidades del auto, mover derecha pero no puede" {
+  test "Mover derecha pero no puede" {
     assert.equals(auto.position(),game.at(1,0))
 
-    
-    auto.mover(derecha)// no hace nada
-
-    assert.notThat(auto.sePuedeMover(game.at(2,0)))
+    assert.notThat(auto.sePuedeMover(derecha.siguiente(auto.position())))
+    auto.mover(derecha)
   }
 
-  test "testeo de las funcionalidades del auto, mover izquierda"{
+  test "Mover izquierda"{
     auto.position(game.at(2,4))
     assert.equals(auto.position(),game.at(2,4))
-    
-
+  
+    assert.that(auto.sePuedeMover(izquierda.siguiente(auto.position())))
     auto.mover(izquierda)
-    assert.that(auto.sePuedeMover(game.at(1,4)))
   }
 
-  test "testeo de las funcionalidades del auto, mover izquierda pero no puede"{
+  test "Mover izquierda pero no puede"{
     assert.equals(auto.position(),game.at(1,0))
 
+    assert.notThat(auto.sePuedeMover(izquierda.siguiente(auto.position())))
     auto.mover(izquierda)
-    assert.notThat(auto.sePuedeMover(game.at(0,0)))
   }
 
-  test "testeo de las funcionalidades del auto, mover abajo" {
-    auto.position(game.at(1,1)) // ubico el auto para que pueda moverse hacia abajo.
+  test "Mover abajo" {
+    auto.position(game.at(1,1))
     assert.equals(auto.position(),game.at(1,1))
 
+    assert.that(auto.sePuedeMover(abajo.siguiente(auto.position())))
     auto.mover(abajo)
-    assert.that(auto.sePuedeMover(game.at(1,0)))
   }
 
-  test "testeo de las funcionalidades del auto, no puede mover abajo" {
-    auto.position(game.at(2,4)) // ubico el auto para que pueda moverse hacia abajo.
+  test "No puede mover abajo" {
+    auto.position(game.at(2,4)) 
     assert.equals(auto.position(),game.at(2,4))
 
+    assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
     auto.mover(abajo)
-    assert.notThat(auto.sePuedeMover(game.at(2,3)))
   }
 
-
-    test "testeo de las funcionalidades del auto, mover arriba" {
+    test "Mover arriba" {
     assert.equals(auto.position(),game.at(1,0))
 
+    assert.that(auto.sePuedeMover(arriba.siguiente(auto.position())))
     auto.mover(arriba)
-    assert.that(auto.sePuedeMover(game.at(1,1)))
   }
 
-    test "testeo de las funcionalidades del auto, no puede mover arriba" {
+    test "No puede mover arriba" {
     auto.position(game.at(1,4))// en esta posicion no se puede mover arriba 
     assert.equals(auto.position(),game.at(1,4))
 
+    assert.notThat(auto.sePuedeMover(arriba.siguiente(auto.position())))
     auto.mover(arriba)
-    assert.notThat(auto.sePuedeMover(game.at(1,5)))
   }
-
-
-
 }
 
-describe "Mapa Inicial"{
-  method inicialize(){
+describe "Agarrar y cambiar de imagen"{
+
+    method initialize(){
     mapaInicial.dibujar()
     auto.position(mapaInicial.posicionAuto())
     auto.image(mapaInicial.imagenAuto())
-    mapaInicial.inicializarObstaculo()
+    }
+
+  test "Agarrar una cosa"{
+    auto.position(game.at(13,4))
+    auto.mover(abajo)
+    assert.equals(game.at(13,3), auto.position())
+    auto.agarrarObjeto()
+
+    assert.equals(1, superTablero.objetosRecogidos().size())
   }
-  test "Movimiento Libertario"{
-    
+
+  test "cambiar imagen del auto Derecha"{
+    auto.position(game.at(5,2))
+    auto.mover(derecha)
+
+    assert.equals("autoHaciaDerecha.png", auto.image())
+  }
+
+  test "cambiar imagen del auto Izquierda"{
+    auto.position(game.at(6,2))
+    auto.mover(izquierda)
+
+    assert.equals("autoHaciaIzquierda.png", auto.image())
+  }
+
+    test "cambiar imagen del auto Arriba"{
+    auto.position(game.at(6,2))
+    auto.mover(arriba)
+
+    assert.equals("autoHaciaArriba.png", auto.image())
+  }
+
+    test "cambiar imagen del auto Abajo"{
+    auto.position(game.at(6,3))
+    auto.mover(abajo)
+
+    assert.equals("autoHaciaAbajo.png", auto.image())
   }
 }
+
+describe "Trasladar el auto hacia otro mapa desde el actual" {
+
+    method initialize(){
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    }
+
+  test "se puede trasladar el auto a otro mapa" {
+    assert.equals(3, superTablero.mapas().size())
+    auto.position(game.at(6,9))
+    auto.mover(arriba)
+   
+
+    assert.equals(2, superTablero.mapas().size())
+  }
+}
+
+describe "Probar si puede pasar por encima de un objeto que no es atravesable" {
+
+    method initialize(){
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    }
+
+  test "no puede moverse hacia abajo porque esta la patrulla que es un objeto que no es atravesable" {
+    auto.position(game.at(6,2))
+   
+    assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
+  }
+}
+
 
