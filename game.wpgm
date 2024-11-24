@@ -10,13 +10,15 @@ program aventuraDelMate {
 	game.width(20)
 	game.cellSize(50)
 	game.boardGround("boardGame.png")
-	//game.sound("musiJuego.mp3").play() 
-
+    game.start()
+	
+	game.schedule(0, { game.sound("musiJuego.mp3").play() })
+	
 	inicio.ejecutarInicio()
 		
 	game.onTick(1000, "reloj", {reloj.tick()})
 
-	game.start()
+	
 }
  
 
