@@ -5,6 +5,7 @@ import reloj.*
 import elementosDelMapa.*
 import mapas.*
 import gameSetUp.*
+import inicio.*
 
 object superTablero {
   const property mapas = #{mapa1, mapa2, mapa3}
@@ -34,7 +35,7 @@ object superTablero {
     barraSuperior.dibujar()
     mapaActual.dibujar()
     self.dibujarAuto()
-    mapaActual.obstaculo().inicializar()
+    mapaActual.inicializarObstaculo()
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
 
@@ -56,7 +57,7 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.finalizarSiEsElUltimoMapa()
+    self.finalizarJuegoSiCorresponde()
     self.siguienteMapa()
     self.inicializarMapa()
   }
@@ -73,7 +74,7 @@ object superTablero {
     objetosRecogidos.forEach({obj => game.addVisual(obj)})
   }
 
-  method finalizarSiEsElUltimoMapa() {
+  method finalizarJuegoSiCorresponde() {
     
     self.finalSiOlvidasteObjetoImportante()
     self.finalSiSeQuedoSinTiempo()
@@ -83,23 +84,22 @@ object superTablero {
 
   method finalSiOlvidasteObjetoImportante(){
       if(mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()){
-        game.addVisual(finDeJuegoNoAgarro)
-        game.stop()
+        self.removerTodasLasVisuales()
+        finDeJuegoNoAgarro.ejecutar()
       }
   }
 
   method finalSiSeQuedoSinTiempo(){
       if(reloj.seQuedoSinTiempo()){
-        game.addVisual(finDeJuegoSinTiempo)
-        game.stop()
-
+        self.removerTodasLasVisuales()
+        finDeJuegoSinTiempo.ejecutar()
       }
   }
 
   method finalSiGanaste(){
       if(self.ganaste()){
-        game.addVisual(finDeJuegogGano)
-        game.stop()
+        self.removerTodasLasVisuales()
+        finDeJuegogGano.ejecutar()
       }
   }
 
