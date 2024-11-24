@@ -76,9 +76,15 @@ object superTablero {
   }
 
   method finalizarSiEsElUltimoMapa() {
-    if (mapas.size() == 0) self.finDeJuego()
+    if (self.teOlvidasteObjetoImportante() or reloj.seQuedoSinTiempo() or self.ganaste()) self.finDeJuego()
+  }
+  method teOlvidasteObjetoImportante(){
+    return not objetosRecogidos.contains(mapaActual.objetoImportante())
   }
 
+  method ganaste(){
+    return 
+  }
   method sePuedeTrasladarElAuto(){
     return game.colliders(auto).any({ objeto => objeto.meTraslada() })
   }

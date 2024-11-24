@@ -1,3 +1,4 @@
+import supertablero.*
 import wollok.game.*
 import auto.*
 
@@ -6,6 +7,8 @@ class SuperMapa {
   method imagenAuto()
   method obstaculo() = obstaculoVacio
   var property instanciacion = []
+  const property objetoImportante
+
   
   method mapa()
 
