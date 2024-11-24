@@ -1,6 +1,5 @@
 import wollok.game.*
 import auto.*
-import cosas.*
 import posiciones.*
 import reloj.*
 import elementosDelMapa.*
@@ -191,26 +190,30 @@ object c3 {
 object cm {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Mate(position = position))
+    mate.position(position)
+    mapa.agregarElemento(mate)
   }
 }
 
 object cy {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Yerba(position = position))
+    yerba.position(position)
+    mapa.agregarElemento(yerba)
   }
 }
 object ct {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Termo(position = position))
+    termo.position(position)
+    mapa.agregarElemento(termo)
   }
 }
 object ca {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Agua(position = position))
+    agua.position(position)
+    mapa.agregarElemento(agua)
   }
 }
 object mc {
@@ -235,7 +238,7 @@ object o3 {
 object o4 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Yerba(position = position))
+    mapa.agregarElemento(new Faso(position = position))
   }
 } 
 object o5 {
@@ -409,3 +412,8 @@ object es {
     mapa.agregarElemento(new Estacionamiento(position = position))
   }
 }
+
+object termo inherits Termo(image = "termo--.png"){}
+object yerba inherits Yerba (image =  "yerba--.png"){}
+object agua inherits Agua (image =  "agua--.png") {}
+object mate inherits Mate (image =  "mate--.png"){}

@@ -6,7 +6,6 @@ import gameSetUp.*
 
 program aventuraDelMate {
 	
-
 	game.title("Aventura del Mate")
 	game.height(12)
 	game.width(20)

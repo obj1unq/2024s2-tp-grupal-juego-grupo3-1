@@ -9,6 +9,7 @@ import reloj.*
 object barraSuperior inherits SuperMapa{
   override method posicionAuto() = game.at(0,0)
   override method imagenAuto() = derecha
+  
   override method mapa (){
    return 
      [  
@@ -28,7 +29,7 @@ object barraSuperior inherits SuperMapa{
   }
 }
 
-object mapaInicial inherits SuperMapa{
+object mapaInicial inherits SuperMapa (objetoImportante = cy){
   override method posicionAuto() = game.at(2,2)
   override method imagenAuto() = derecha
   override method obstaculo() = libertario
