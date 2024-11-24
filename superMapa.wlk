@@ -19,6 +19,10 @@ class SuperMapa {
 
     auto.position(self.posicionAuto())
   }
+
+  method inicializarObstaculo(){
+    self.obstaculo().inicializar()
+  }
   
 }
 object obstaculoVacio{
