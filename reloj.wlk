@@ -34,7 +34,7 @@ object reloj {
   
   method validarContinuarJuego() {
     if (not self.sigueEnTiempo()) {
-      game.addVisual(finDeJuego)
+      game.addVisual(finDeJuegoSinTiempo )
       game.stop()
     }
   }
@@ -42,6 +42,18 @@ object reloj {
   method solida() = false
 }
 
-object finDeJuego {
-
+object finDeJuegoNoAgarro {
+  const position = game.at(0,0)
+  const image = "finDelJuego.png"
 }
+
+object finDeJuegoSinTiempo {
+  const position = game.at(5,5)
+  const image = "finDelJuego.png"
+}
+
+object finDeJuegogGano {
+  const position = game.at(0,0)
+  const image = "ganeJuego.png"
+}
+
