@@ -17,7 +17,6 @@ object superTablero {
   
   method inicioDeJuego(){
     self.iniciarComandos()
-    setUp.crearMapas()
     self.inicializarMapa()
   }
   
@@ -59,8 +58,8 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.siguienteMapa()
     self.finalizarSiEsElUltimoMapa()
+    self.siguienteMapa()
     self.inicializarMapa()
   }
 

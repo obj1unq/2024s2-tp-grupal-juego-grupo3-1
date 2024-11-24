@@ -1,16 +1,20 @@
 import wollok.game.*
 import inicio.*
 import reloj.*
+import gameSetUp.*
 
 
 program aventuraDelMate {
+	
 
 	game.title("Aventura del Mate")
 	game.height(12)
 	game.width(20)
 	game.cellSize(50)
 	game.boardGround("boardGame.png")
+    setUp.crearMapas()
     game.start()
+	
 	
 	game.schedule(0, { game.sound("musiJuego.mp3").play() })
 	
