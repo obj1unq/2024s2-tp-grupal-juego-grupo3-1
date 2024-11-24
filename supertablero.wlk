@@ -11,7 +11,7 @@ object superTablero {
 
   var mapaActual = mapaInicial
 
-  var property objetosRecogidos = #{}
+  var property objetosRecogidos = []
   
   method inicioDeJuego(){
     self.iniciarComandos()
@@ -82,7 +82,7 @@ object superTablero {
   }
 
   method finalSiOlvidasteObjetoImportante(){
-      if(self.teOlvidasteObjetoImportante()){
+      if(mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()){
         game.addVisual(finDeJuegoNoAgarro)
         game.stop()
       }

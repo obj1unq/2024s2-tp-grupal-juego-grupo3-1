@@ -195,6 +195,7 @@ class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 class Obstaculo inherits Elemento{
   var instanciaRecorrido = 0
   const miRecorrido
+  const property dialogo
   
   method inicializar(){
     game.addVisual(self)
@@ -213,6 +214,17 @@ class Obstaculo inherits Elemento{
       instanciaRecorrido += 1 
     }
   }
+
+  method agregarDialogo(){
+    game.addVisual(dialogo)
+    game.schedule(3000, { game.removeVisual(dialogo)})
+  }
+}
+
+class Dialogo{
+  const property position = game.at(0,0)
+  const nombre 
+  const property image = "dialogo-" + nombre + ".png"
 }
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
@@ -226,6 +238,7 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().ge
 
   method verificarSiChocoConAuto(){
     if(self.atrapoAuto()){
+      self.agregarDialogo()
       self.casitigoPorAtraparlo()
     }
   }

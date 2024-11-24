@@ -15,7 +15,7 @@ program aventuraDelMate {
 	game.start()
 	
 	
-	game.schedule(0, { game.sound("musiJuego.mp3").play() })
+	game.schedule(0, { game.sound("TokyoDrift.mp3").play() })
 	
 	inicio.ejecutarInicio()
 		

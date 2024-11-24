@@ -68,7 +68,7 @@ object recorridoDeLibertario inherits Recorrido{
   override method tieneQueReiniciarRecorrido(numero) = false
 }
 
-object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario) {
+object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(nombre = "libertario")) {
   
   override method inicializar(){
     game.onTick(1, "inicializar libertario", {self.inicializarSiPuede()})
@@ -77,11 +77,12 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
   method inicializarSiPuede(){
     if (self.elAutoEstaCerca()) {
       game.removeTickEvent("inicializar libertario")
+      self.agregarDialogo()
 
       game.addVisual(self)
       self.interaccion()
       
-      game.onTick(200, "Libertario camina", {self.caminar()}) 
+      game.onTick(100, "Libertario camina", {self.caminar()}) 
     }
   }
 
@@ -95,7 +96,6 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
 
   override method caminar(){
     if (self.elAutoEstaMasCerca()) {
-
       image = ("libertario-corriendo.png")
       super()
     }
@@ -180,9 +180,8 @@ object recorridoDeViejita inherits Recorrido{
   }
 }
 
-object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita){
+object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(nombre = "viejita")){
   override method casitigoPorAtraparlo(){
-    game.say(self, " ME CHOCASTE!! SABANDIJA / 10 seg menos ")
     reloj.descontarTiempo(15) 
   }
 
@@ -227,7 +226,7 @@ object recorridoBondi inherits Recorrido{
   }
 }
 
-object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi){
+object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(nombre = "bondi")){
   override method casitigoPorAtraparlo(){
     game.say(self, "En el fondo hay lugar! Un pasito para atras asi nos vamos!")
     reloj.descontarTiempo(5) 
@@ -243,6 +242,7 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
   override method posicionAuto() = game.at(0,8)
   override method imagenAuto() = derecha
   override method obstaculo() = policia
+
 
   override method mapa() {
     return 
@@ -262,7 +262,7 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
   }
 }
 
-object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png"){
+object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(nombre = self.toString())){
   override method casitigoPorAtraparlo(){
     game.say(self, " TE ATRAPÉ!! ")
     reloj.descontarTiempo(10)
