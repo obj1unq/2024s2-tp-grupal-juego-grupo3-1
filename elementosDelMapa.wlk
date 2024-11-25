@@ -10,7 +10,6 @@ class Elemento {
   method esAgarrable() = false
   method meTraslada() = false
   method esMeta() = false
-
 }
 
 class Frame {
@@ -75,23 +74,23 @@ class Mate inherits Cosa {
 } 
 
 //Bonus
-class Manzanita inherits Cosa (image =  "manzana_.png"){
+class Manzanita inherits CosaConBonus (image =  "manzana_.png"){
   override method frame() = frameManzanita
   override method cosaEnElFrame() = "mbrillante.png"
 }
-class Bizcochitos inherits Cosa (image = "bizcochitos_.png") {
+class Bizcochitos inherits CosaConBonus (image = "bizcochitos_.png") {
   override method frame() = frameBizcochitos
   override method cosaEnElFrame() = "bbrillante.png"
 }
-class Palmeritas inherits Cosa (image = "palmeritas_.png"){
+class Palmeritas inherits CosaConBonus (image = "palmeritas_.png"){
   override method frame() = framePalmeritas
   override method cosaEnElFrame() = "pbrillante.png"
 }
-class Faso inherits Cosa (image = "fasito.png"){
+class Faso inherits CosaConBonus (image = "fasito.png"){
   override method frame() = frameFaso
   override method cosaEnElFrame() = "fbrillante.png"
 }
-class Medialuna inherits Cosa (image = "medialuna-.png"){
+class Medialuna inherits CosaConBonus (image = "medialuna-.png"){
   override method frame() = frameMedialuna
   override method cosaEnElFrame() = "mebrillante.png"
 }
@@ -115,6 +114,9 @@ object extraFrame inherits Frame(image = "realframe.png"){}
 
 
 class Calle inherits Elemento (image = "calle.png") {
+}
+
+object calleAccionar inherits Calle{
 }
 
 class Inicio inherits Calle {
@@ -227,7 +229,7 @@ class Obstaculo inherits Elemento{
 class Dialogo{
   const property position = game.at(0,0)
   const nombre 
-  const property image = "dialogo-" + nombre + ".png"
+  const property image = "dialogo-" + nombre + "-.png"
 }
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
@@ -289,5 +291,9 @@ class Recorrido{
          } else {
            self.camino().get(instancia) 
          }
+ }
+
+ method ultimaPosicionRecorrido() {
+  return self.camino().get(self.largoCamino() - 1)
  }
 }

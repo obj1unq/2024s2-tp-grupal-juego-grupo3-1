@@ -46,7 +46,7 @@ object mapaInicial inherits SuperMapa(objetoImportante = yerba){
         [__, __, __, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, n1, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, cy, v1, __, __, __, __, __],
-        [__, __, c2, c1, c1, c1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
+        [__, __, c2, c1, c1, co, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, v1, v1, v1, v1, pp, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [es, __, n2, __, __, v1, c1, v1, m1, __, __, __, v1, td, v1, m6, __, __, __, __]
       ].reverse()
@@ -62,28 +62,27 @@ object recorridoDeLibertario inherits Recorrido{
              game.at(10,7), game.at(11,7), game.at(12,7),
              game.at(13,7), game.at(14,7), game.at(15,7),
              game.at(16,7), game.at(17,7), game.at(18,7),
-             game.at(19,7)] 
+             game.at(19,7), game.at(20,7)] 
   }
   
   override method tieneQueReiniciarRecorrido(numero) = false
 }
 
-object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(nombre = "libertario")) {
+object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(nombre = self.toString())) {
   
   override method inicializar(){
-    game.onTick(1, "inicializar libertario", {self.inicializarSiPuede()})
+    game.onCollideDo(calleAccionar, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.inicializarCuandoPasaPorCelda()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
   }
-  
-  method inicializarSiPuede(){
-    if (self.elAutoEstaCerca()) {
-      game.removeTickEvent("inicializar libertario")
-      self.agregarDialogo()
 
-      game.addVisual(self)
-      self.interaccion()
-      
-      game.onTick(100, "Libertario camina", {self.caminar()}) 
-    }
+  method yaSeEncuentraEnEjecucion()= game.allVisuals().contains(self)
+  
+  method inicializarCuandoPasaPorCelda(){
+    self.agregarDialogo()
+
+    game.addVisual(self)
+    self.interaccion()
+    
+    game.onTick(100, "Libertario camina", {self.caminar()}) 
   }
 
   method interaccion(){
@@ -110,11 +109,11 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
   }
 
   method puedoEscapar() {
-    return miRecorrido.camino().get(miRecorrido.largoCamino() - 1) == position
+    return miRecorrido.ultimaPosicionRecorrido() == position
   }
 
   method escapar(){
-    game.removeVisual(self)
+    //game.removeVisual(self) NECESITO QUE QUEDE EN EL TABLERO PARA QUE NO SE EJECUTE EL ONCOLLIDEDO
     game.removeTickEvent("Libertario camina")
 
   }
@@ -180,7 +179,7 @@ object recorridoDeViejita inherits Recorrido{
   }
 }
 
-object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(nombre = "viejita")){
+object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(nombre = self.toString())){
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(15) 
   }
@@ -222,7 +221,7 @@ object recorridoBondi inherits Recorrido{
   }
 }
 
-object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(nombre = "bondi")){
+object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(nombre = self.toString())){
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(5) 
   }
