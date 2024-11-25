@@ -48,7 +48,7 @@ class Cosa inherits Elemento{
 class CosaConBonus inherits Cosa{
   override method esAgarrada() {
     super()
-    reloj.agregarTiempo(5)
+    reloj.agregarTiempo(10)
   }
 }
 
@@ -225,9 +225,9 @@ class Obstaculo inherits Elemento{
   }
 
   method agregarDialogo(){
-    if (not game.allVisuals().contains(dialogo)){
-    game.addVisual(dialogo)
-    game.schedule(3000, { game.removeVisual(dialogo)})
+    if (not superTablero.estaEnElTablero(dialogo)){
+      game.addVisual(dialogo)
+      game.schedule(3000, { game.removeVisual(dialogo)})
     }
   }
 }
@@ -240,7 +240,7 @@ class Dialogo{
 
 }
 
-class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
+class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosicion()){
   method casitigoPorAtraparlo()
   override method caminar(){
     super()
@@ -303,5 +303,9 @@ class Recorrido{
 
  method ultimaPosicionRecorrido() {
   return self.camino().get(self.largoCamino() - 1)
+ }
+
+ method primeraPosicion(){
+  return self.camino().get(0)
  }
 }

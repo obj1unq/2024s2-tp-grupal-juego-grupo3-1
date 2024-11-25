@@ -137,6 +137,10 @@ object superTablero {
   method cosasDeLaPosicionActual(_position) {
     return game.getObjectsIn(_position)
   }
+
+  method estaEnElTablero(unaCosa){
+    return game.allVisuals().contains(unaCosa)
+  }
     
 }
 
