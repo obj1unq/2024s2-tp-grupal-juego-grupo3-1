@@ -46,8 +46,9 @@ object pantallaFinal inherits Historia{
       orden = finDeJuego.ordenInicial()
     }else{
         if (self.seguirMostrando()) {
-        orden += 1
+        orden += 1        
       } else {
+        console.println(finDeJuego.mensaje())
         game.stop()
       }
     }
@@ -66,10 +67,11 @@ object pantallaFinal inherits Historia{
 
 //Leo
 object finDeJuegoNoAgarro inherits Historia {
-  override method image() = "00-fin.png"
+  override method image() = "leo-fin.png"
   
   override method ejecutar() {
     super()
+    console.println("Fin del juego sin recoger objeto.")
     game.stop()
   }
 } 
@@ -79,11 +81,13 @@ object finDeJuegoNoAgarro inherits Historia {
 //Deby
 object finDeJuegoSinTiempo{
   method ordenInicial() = 2
+  const property mensaje = "Fin del juego sin Tiempo."
   method limiteDeMuestra() = 2
 } 
 
 //Pablo y Ami
 object finDeJuegoGano{
+  const property mensaje = "Fin del juego GANASTE."
   method ordenInicial() = 3
   method limiteDeMuestra() = 4
 } 

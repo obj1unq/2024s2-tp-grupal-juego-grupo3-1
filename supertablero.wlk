@@ -208,6 +208,13 @@ object c1 {
   }
 }
 
+object co {
+  method crearEn(mapa, position){
+    calleAccionar.position(position)
+    mapa.agregarElemento(calleAccionar)
+  }
+}
+
 // Calle inicial
 object c2 {
   method crearEn(mapa, position){
