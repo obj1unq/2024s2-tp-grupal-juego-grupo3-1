@@ -116,7 +116,10 @@ object extraFrame inherits Frame(image = "realframe.png"){}
 class Calle inherits Elemento (image = "calle.png") {
 }
 
-object calleAccionar inherits Calle{
+object calleAccionar1 inherits Calle{
+}
+
+object calleAccionar2 inherits Calle{
 }
 
 class Inicio inherits Calle {

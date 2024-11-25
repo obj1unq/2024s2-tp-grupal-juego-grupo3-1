@@ -46,7 +46,7 @@ object mapaInicial inherits SuperMapa(objetoImportante = yerba){
         [__, __, __, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, n1, __, __, v1, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, v1, v1, v1, v1, c1, v1, __, __, __, __, v1, cy, v1, __, __, __, __, __],
-        [__, __, c2, c1, c1, co, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
+        [__, __, c2, c4, c1, c5, c1, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [__, __, v1, v1, v1, v1, pp, v1, __, __, __, __, v1, c1, v1, __, __, __, __, __],
         [es, __, n2, __, __, v1, c1, v1, m1, __, __, __, v1, td, v1, m6, __, __, __, __]
       ].reverse()
@@ -71,19 +71,25 @@ object recorridoDeLibertario inherits Recorrido{
 object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(nombre = self.toString())) {
   
   override method inicializar(){
-    game.onCollideDo(calleAccionar, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.inicializarCuandoPasaPorCelda()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
+    game.onCollideDo(calleAccionar1, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.algo()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
   }
+
+  method algo(){
+    game.addVisual(self)
+    game.onCollideDo(calleAccionar2, {libertr => self.inicializarCuandoPasaPorCelda()}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
+
+  }
+
 
   method yaSeEncuentraEnEjecucion()= game.allVisuals().contains(self)
   
   method inicializarCuandoPasaPorCelda(){
     self.agregarDialogo()
 
-    game.addVisual(self)
     self.interaccion()
     
-    game.onTick(100, "Libertario camina", {self.caminar()}) 
-  }
+    game.onTick(100, "Libertario camina", {self.caminar()}) 
+  }
 
   method interaccion(){
     reloj.descontarTiempo(10) 

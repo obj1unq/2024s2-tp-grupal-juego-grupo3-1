@@ -18,7 +18,7 @@ object inicio inherits Historia {
   
   override method ejecutar() {
     super()
-    keyboard.enter().onPressDo({ if(ejecutandoInicio){self.cambiar()}})
+    keyboard.enter().onPressDo({if (ejecutandoInicio) self.cambiar()})
   }
   
   method seguirMostrando() = orden < 5
@@ -67,7 +67,7 @@ object pantallaFinal inherits Historia{
 
 //Leo
 object finDeJuegoNoAgarro inherits Historia {
-  override method image() = "leo-fin.png"
+  override method image() = "00-fin.png"
   
   override method ejecutar() {
     super()

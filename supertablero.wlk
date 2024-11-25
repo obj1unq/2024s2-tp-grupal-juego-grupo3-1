@@ -129,7 +129,17 @@ object superTablero {
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
+
+  method haySolidoEn(_position){
+    return self.cosasDeLaPosicionActual(_position).any({ cosa => cosa.solida() })
+  }
+
+  method cosasDeLaPosicionActual(_position) {
+    return game.getObjectsIn(_position)
+  }
+    
 }
+
 
 // Vacío
 object __ {
@@ -208,12 +218,6 @@ object c1 {
   }
 }
 
-object co {
-  method crearEn(mapa, position){
-    calleAccionar.position(position)
-    mapa.agregarElemento(calleAccionar)
-  }
-}
 
 // Calle inicial
 object c2 {
@@ -227,6 +231,19 @@ object c3 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Final(position = position))
   }
+}
+
+object c4 {
+  method crearEn(mapa, position){
+    calleAccionar1.position(position)
+    mapa.agregarElemento(calleAccionar1)
+  }
+}
+object c5 {
+  method crearEn(mapa, position){
+    calleAccionar2.position(position)
+    mapa.agregarElemento(calleAccionar2)
+  }
 }
 
 //Calles con objetos
