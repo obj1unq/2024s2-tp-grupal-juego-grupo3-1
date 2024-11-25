@@ -1,5 +1,5 @@
 import wollok.game.*
-import inicio.*
+import historia.*
 
 object reloj {
   var property segundos = 100
@@ -34,8 +34,10 @@ object reloj {
   
   method validarContinuarJuego() {
     if (not self.sigueEnTiempo()) {
-      game.addVisual(finDeJuegoSinTiempo )
-      game.stop()
+      game.removeTickEvent("reloj")//termino el onTick()
+      pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
+      pantallaFinal.ejecutar()
+
     }
   }
   

@@ -1,7 +1,7 @@
 import gameSetUp.*
 import auto.*
 import elementosDelMapa.*
-import inicio.*
+import historia.*
 import mapas.*
 import posiciones.*
 import reloj.*

@@ -5,7 +5,7 @@ import reloj.*
 import elementosDelMapa.*
 import mapas.*
 import gameSetUp.*
-import inicio.*
+import historia.*
 
 object superTablero {
   const property mapas = #{mapa1, mapa2, mapa3}
@@ -52,8 +52,12 @@ object superTablero {
   // }
 
   method siguienteMapa() {    
-    mapaActual = mapas.anyOne()
-    mapas.remove(mapaActual)
+    if(mapas.size()>0){  
+      mapaActual = mapas.anyOne()
+      mapas.remove(mapaActual)
+    }else{
+      mapaActual = mapaFinal
+    }
   }  
 
   method cambiarMapa() {
@@ -75,11 +79,8 @@ object superTablero {
   }
 
   method finalizarJuegoSiCorresponde() {
-    
     self.finalSiOlvidasteObjetoImportante()
     self.finalSiSeQuedoSinTiempo()
-    self.finalSiGanaste()
-
   }
 
   method finalSiOlvidasteObjetoImportante(){
@@ -92,14 +93,17 @@ object superTablero {
   method finalSiSeQuedoSinTiempo(){
       if(reloj.seQuedoSinTiempo()){
         self.removerTodasLasVisuales()
-        finDeJuegoSinTiempo.ejecutar()
+        pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
+	      pantallaFinal.ejecutar()
+
       }
   }
 
   method finalSiGanaste(){
       if(self.ganaste()){
         self.removerTodasLasVisuales()
-        finDeJuegogGano.ejecutar()
+        pantallaFinal.finDeJuego(finDeJuegoGano)
+	      pantallaFinal.ejecutar()
       }
   }
 
