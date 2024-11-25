@@ -68,7 +68,7 @@ object recorridoDeLibertario inherits Recorrido{
   override method tieneQueReiniciarRecorrido(numero) = false
 }
 
-object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(nombre = self.toString())) {
+object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(image = "dialogo-libertario-.png")) {
   
   override method inicializar(){
     game.onCollideDo(calleAccionar1, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.algo()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
@@ -185,7 +185,7 @@ object recorridoDeViejita inherits Recorrido{
   }
 }
 
-object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(nombre = self.toString())){
+object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(15) 
   }
@@ -227,7 +227,7 @@ object recorridoBondi inherits Recorrido{
   }
 }
 
-object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(nombre = self.toString())){
+object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(5) 
   }
@@ -258,7 +258,7 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
   }
 }
 
-object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(nombre = self.toString())){
+object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(10)
     auto.position(mapa3.posicionAuto())

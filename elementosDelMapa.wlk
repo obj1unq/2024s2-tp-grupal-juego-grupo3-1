@@ -1,3 +1,4 @@
+import supertablero.*
 import wollok.game.*
 import auto.*
 import reloj.*
@@ -224,15 +225,19 @@ class Obstaculo inherits Elemento{
   }
 
   method agregarDialogo(){
+    if (not game.allVisuals().contains(dialogo)){
     game.addVisual(dialogo)
     game.schedule(3000, { game.removeVisual(dialogo)})
+    }
   }
 }
 
 class Dialogo{
   const property position = game.at(0,0)
-  const nombre 
-  const property image = "dialogo-" + nombre + "-.png"
+  const property image 
+  //const nombre 
+  //const property image = "dialogo-" + nombre + "-.png"
+
 }
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){

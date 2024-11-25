@@ -21,7 +21,7 @@ object inicio inherits Historia {
     keyboard.enter().onPressDo({if (ejecutandoInicio) self.cambiar()})
   }
   
-  method seguirMostrando() = orden < 5
+  method seguirMostrando() = orden < 6
   
   method cambiar() {
   if (self.seguirMostrando()) {
