@@ -12,6 +12,17 @@ object auto {
     
     self.seTrasladaSiPuede()
     self.moverSiPuede(direccion, nuevaDireccion)
+    self.finalizaJuegoSiLlegoAMeta()
+  }
+
+  method finalizaJuegoSiLlegoAMeta(){
+    if(self.estaEnMeta()){
+        superTablero.finalSiGanaste()
+    }
+  }
+
+  method estaEnMeta(){
+    return game.colliders(self).any({elem => elem.esMeta()})
   }
 
   method cambiarImagen(direccion){

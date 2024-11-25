@@ -184,13 +184,9 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(15) 
   }
-
-  override method atrapoAuto(){
-    return self.elAutoEstaEnMismaPosicion()
-  }
 }
 
-object mapa2 inherits SuperMapa(objetoImportante = termo){
+object mapa2 inherits SuperMapa(objetoImportante = agua){
   override method posicionAuto() = game.at(0,3)
   override method imagenAuto() = derecha
   override method obstaculo() = bondi
@@ -228,12 +224,7 @@ object recorridoBondi inherits Recorrido{
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(nombre = "bondi")){
   override method casitigoPorAtraparlo(){
-    game.say(self, "En el fondo hay lugar! Un pasito para atras asi nos vamos!")
     reloj.descontarTiempo(5) 
-  }
-
-  override method atrapoAuto(){
-    return self.elAutoEstaEnMismaPosicion()
   }
 
 }
@@ -264,15 +255,9 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(nombre = self.toString())){
   override method casitigoPorAtraparlo(){
-    game.say(self, " TE ATRAPÉ!! ")
     reloj.descontarTiempo(10)
     auto.position(mapa3.posicionAuto())
   } 
-
-  override method atrapoAuto(){
-    return self.elAutoEstaEnMismaPosicion() or self.elAutoEstaAdelante() or self.elAutoEstaAtras() 
-  }
-  
 }
 
 object recorridoPoli inherits Recorrido{

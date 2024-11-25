@@ -1,5 +1,5 @@
 import wollok.game.*
-import inicio.*
+import historia.*
 import reloj.*
 import gameSetUp.*
 
@@ -18,7 +18,7 @@ program aventuraDelMate {
 	game.schedule(0, { game.sound("TokyoDrift.mp3").play() })
 	
 	inicio.ejecutar()
-		
+
 	game.onTick(1000, "reloj", {reloj.tick()})
 
 	

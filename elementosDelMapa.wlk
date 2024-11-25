@@ -9,6 +9,8 @@ class Elemento {
   method solida() = false
   method esAgarrable() = false
   method meTraslada() = false
+  method esMeta() = false
+
 }
 
 class Frame {
@@ -120,6 +122,7 @@ class Inicio inherits Calle {
 }
 
 class Final inherits Elemento(image = "llegada.png"){
+  override method esMeta() = true
 }
 
 class Vereda inherits Elemento (image = "vereda.png") {
@@ -199,7 +202,7 @@ class Obstaculo inherits Elemento{
   
   method inicializar(){
     game.addVisual(self)
-    game.onTick(600, "object", {self.caminar()})
+    game.onTick(300, "object", {self.caminar()})
   }
   
   method caminar(){
@@ -229,8 +232,6 @@ class Dialogo{
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
   method casitigoPorAtraparlo()
-  method atrapoAuto()
-
   override method caminar(){
     super()
     self.verificarSiChocoConAuto()
@@ -241,6 +242,10 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().ge
       self.agregarDialogo()
       self.casitigoPorAtraparlo()
     }
+  }
+  
+  method atrapoAuto(){
+    return self.elAutoEstaEnMismaPosicion() or self.elAutoEstaAdelante() or self.elAutoEstaAtras() 
   }
 
   method elAutoEstaEnMismaPosicion(){
