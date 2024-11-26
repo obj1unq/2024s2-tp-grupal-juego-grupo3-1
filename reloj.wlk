@@ -1,3 +1,4 @@
+import supertablero.*
 import wollok.game.*
 import historia.*
 
@@ -35,10 +36,11 @@ object reloj {
   method validarContinuarJuego() {
     if (not self.sigueEnTiempo()) {
       game.removeTickEvent("reloj")//termino el onTick()
+      superTablero.desactivarObstaculo()
       pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
       pantallaFinal.ejecutar()
-
     }
+
   }
   
   method solida() = false

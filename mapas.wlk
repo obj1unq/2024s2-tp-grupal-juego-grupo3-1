@@ -69,25 +69,25 @@ object recorridoDeLibertario inherits Recorrido{
 object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(image = "dialogo-libertario-.png")) {
   
   override method inicializar(){
-    game.onCollideDo(calleAccionar1, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.algo()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
+    activo = true
+    game.onCollideDo(calleAccionar1, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.dibujarLibertario()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
   }
 
-  method algo(){
+  method dibujarLibertario(){
     game.addVisual(self)
-    game.onCollideDo(calleAccionar2, {libertr => self.inicializarCuandoPasaPorCelda()}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
-
+    game.onCollideDo(calleAccionar2, {libertr => self.dibujarLibertarioQueCorre()}) 
   }
 
 
   method yaSeEncuentraEnEjecucion()= game.allVisuals().contains(self)
   
-  method inicializarCuandoPasaPorCelda(){
+  method dibujarLibertarioQueCorre(){
     self.agregarDialogo()
 
     self.interaccion()
     
     game.onTick(100, "Libertario camina", {self.caminar()}) 
-  }
+  }
 
   method interaccion(){
     reloj.descontarTiempo(10) 
@@ -184,10 +184,13 @@ object recorridoDeViejita inherits Recorrido{
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
   override method casitigoPorAtraparlo(){
-    reloj.descontarTiempo(15)
+    if(activo){
+      reloj.descontarTiempo(15)
+    } 
   }
 
   override method inicializar(){
+    activo = true
     game.addVisual(self)
     game.onTick(600, "object", {self.caminar()})
   }
@@ -231,7 +234,9 @@ object recorridoBondi inherits Recorrido{
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
   override method casitigoPorAtraparlo(){
-    reloj.descontarTiempo(5)
+    if(activo){
+      reloj.descontarTiempo(5)
+    } 
   }
 
 }
@@ -262,9 +267,9 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
   override method casitigoPorAtraparlo(){
-    reloj.descontarTiempo(10)
-    auto.position(mapa3.posicionAuto())
-
+    if(activo){
+      reloj.descontarTiempo(10)
+      auto.position(mapa3.posicionAuto())}
   } 
 }
 

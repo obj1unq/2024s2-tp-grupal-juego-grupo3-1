@@ -205,9 +205,11 @@ class Obstaculo inherits Elemento{
   var instanciaRecorrido = 0
   const miRecorrido
   const property dialogo
+  var property activo = false
 
   
   method inicializar(){
+    activo = true
     game.addVisual(self)
     game.onTick(600, "object", {self.caminar()})
   }
@@ -226,7 +228,7 @@ class Obstaculo inherits Elemento{
   }
 
   method agregarDialogo(){
-    if (not superTablero.estaEnElTablero(dialogo)){
+    if (activo and not superTablero.estaEnElTablero(dialogo) ){
       game.addVisual(dialogo)
       game.schedule(3000, { game.removeVisual(dialogo)})
     }
@@ -243,6 +245,7 @@ class Dialogo{
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosicion()){
   method casitigoPorAtraparlo()
+
   override method caminar(){
     super()
     self.verificarSiChocoConAuto()
