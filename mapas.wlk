@@ -184,7 +184,7 @@ object recorridoDeViejita inherits Recorrido{
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
   override method casitigoPorAtraparlo(){
-    if (activo) {reloj.descontarTiempo(15) }
+    reloj.descontarTiempo(15)
   }
 
   override method inicializar(){
@@ -219,18 +219,19 @@ object mapa2 inherits SuperMapa(objetoImportante = agua){
 
 object recorridoBondi inherits Recorrido{
 
-  const property camino = [game.at(2,3) , game.at(3,3) , game.at(4,3) ,
-                          game.at(5,3) , game.at(6,3) , game.at(7,3) ,
-                          game.at(8,3) , game.at(9,3) , game.at(10,3),
-                          game.at(11,3), game.at(12,3), game.at(13,3),
-                          game.at(14,3), game.at(15,3), game.at(16,3),
-                          game.at(17,3), game.at(18,3), game.at(19,3)] 
+  const property camino = [ game.at(-2,3), game.at(-1,3), game.at(0,3) ,
+                            game.at(2,3) , game.at(3,3) , game.at(4,3) ,
+                            game.at(5,3) , game.at(6,3) , game.at(7,3) ,
+                            game.at(8,3) , game.at(9,3) , game.at(10,3),
+                            game.at(11,3), game.at(12,3), game.at(13,3),
+                            game.at(14,3), game.at(15,3), game.at(16,3),
+                            game.at(17,3), game.at(18,3), game.at(19,3)] 
   
 }
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
   override method casitigoPorAtraparlo(){
-    if(activo){reloj.descontarTiempo(5)} 
+    reloj.descontarTiempo(5)
   }
 
 }
@@ -261,10 +262,9 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
   override method casitigoPorAtraparlo(){
-    if(activo){
     reloj.descontarTiempo(10)
     auto.position(mapa3.posicionAuto())
-    }
+
   } 
 }
 

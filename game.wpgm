@@ -1,6 +1,4 @@
 import wollok.game.*
-import historia.*
-import reloj.*
 import gameSetUp.*
 
 
