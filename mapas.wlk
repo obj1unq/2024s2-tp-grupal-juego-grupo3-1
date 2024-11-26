@@ -54,16 +54,14 @@ object mapaInicial inherits SuperMapa(objetoImportante = yerba){
 }
 
 object recorridoDeLibertario inherits Recorrido{
-  override method camino() = self.ida()
-  override method ida(){ 
-    return  [game.at(6,2) , game.at(6,3) , game.at(6,4) ,
-             game.at(6,5) , game.at(6,6) , game.at(6,7) ,
-             game.at(7,7) , game.at(8,7) , game.at(9,7),
-             game.at(10,7), game.at(11,7), game.at(12,7),
-             game.at(13,7), game.at(14,7), game.at(15,7),
-             game.at(16,7), game.at(17,7), game.at(18,7),
-             game.at(19,7), game.at(20,7)] 
-  }
+  const property camino =  [game.at(6,2) , game.at(6,3) , game.at(6,4) ,
+                            game.at(6,5) , game.at(6,6) , game.at(6,7) ,
+                            game.at(7,7) , game.at(8,7) , game.at(9,7),
+                            game.at(10,7), game.at(11,7), game.at(12,7),
+                            game.at(13,7), game.at(14,7), game.at(15,7),
+                            game.at(16,7), game.at(17,7), game.at(18,7),
+                            game.at(19,7), game.at(20,7)] 
+
   
   override method tieneQueReiniciarRecorrido(numero) = false
 }
@@ -180,9 +178,8 @@ object mapa1 inherits SuperMapa(objetoImportante = termo){
 }
 
 object recorridoDeViejita inherits Recorrido{
-  override method ida(){ 
-        return [game.at(3,3), game.at(3,4), game.at(4,5)] 
-  }
+  const property camino = [game.at(3,3), game.at(3,4), game.at(4,5)] 
+  
 }
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
@@ -216,15 +213,14 @@ object mapa2 inherits SuperMapa(objetoImportante = agua){
 }
 
 object recorridoBondi inherits Recorrido{
-  override method camino() = self.ida()
-  override method ida(){ 
-        return  [game.at(2,3) , game.at(3,3) , game.at(4,3) ,
-                 game.at(5,3) , game.at(6,3) , game.at(7,3) ,
-                 game.at(8,3) , game.at(9,3) , game.at(10,3),
-                 game.at(11,3), game.at(12,3), game.at(13,3),
-                 game.at(14,3), game.at(15,3), game.at(16,3),
-                 game.at(17,3), game.at(18,3), game.at(19,3)] 
-  }
+
+  const property camino = [game.at(2,3) , game.at(3,3) , game.at(4,3) ,
+                          game.at(5,3) , game.at(6,3) , game.at(7,3) ,
+                          game.at(8,3) , game.at(9,3) , game.at(10,3),
+                          game.at(11,3), game.at(12,3), game.at(13,3),
+                          game.at(14,3), game.at(15,3), game.at(16,3),
+                          game.at(17,3), game.at(18,3), game.at(19,3)] 
+  
 }
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
@@ -266,13 +262,21 @@ object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image 
 }
 
 object recorridoPoli inherits Recorrido{
-  override method ida(){ 
-        return  [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7), game.at(2,8),
+  var camino = null
+
+  method initialize(){
+    const ida = [ /*calle izquierda*/ game.at(2,3), game.at(2,4), game.at(2,5), game.at(2,6), game.at(2,7), game.at(2,8),
                   /*calle arriba */   game.at(3,8), game.at(4,8), game.at(5,8),  game.at(6,8), game.at(7,8), game.at(8,8), game.at(9,8), game.at(10,8), game.at(11,8), game.at(12,8), game.at(13,8),
                   /*calle derecha */  game.at(13,7), game.at(13,6), game.at(13,5), game.at(13,4), game.at(13,3), game.at(13,2), game.at(13,1),
                   /*calle abajo */    game.at(12,1), game.at(11,1), game.at(10,1), game.at(9,1), game.at(8,1), game.at(7,1), game.at(6,1), game.at(5,1), game.at(4,1), game.at(3,1), game.at(2,1)
-                ] 
+                ]
+    camino = ida + ida.reverse()
   }
+
+  override method camino(){
+    return camino
+  }
+
 
 }
 

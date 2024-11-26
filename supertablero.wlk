@@ -61,9 +61,14 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.finalizarJuegoSiCorresponde()
-    self.siguienteMapa()
-    self.inicializarMapa()
+    try{
+        self.finalizarJuegoSiCorresponde() 
+        self.siguienteMapa()
+        self.inicializarMapa()
+      }catch e:Exception{
+        console.println("Fin del juego")
+      }
+    
   }
 
   method dibujarAuto() {

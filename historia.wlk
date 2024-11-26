@@ -70,9 +70,10 @@ object finDeJuegoNoAgarro inherits Historia {
   override method image() = "00-fin.png"
   
   override method ejecutar() {
-    super()
+    game.addVisual(self)
     console.println("Fin del juego sin recoger objeto.")
-    game.stop()
+    game.schedule(1000, {game.stop()})
+    self.error("Finallll")
   }
 } 
 

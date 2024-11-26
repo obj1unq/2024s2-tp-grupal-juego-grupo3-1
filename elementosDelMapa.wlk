@@ -272,9 +272,8 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosi
 }
 
 class Recorrido{
- method ida() 
 
- method camino() = self.ida() + self.ida().reverse()
+ method camino()
 
  method largoCamino() = self.camino().size()
 
