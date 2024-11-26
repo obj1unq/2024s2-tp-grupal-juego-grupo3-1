@@ -186,6 +186,11 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
   override method casitigoPorAtraparlo(){
     reloj.descontarTiempo(15) 
   }
+
+  override method inicializar(){
+    game.addVisual(self)
+    game.onTick(600, "object", {self.caminar()})
+  }
 }
 
 object mapa2 inherits SuperMapa(objetoImportante = agua){

@@ -72,8 +72,7 @@ object finDeJuegoNoAgarro inherits Historia {
   override method ejecutar() {
     game.addVisual(self)
     console.println("Fin del juego sin recoger objeto.")
-    game.schedule(1000, {game.stop()})
-    self.error("Finallll")
+    game.stop()
   }
 } 
 

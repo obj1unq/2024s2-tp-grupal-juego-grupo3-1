@@ -10,7 +10,7 @@ import historia.*
 object superTablero {
   const property mapas = #{mapa1, mapa2, mapa3}
   const objetosImportantes = #{mate, yerba, termo, agua}
-  var mapaActual = mapaInicial
+  var mapaActual = mapaFinal //mapaInicial
 
   var property objetosRecogidos = []
   
@@ -39,18 +39,6 @@ object superTablero {
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
 
-  // method finDeJuego(){
-  //   barraSuperior.dibujar()
-  //   self.agregarObjetosAgarradosEnBarraSuperior()
-
-  //   //mapaFinal.dibujar()
-  //   //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
-
-  //   //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
-  //   game.addVisual(finDeJuego)
-  //   game.stop() 
-  // }
-
   method siguienteMapa() {    
     if(mapas.size()>0){  
       mapaActual = mapas.anyOne()
@@ -61,13 +49,23 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    try{
-        self.finalizarJuegoSiCorresponde() 
-        self.siguienteMapa()
-        self.inicializarMapa()
-      }catch e:Exception{
-        console.println("Fin del juego")
-      }
+    
+    if((mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()) or (reloj.seQuedoSinTiempo())){
+      self.finalizarJuegoSiCorresponde() 
+    }else{
+      self.siguienteMapa()
+      self.inicializarMapa()
+    }
+
+
+    
+    //try{
+    //    self.finalizarJuegoSiCorresponde() 
+    //    self.siguienteMapa()
+    //    self.inicializarMapa()
+    //  }catch e:Exception{
+    //    console.println("Fin del juego")
+    //  }
     
   }
 
@@ -83,7 +81,7 @@ object superTablero {
     objetosRecogidos.forEach({obj => game.addVisual(obj)})
   }
 
-  method finalizarJuegoSiCorresponde() {
+  method finalizarJuegoSiCorresponde(){
     self.finalSiOlvidasteObjetoImportante()
     self.finalSiSeQuedoSinTiempo()
   }
@@ -131,6 +129,7 @@ object superTablero {
 
   method removerTodasLasVisuales() {
     game.allVisuals().forEach({v => game.removeVisual(v)})
+    game.removeVisual(mapaActual.obstaculo())
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
