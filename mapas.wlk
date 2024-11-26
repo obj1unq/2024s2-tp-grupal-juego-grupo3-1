@@ -184,7 +184,7 @@ object recorridoDeViejita inherits Recorrido{
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
   override method casitigoPorAtraparlo(){
-    reloj.descontarTiempo(15) 
+    if (activo) {reloj.descontarTiempo(15) }
   }
 
   override method inicializar(){
@@ -230,7 +230,7 @@ object recorridoBondi inherits Recorrido{
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
   override method casitigoPorAtraparlo(){
-    reloj.descontarTiempo(5) 
+    if(activo){reloj.descontarTiempo(5)} 
   }
 
 }
@@ -261,8 +261,10 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
   override method casitigoPorAtraparlo(){
+    if(activo){
     reloj.descontarTiempo(10)
     auto.position(mapa3.posicionAuto())
+    }
   } 
 }
 

@@ -10,7 +10,7 @@ import historia.*
 object superTablero {
   const property mapas = #{mapa1, mapa2, mapa3}
   const objetosImportantes = #{mate, yerba, termo, agua}
-  var mapaActual = mapaFinal //mapaInicial
+  var mapaActual = mapaInicial
 
   var property objetosRecogidos = []
   
@@ -129,7 +129,7 @@ object superTablero {
 
   method removerTodasLasVisuales() {
     game.allVisuals().forEach({v => game.removeVisual(v)})
-    game.removeVisual(mapaActual.obstaculo())
+    mapaActual.obstaculo().activo(false)
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
