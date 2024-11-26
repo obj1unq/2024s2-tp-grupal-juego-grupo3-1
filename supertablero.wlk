@@ -39,18 +39,6 @@ object superTablero {
     self.agregarObjetosAgarradosEnBarraSuperior()
   }
 
-  // method finDeJuego(){
-  //   barraSuperior.dibujar()
-  //   self.agregarObjetosAgarradosEnBarraSuperior()
-
-  //   //mapaFinal.dibujar()
-  //   //falta ver como terminar todo acá, mapa final - imagenes finales ganar/perder
-
-  //   //por el momento, voy a hacer que tire el mensaje de fin de juego q tira cuando se acaba el tiempo!
-  //   game.addVisual(finDeJuego)
-  //   game.stop() 
-  // }
-
   method siguienteMapa() {    
     if(mapas.size()>0){  
       mapaActual = mapas.anyOne()
@@ -61,9 +49,24 @@ object superTablero {
   }  
 
   method cambiarMapa() {
-    self.finalizarJuegoSiCorresponde()
-    self.siguienteMapa()
-    self.inicializarMapa()
+    
+    if((mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()) or (reloj.seQuedoSinTiempo())){
+      self.finalizarJuegoSiCorresponde() 
+    }else{
+      self.siguienteMapa()
+      self.inicializarMapa()
+    }
+
+
+    
+    //try{
+    //    self.finalizarJuegoSiCorresponde() 
+    //    self.siguienteMapa()
+    //    self.inicializarMapa()
+    //  }catch e:Exception{
+    //    console.println("Fin del juego")
+    //  }
+    
   }
 
   method dibujarAuto() {
@@ -78,7 +81,7 @@ object superTablero {
     objetosRecogidos.forEach({obj => game.addVisual(obj)})
   }
 
-  method finalizarJuegoSiCorresponde() {
+  method finalizarJuegoSiCorresponde(){
     self.finalSiOlvidasteObjetoImportante()
     self.finalSiSeQuedoSinTiempo()
   }
@@ -126,10 +129,25 @@ object superTablero {
 
   method removerTodasLasVisuales() {
     game.allVisuals().forEach({v => game.removeVisual(v)})
+    mapaActual.obstaculo().activo(false)
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
+
+  method haySolidoEn(_position){
+    return self.cosasDeLaPosicionActual(_position).any({ cosa => cosa.solida() })
+  }
+
+  method cosasDeLaPosicionActual(_position) {
+    return game.getObjectsIn(_position)
+  }
+
+  method estaEnElTablero(unaCosa){
+    return game.allVisuals().contains(unaCosa)
+  }
+    
 }
+
 
 // Vacío
 object __ {
@@ -208,12 +226,6 @@ object c1 {
   }
 }
 
-object co {
-  method crearEn(mapa, position){
-    calleAccionar.position(position)
-    mapa.agregarElemento(calleAccionar)
-  }
-}
 
 // Calle inicial
 object c2 {
@@ -227,6 +239,19 @@ object c3 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Final(position = position))
   }
+}
+
+object c4 {
+  method crearEn(mapa, position){
+    calleAccionar1.position(position)
+    mapa.agregarElemento(calleAccionar1)
+  }
+}
+object c5 {
+  method crearEn(mapa, position){
+    calleAccionar2.position(position)
+    mapa.agregarElemento(calleAccionar2)
+  }
 }
 
 //Calles con objetos

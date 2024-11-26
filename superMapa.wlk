@@ -29,6 +29,8 @@ class SuperMapa {
   } 
 }
 object obstaculoVacio{
+  const property position = game.at(0,0)
+  const property image = null
   method inicializar(){
   }
 }

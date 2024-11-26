@@ -1,3 +1,4 @@
+import supertablero.*
 import wollok.game.*
 import auto.*
 import reloj.*
@@ -47,7 +48,7 @@ class Cosa inherits Elemento{
 class CosaConBonus inherits Cosa{
   override method esAgarrada() {
     super()
-    reloj.agregarTiempo(5)
+    reloj.agregarTiempo(10)
   }
 }
 
@@ -116,7 +117,10 @@ object extraFrame inherits Frame(image = "realframe.png"){}
 class Calle inherits Elemento (image = "calle.png") {
 }
 
-object calleAccionar inherits Calle{
+object calleAccionar1 inherits Calle{
+}
+
+object calleAccionar2 inherits Calle{
 }
 
 class Inicio inherits Calle {
@@ -201,10 +205,12 @@ class Obstaculo inherits Elemento{
   var instanciaRecorrido = 0
   const miRecorrido
   const property dialogo
+  var property activo = false
   
   method inicializar(){
     game.addVisual(self)
-    game.onTick(300, "object", {self.caminar()})
+    game.onTick(600, "object", {self.caminar()})
+    activo = true
   }
   
   method caminar(){
@@ -221,18 +227,22 @@ class Obstaculo inherits Elemento{
   }
 
   method agregarDialogo(){
-    game.addVisual(dialogo)
-    game.schedule(3000, { game.removeVisual(dialogo)})
+    if (not superTablero.estaEnElTablero(dialogo) and activo){
+      game.addVisual(dialogo)
+      game.schedule(3000, { game.removeVisual(dialogo)})
+    }
   }
 }
 
 class Dialogo{
   const property position = game.at(0,0)
-  const nombre 
-  const property image = "dialogo-" + nombre + "-.png"
+  const property image
+  //const nombre 
+  //const property image = "dialogo-" + nombre + "-.png"
+
 }
 
-class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().get(0)){
+class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosicion()){
   method casitigoPorAtraparlo()
   override method caminar(){
     super()
@@ -264,9 +274,8 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.camino().ge
 }
 
 class Recorrido{
- method ida() 
 
- method camino() = self.ida() + self.ida().reverse()
+ method camino()
 
  method largoCamino() = self.camino().size()
 
@@ -295,5 +304,9 @@ class Recorrido{
 
  method ultimaPosicionRecorrido() {
   return self.camino().get(self.largoCamino() - 1)
+ }
+
+ method primeraPosicion(){
+  return self.camino().get(0)
  }
 }

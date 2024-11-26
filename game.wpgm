@@ -5,22 +5,7 @@ import gameSetUp.*
 
 
 program aventuraDelMate {
-	
-	game.title("Aventura del Mate")
-	game.height(12)
-	game.width(20)
-	game.cellSize(50)
-	game.boardGround("boardGame.png")
-	setUp.crearMapas()
-	game.start()
-	
-	game.schedule(0, { game.sound("TokyoDrift.mp3").play() })
-	
-	inicio.ejecutar()
-
-	game.onTick(1000, "reloj", {reloj.tick()})
-
-	
+	setUp.iniciarJuego()
 }
  
 

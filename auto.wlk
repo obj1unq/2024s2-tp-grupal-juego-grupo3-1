@@ -48,23 +48,28 @@ object auto {
     return superTablero.estaDentroDeLosLimites(nuevaDireccion)  and 
     not self.haySolido(nuevaDireccion) and reloj.sigueEnTiempo()
   }
-  method haySolido(_position) = game.getObjectsIn(_position).any({ cosa => cosa.solida() })
-  
-  method validarAtravesables(_position) {
-    if (self.haySolido(_position)) superTablero.error("No puedo ir ahí")
-  }
+  method haySolido(_position) = superTablero.haySolidoEn(_position)
+ 
   
   method agarrarObjeto() {
-    if (self.hayAlgo()){
-      const cosa = game.colliders(self).find({ c => c.esAgarrable() })
+    if (self.hayAlgoAgarrable()){
+      const cosa = self.objetoColisionadoAgarrable()
       superTablero.agregarARecogidos(cosa)
       cosa.esAgarrada()
     }
   }
 
-  method hayAlgo() = game.colliders(self).any(
-    { objeto => objeto.esAgarrable() }
-  )
+  method objetosColisionados(){
+    return game.colliders(self)
+  }
+
+  method objetoColisionadoAgarrable(){
+    return self.objetosColisionados().find({ c => c.esAgarrable() })
+  }
+
+  method hayAlgoAgarrable() = self.objetosColisionados().any({ objeto => objeto.esAgarrable() })
+
+
 
   method dibujar(posicion, direccion){
     position = posicion
@@ -73,18 +78,4 @@ object auto {
   }
 }
 
-object ganeJuego {
-  const property position = game.at(0, 0)
-  const property image = "ganeJuego.png"
-}
 
-  
-  // method verSiGane(){
-  //   if (self.recogiTodosLosObjetos()){
-  //     game.addVisual(ganeJuego)
-  //     game.stop()
-  //   }
-  // }
-  // method recogiTodosLosObjetos(){
-  //   return objetosARecoger.all({objeto => objeto.recogido()})
-  // }
