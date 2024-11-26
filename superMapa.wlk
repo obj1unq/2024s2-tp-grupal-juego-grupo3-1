@@ -27,6 +27,10 @@ class SuperMapa {
   method agregarElemento(elem){
     elementosCreados.add(elem)
   } 
+
+  method desactivarObstaculo(){
+    self.obstaculo().activo(false)
+  }
 }
 object obstaculoVacio{
   const property position = game.at(0,0)

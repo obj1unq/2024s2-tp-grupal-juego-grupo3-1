@@ -36,7 +36,7 @@ object reloj {
   method validarContinuarJuego() {
     if (not self.sigueEnTiempo()) {
       game.removeTickEvent("reloj")//termino el onTick()
-      superTablero.mapaActual.obstaculo().activo(false)
+      superTablero.desactivarObstaculo()
       pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
       pantallaFinal.ejecutar()
     }

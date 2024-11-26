@@ -48,8 +48,12 @@ object superTablero {
     }
   }  
 
+  method desactivarObstaculo(){
+    mapaActual.desactivarObstaculo()
+  }
+
   method cambiarMapa() {
-    mapaActual.obstaculo().activo(false)
+    self.desactivarObstaculo()//mapaActual.obstaculo().activo(false)
     if((mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()) or (reloj.seQuedoSinTiempo())){
       self.finalizarJuegoSiCorresponde() 
     }else{

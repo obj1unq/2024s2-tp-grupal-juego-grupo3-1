@@ -1,5 +1,6 @@
 import wollok.game.*
 import supertablero.*
+import gameSetUp.*
 
 class Historia {
   method position() = game.at(0, 0)
@@ -48,7 +49,6 @@ object pantallaFinal inherits Historia{
         if (self.seguirMostrando()) {
         orden += 1        
       } else {
-        console.println(finDeJuego.mensaje())
         game.stop()
       }
     }
@@ -71,7 +71,6 @@ object finDeJuegoNoAgarro inherits Historia {
   
   override method ejecutar() {
     game.addVisual(self)
-    console.println("Fin del juego sin recoger objeto.")
     game.stop()
   }
 } 

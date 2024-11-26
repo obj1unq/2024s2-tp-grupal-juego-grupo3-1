@@ -39,7 +39,7 @@ object setUp {
     }
 
      method sonarMusica(){
-        game.schedule(0, { game.sound("TokyoDrift.mp3").play()})
+        game.schedule(0, { game.sound("TokyoDriftVolumenBajo.mp3").play()})
     }
 
 }
