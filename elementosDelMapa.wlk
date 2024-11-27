@@ -1,27 +1,23 @@
-import supertablero.*
 import wollok.game.*
+import supertablero.*
 import auto.*
 import reloj.*
 
 class Elemento {
-  var property image = null
+  var property image    = null
   var property position = null
   
-  method solida() = false
+  method solida()      = false
   method esAgarrable() = false
-  method meTraslada() = false
-  method esMeta() = false
+  method meTraslada()  = false
+  method esMeta()      = false
 }
 
-class Frame {
-  const property image
-  var property position = null 
-
-  method solida() = true
+class Frame inherits Elemento{
+  override method solida() = true
 }
 
 class Cosa inherits Elemento{
-  var property recogido = false
   
   override method esAgarrable() = true
  
@@ -37,7 +33,6 @@ class Cosa inherits Elemento{
     self.sonidoAlAgarrar()
     image = self.cosaEnElFrame() 
     position = self.posicionDelFrame()
-    recogido = true
   }
 
   method sonidoAlAgarrar(){
@@ -52,46 +47,42 @@ class CosaConBonus inherits Cosa{
   }
 }
 
-class Termo inherits Cosa{
-  override method frame() = frameTermo
-  override method cosaEnElFrame() = "termo-verde.png"
+//Obligatorios
+object termo inherits Cosa(image = "termo--.png"){
+    override method frame() = frameTermo
+    override method cosaEnElFrame() = "termo-verde.png"
 }
-
-class Yerba inherits Cosa {
-  override method frame() = frameYerba
-  override method cosaEnElFrame() = "yerba-cara-unq.png"
+object yerba inherits Cosa (image =  "yerba--.png"){
+    override method frame() = frameYerba
+    override method cosaEnElFrame() = "yerba-cara-unq.png"
 }
-
-
-
-class Agua inherits Cosa {
-  override method frame() = frameAgua
-  override method cosaEnElFrame() = "agua-para-mate.png"
+object agua inherits Cosa (image =  "agua--.png") {
+    override method frame() = frameAgua
+    override method cosaEnElFrame() = "agua-para-mate.png"
 }
-
-class Mate inherits Cosa {
-  override method frame() = frameMate
-  override method cosaEnElFrame() = "mate-lavado.png"
-} 
+object mate inherits Cosa (image =  "mate--.png"){
+    override method frame() = frameMate
+    override method cosaEnElFrame() = "mate-lavado.png"
+}
 
 //Bonus
-class Manzanita inherits CosaConBonus (image =  "manzana_.png"){
+object manzanita inherits CosaConBonus (image =  "manzana_.png"){
   override method frame() = frameManzanita
   override method cosaEnElFrame() = "mbrillante.png"
 }
-class Bizcochitos inherits CosaConBonus (image = "bizcochitos_.png") {
+object bizcochitos inherits CosaConBonus (image = "bizcochitos_.png") {
   override method frame() = frameBizcochitos
   override method cosaEnElFrame() = "bbrillante.png"
 }
-class Palmeritas inherits CosaConBonus (image = "palmeritas_.png"){
+object palmeritas inherits CosaConBonus (image = "palmeritas_.png"){
   override method frame() = framePalmeritas
   override method cosaEnElFrame() = "pbrillante.png"
 }
-class Faso inherits CosaConBonus (image = "fasito.png"){
+object faso inherits CosaConBonus (image = "fasito.png"){
   override method frame() = frameFaso
   override method cosaEnElFrame() = "fbrillante.png"
 }
-class Medialuna inherits CosaConBonus (image = "medialuna-.png"){
+object medialuna inherits CosaConBonus (image = "medialuna-.png"){
   override method frame() = frameMedialuna
   override method cosaEnElFrame() = "mebrillante.png"
 }
@@ -202,7 +193,7 @@ class TrasladorAbajo inherits Traslador (image = "flecha-abajo-.png") {
 
 //OBSTACULO INTERACTIVO
 class Obstaculo inherits Elemento{
-  var instanciaRecorrido = 0
+
   const miRecorrido
   const property dialogo
   var property activo = false
@@ -215,22 +206,14 @@ class Obstaculo inherits Elemento{
   }
   
   method caminar(){
-    self.siguienteInstancia()
-    position = miRecorrido.nuevaPosicion(instanciaRecorrido)
-  }
-
-  method siguienteInstancia(){
-    if(miRecorrido.tieneQueReiniciarRecorrido(instanciaRecorrido)){
-      instanciaRecorrido = 0
-    } else {
-      instanciaRecorrido += 1 
-    }
+    miRecorrido.siguienteInstancia()
+    position = miRecorrido.nuevaPosicion()
   }
 
   method agregarDialogo(){
     if (activo and not superTablero.estaEnElTablero(dialogo) ){
       game.addVisual(dialogo)
-      game.schedule(3000, { game.removeVisual(dialogo)})
+      game.schedule(5000, { game.removeVisual(dialogo)})
     }
   }
 }
@@ -238,9 +221,6 @@ class Obstaculo inherits Elemento{
 class Dialogo{
   const property position = game.at(0,0)
   const property image
-  //const nombre 
-  //const property image = "dialogo-" + nombre + "-.png"
-
 }
 
 class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosicion()){
@@ -263,44 +243,53 @@ class ObstaculoInteractivo inherits Obstaculo(position = miRecorrido.primeraPosi
   }
 
   method elAutoEstaEnMismaPosicion(){
-    return game.colliders(self).contains(auto)
+    return superTablero.cosasCon(self).contains(auto)
   }
 
   method elAutoEstaAdelante(){
-    return game.getObjectsIn(miRecorrido.posicionSiguienteEnLista(instanciaRecorrido)).contains(auto)
+    return miRecorrido.estaEnSiguiente()
   }
 
   method elAutoEstaAtras(){
-    return game.getObjectsIn(miRecorrido.posicionAnteriorEnLista(instanciaRecorrido)).contains(auto)
+    return miRecorrido.estaEnAnterior() 
   }
 }
 
 class Recorrido{
+  var instanciaRecorrido = 0
+  method camino()
 
- method camino()
+  method siguienteInstancia(){
+    if(self.tieneQueReiniciarRecorrido()){
+      instanciaRecorrido = 0
+    } else {
+      instanciaRecorrido += 1 
+    }
+  }
 
- method largoCamino() = self.camino().size()
+  method largoCamino() = self.camino().size()
 
- method tieneQueReiniciarRecorrido(numero){
-   return numero == self.largoCamino()-1
+  method tieneQueReiniciarRecorrido(){
+    return instanciaRecorrido == self.largoCamino()-1
  }
 
- method nuevaPosicion(instancia) {
-   return self.camino().get(instancia)
+ method nuevaPosicion() {
+   return self.camino().get(instanciaRecorrido)
  }
- method posicionSiguienteEnLista(instancia) {
-   return if(instancia+1 < self.largoCamino()){
-           self.camino().get(instancia+1)
+
+ method posicionSiguienteEnLista() {
+   return if(instanciaRecorrido+1 < self.largoCamino()){
+           self.camino().get(instanciaRecorrido+1)
          } else {
-           self.camino().get(instancia)
+           self.camino().get(instanciaRecorrido)
          }
  }
 
- method posicionAnteriorEnLista(instancia){
-   return if(instancia-1 >= 0){
-           self.camino().get(instancia-1)
+ method posicionAnteriorEnLista(){
+   return if(instanciaRecorrido-1 >= 0){
+           self.camino().get(instanciaRecorrido-1)
          } else {
-           self.camino().get(instancia) 
+           self.camino().get(instanciaRecorrido) 
          }
  }
 
@@ -310,5 +299,13 @@ class Recorrido{
 
  method primeraPosicion(){
   return self.camino().get(0)
+ }
+
+ method estaEnSiguiente(){
+  return auto.estaEnPosicion(self.posicionSiguienteEnLista())
+ }
+
+ method estaEnAnterior(){
+  return auto.estaEnPosicion(self.posicionAnteriorEnLista())
  }
 }

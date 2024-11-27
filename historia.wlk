@@ -13,7 +13,7 @@ class Historia {
 
 object inicio inherits Historia {
   var orden = 0
-  var ejecutandoInicio = true // xq el game.clear no funciona, por lo que no podemos borrar la ejecucion de 
+  var ejecutandoInicio = true // xq el game.clear no funciona, por lo que no podemos borrar la ejecucion del enter
   
   override method image() = ("0" + orden.toString()) + "-intro.png"
   
@@ -32,7 +32,6 @@ object inicio inherits Historia {
       superTablero.inicioDeJuego()
     }
   }
-
 } 
 
 object pantallaFinal inherits Historia{
@@ -70,23 +69,19 @@ object finDeJuegoNoAgarro inherits Historia {
   override method image() = "00-fin.png"
   
   override method ejecutar() {
-    game.addVisual(self)
+    super()
     game.stop()
   }
 } 
 
-
-
 //Deby
 object finDeJuegoSinTiempo{
   method ordenInicial() = 2
-  const property mensaje = "Fin del juego sin Tiempo."
   method limiteDeMuestra() = 2
 } 
 
 //Pablo y Ami
 object finDeJuegoGano{
-  const property mensaje = "Fin del juego GANASTE."
   method ordenInicial() = 3
   method limiteDeMuestra() = 4
 } 

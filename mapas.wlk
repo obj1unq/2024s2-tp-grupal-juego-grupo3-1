@@ -63,29 +63,35 @@ object recorridoDeLibertario inherits Recorrido{
                             game.at(19,7), game.at(20,7)] 
 
   
-  override method tieneQueReiniciarRecorrido(numero) = false
+  override method siguienteInstancia(){
+    if(libertario.puedoEscapar()){
+      libertario.escapar()
+    } else {
+      instanciaRecorrido += 1 
+    }
+  }
+  override method tieneQueReiniciarRecorrido() = false
 }
 
-object libertario inherits Obstaculo(position = self.posicionInicial(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(image = "dialogo-libertario-.png")) {
+object libertario inherits Obstaculo(position = miRecorrido.primeraPosicion(), image = "libertario.png", miRecorrido = recorridoDeLibertario, dialogo = new Dialogo(image = "dialogo-libertario-.png")) {
   
   override method inicializar(){
     activo = true
-    game.onCollideDo(calleAccionar1, {libertr => if(not self.yaSeEncuentraEnEjecucion()){self.dibujarLibertario()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
+    game.onCollideDo(calleAccionar1, {libertr => if(self.noSeEncuentraEnEjecucion()){self.dibujarLibertario()}}) // xq sino se agrega el dialogo cada vex que pasas por la celda y te da error de querer volver a ejecutar al libertario
+  }
+
+  method noSeEncuentraEnEjecucion(){
+    return not superTablero.estaEnElTablero(self)
   }
 
   method dibujarLibertario(){
     game.addVisual(self)
     game.onCollideDo(calleAccionar2, {libertr => self.dibujarLibertarioQueCorre()}) 
   }
-
-
-  method yaSeEncuentraEnEjecucion()= game.allVisuals().contains(self)
   
   method dibujarLibertarioQueCorre(){
     self.agregarDialogo()
-
     self.interaccion()
-    
     game.onTick(100, "Libertario camina", {self.caminar()}) 
   }
 
@@ -93,23 +99,9 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
     reloj.descontarTiempo(10) 
   }
 
-  method elAutoEstaCerca(){
-    return auto.position() != game.at(3,2)
-  }
-
   override method caminar(){
-    if (self.elAutoEstaMasCerca()) {
-      image = ("libertario-corriendo.png")
+      image = "libertario-corriendo.png"
       super()
-    }
-  }
-
-  method elAutoEstaMasCerca(){
-    return auto.position().x() >= (self.posicionInicial().x() - 1)
-  }
-
-  method posicionInicial(){
-    return game.at(6, 2)
   }
 
   method puedoEscapar() {
@@ -117,17 +109,8 @@ object libertario inherits Obstaculo(position = self.posicionInicial(), image = 
   }
 
   method escapar(){
-    //game.removeVisual(self) NECESITO QUE QUEDE EN EL TABLERO PARA QUE NO SE EJECUTE EL ONCOLLIDEDO
     game.removeTickEvent("Libertario camina")
 
-  }
-
-  override method siguienteInstancia(){
-    if(self.puedoEscapar()){
-      self.escapar()
-    } else {
-      instanciaRecorrido += 1 
-    }
   }
 }
 
@@ -183,6 +166,7 @@ object recorridoDeViejita inherits Recorrido{
 }
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
+  
   override method casitigoPorAtraparlo(){
     if(activo){
       reloj.descontarTiempo(15)
@@ -288,8 +272,6 @@ object recorridoPoli inherits Recorrido{
   override method camino(){
     return camino
   }
-
-
 }
 
 
