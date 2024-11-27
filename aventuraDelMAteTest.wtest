@@ -168,8 +168,9 @@ describe "Probar castigos de los obstaculos" {
 
   test "Castigo de la vieja" {
     assert.equals(100, reloj.segundos())
-
+    viejita.activo(true)
     viejita.casitigoPorAtraparlo()
+
     assert.equals(85, reloj.segundos())
   }
 
@@ -177,7 +178,9 @@ describe "Probar castigos de los obstaculos" {
     test "Castigo del policia" {
     assert.equals(100, reloj.segundos())
 
+    policia.activo(true)
     policia.casitigoPorAtraparlo()
+    
     assert.equals(90, reloj.segundos())
     assert.equals(mapa3.posicionAuto(), auto.position())
   }
@@ -186,9 +189,29 @@ describe "Probar castigos de los obstaculos" {
     test "Castigo del colectivo 324" {
     assert.equals(100, reloj.segundos())
 
+    bondi.activo(true)
     bondi.casitigoPorAtraparlo()
+    
     assert.equals(95, reloj.segundos())
-  }
+  }
+}
+
+describe "Probar si corre el libertario" {
+
+      method initialize(){
+    setUp.crearMapa(mapaInicial)
+    mapaInicial.dibujar()
+    auto.position(mapaInicial.posicionAuto())
+    auto.image(mapaInicial.imagenAuto())
+    }
+
+  test "El libertario  puede correr" {
+    auto.position(game.at(4,2))
+    auto.mover(derecha)
+
+    assert.equals(game.at(6,2),libertario.position())
+    
+  }
 }
 
 
