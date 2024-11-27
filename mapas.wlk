@@ -250,6 +250,10 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 }
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
+  override method repeticionCaminar(){
+    game.onTick(300, "poli", {self.caminar()})
+  }
+  
   override method casitigoPorAtraparlo(){
     if(activo){
       reloj.descontarTiempo(10)

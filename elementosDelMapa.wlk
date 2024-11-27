@@ -202,6 +202,11 @@ class Obstaculo inherits Elemento{
   method inicializar(){
     activo = true
     game.addVisual(self)
+    self.repeticionCaminar()
+  }
+
+   
+  method repeticionCaminar(){
     game.onTick(600, "object", {self.caminar()})
   }
   
