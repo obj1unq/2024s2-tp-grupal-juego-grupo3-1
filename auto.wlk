@@ -14,63 +14,55 @@ object auto {
     self.moverSiPuede(direccion, nuevaDireccion)
     self.finalizaJuegoSiLlegoAMeta()
   }
-
-  method finalizaJuegoSiLlegoAMeta(){
-    if(self.estaEnMeta()){
-        superTablero.finalSiGanaste()
-    }
+  
+  method finalizaJuegoSiLlegoAMeta() {
+    if (self.estaEnMeta()) superTablero.finalSiGanaste()
   }
-
-  method estaEnPosicion(posicion){
-    return position == posicion
+  
+  method estaEnPosicion(posicion) = position == posicion
+  
+  method estaEnMeta() = superTablero.hayMetaEnPosicionDelAuto()
+  
+  method cambiarImagen(direccion) {
+    image = ("autoHacia" + direccion.orientacion()) + ".png"
   }
-
-  method estaEnMeta(){
-    return superTablero.hayMetaEnPosicionDelAuto()
-  }
-
-  method cambiarImagen(direccion){
-    image = "autoHacia" + direccion.orientacion() + ".png"
-  }
-
-  method tocarBocina(){
+  
+  method tocarBocina() {
     game.sound("bocina2.mp3").play()
   }
-
-  method seTrasladaSiPuede(){
-    if (superTablero.sePuedeTrasladarElAuto()){
-       superTablero.cambiarMapa()
+  
+  method seTrasladaSiPuede() {
+    if (superTablero.sePuedeTrasladarElAuto()) superTablero.cambiarMapa()
+  }
+  
+  method moverSiPuede(direccion, nuevaDireccion) {
+    if (self.sePuedeMover(nuevaDireccion)) {
+      self.position(nuevaDireccion)
+      self.cambiarImagen(direccion)
     }
   }
-  method moverSiPuede(direccion, nuevaDireccion){
-    if(self.sePuedeMover(nuevaDireccion) ){
-        self.position(nuevaDireccion)
-        self.cambiarImagen(direccion)
-    }
-  }
-  method sePuedeMover(nuevaDireccion) {
-    return  superTablero.estaDentroDeLosLimites(nuevaDireccion)  
-            and not superTablero.haySolidoEn(nuevaDireccion)
-            and reloj.sigueEnTiempo()
-  }
- 
+  
+  method sePuedeMover(nuevaDireccion) = (superTablero.estaDentroDeLosLimites(
+    nuevaDireccion
+  ) and (not superTablero.haySolidoEn(
+    nuevaDireccion
+  ))) and reloj.sigueEnTiempo()
+  
   method agarrarObjeto() {
-    if (superTablero.hayAlgoAgarrableEn(position)){
+    if (superTablero.hayAlgoAgarrableCon(self)) {
       const cosa = self.objetoColisionadoAgarrable()
       superTablero.agregarARecogidos(cosa)
       cosa.esAgarrada()
     }
   }
-
-  method objetoColisionadoAgarrable(){
-    return superTablero.cosasCon(self).find({ cosa => cosa.esAgarrable() })
-  }
-
-  method dibujar(posicion, direccion){
+  
+  method objetoColisionadoAgarrable() = superTablero.cosasCon(self).find(
+    { cosa => cosa.esAgarrable() }
+  )
+  
+  method dibujar(posicion, direccion) {
     position = posicion
     self.cambiarImagen(direccion)
     game.addVisual(self)
   }
 }
-
-
