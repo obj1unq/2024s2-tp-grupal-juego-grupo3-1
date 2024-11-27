@@ -1,6 +1,7 @@
-import supertablero.*
 import wollok.game.*
+import supertablero.*
 import auto.*
+import elementosDelMapa.*
 
 class SuperMapa {
   method posicionAuto()
@@ -32,9 +33,7 @@ class SuperMapa {
     self.obstaculo().activo(false)
   }
 }
-object obstaculoVacio{
-  const property position = game.at(0,0)
-  const property image = null
-  method inicializar(){
+object obstaculoVacio inherits Obstaculo(position = game.at(0,0), image = null, dialogo = null, miRecorrido = null){
+  override method inicializar(){
   }
 }
