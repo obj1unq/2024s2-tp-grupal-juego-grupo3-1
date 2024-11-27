@@ -40,7 +40,6 @@ object reloj {
       pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
       pantallaFinal.ejecutar()
     }
-
   }
   
   method solida() = false

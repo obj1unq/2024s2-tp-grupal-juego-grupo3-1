@@ -21,8 +21,12 @@ object auto {
     }
   }
 
+  method estaEnPosicion(posicion){
+    return position == posicion
+  }
+
   method estaEnMeta(){
-    return game.colliders(self).any({elem => elem.esMeta()})
+    return superTablero.hayMetaEnPosicionDelAuto()
   }
 
   method cambiarImagen(direccion){
@@ -45,36 +49,27 @@ object auto {
     }
   }
   method sePuedeMover(nuevaDireccion) {
-    return superTablero.estaDentroDeLosLimites(nuevaDireccion)  and 
-    not self.haySolido(nuevaDireccion) and reloj.sigueEnTiempo()
+    return  superTablero.estaDentroDeLosLimites(nuevaDireccion)  
+            and not superTablero.haySolidoEn(nuevaDireccion)
+            and reloj.sigueEnTiempo()
   }
-  method haySolido(_position) = superTablero.haySolidoEn(_position)
  
-  
   method agarrarObjeto() {
-    if (self.hayAlgoAgarrable()){
+    if (superTablero.hayAlgoAgarrableEn(position)){
       const cosa = self.objetoColisionadoAgarrable()
       superTablero.agregarARecogidos(cosa)
       cosa.esAgarrada()
     }
   }
 
-  method objetosColisionados(){
-    return game.colliders(self)
-  }
-
   method objetoColisionadoAgarrable(){
-    return self.objetosColisionados().find({ c => c.esAgarrable() })
+    return superTablero.cosasCon(self).find({ cosa => cosa.esAgarrable() })
   }
-
-  method hayAlgoAgarrable() = self.objetosColisionados().any({ objeto => objeto.esAgarrable() })
-
-
 
   method dibujar(posicion, direccion){
     position = posicion
-    game.addVisual(self)
     self.cambiarImagen(direccion)
+    game.addVisual(self)
   }
 }
 

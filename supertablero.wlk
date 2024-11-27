@@ -21,9 +21,7 @@ object superTablero {
   
   method iniciarComandos(){
     keyboard.a().onPressDo({ auto.agarrarObjeto() })
-
     keyboard.b().onPressDo({auto.tocarBocina()})
-    
     keyboard.up().onPressDo({ auto.mover(arriba) })
     keyboard.left().onPressDo({ auto.mover(izquierda) })
     keyboard.down().onPressDo({ auto.mover(abajo) })
@@ -40,7 +38,7 @@ object superTablero {
   }
 
   method siguienteMapa() {    
-    if(mapas.size()>0){  
+    if(self.hayMapas()){  
       mapaActual = mapas.anyOne()
       mapas.remove(mapaActual)
     }else{
@@ -48,27 +46,30 @@ object superTablero {
     }
   }  
 
+  method hayMapas(){
+    return mapas.size()>0
+  }
+
   method desactivarObstaculo(){
     mapaActual.desactivarObstaculo()
   }
 
   method cambiarMapa() {
-    self.desactivarObstaculo()//mapaActual.obstaculo().activo(false)
-    if((mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()) or (reloj.seQuedoSinTiempo())){
-      self.finalizarJuegoSiCorresponde() 
+    self.desactivarObstaculo()
+    if(self.tieneQueFinalizarJuego()){
+      self.finalizarJuego() 
     }else{
       self.siguienteMapa()
       self.inicializarMapa()
     }
-    
-    //try{
-    //    self.finalizarJuegoSiCorresponde() 
-    //    self.siguienteMapa()
-    //    self.inicializarMapa()
-    //  }catch e:Exception{
-    //    console.println("Fin del juego")
-    //  }
-    
+  }
+
+  method tieneQueFinalizarJuego(){
+    return self.condicionFinalOlvidasteObjetoImportante() or reloj.seQuedoSinTiempo()
+  }
+
+  method condicionFinalOlvidasteObjetoImportante(){
+    return mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()
   }
 
   method dibujarAuto() {
@@ -83,13 +84,13 @@ object superTablero {
     objetosRecogidos.forEach({obj => game.addVisual(obj)})
   }
 
-  method finalizarJuegoSiCorresponde(){
+  method finalizarJuego(){
     self.finalSiOlvidasteObjetoImportante()
     self.finalSiSeQuedoSinTiempo()
   }
 
   method finalSiOlvidasteObjetoImportante(){
-      if(mapaActual.tieneObjetoImportante() and self.teOlvidasteObjetoImportante()){
+      if(self.condicionFinalOlvidasteObjetoImportante()){
         self.removerTodasLasVisuales()
         finDeJuegoNoAgarro.ejecutar()
       }
@@ -97,19 +98,21 @@ object superTablero {
 
   method finalSiSeQuedoSinTiempo(){
       if(reloj.seQuedoSinTiempo()){
-        self.removerTodasLasVisuales()
-        pantallaFinal.finDeJuego(finDeJuegoSinTiempo)
-	      pantallaFinal.ejecutar()
+        self.ejecutarFinal(finDeJuegoSinTiempo)
 
       }
   }
 
   method finalSiGanaste(){
       if(self.ganaste()){
-        self.removerTodasLasVisuales()
-        pantallaFinal.finDeJuego(finDeJuegoGano)
-	      pantallaFinal.ejecutar()
+        self.ejecutarFinal(finDeJuegoGano)
       }
+  }
+
+  method ejecutarFinal(final){
+        self.removerTodasLasVisuales()
+        pantallaFinal.finDeJuego(final)
+	      pantallaFinal.ejecutar()
   }
 
   method teOlvidasteObjetoImportante(){
@@ -124,29 +127,35 @@ object superTablero {
     return objetosImportantes.all({obj => objetosRecogidos.contains(obj)})
   }
 
-
   method sePuedeTrasladarElAuto(){
-    return game.colliders(auto).any({ objeto => objeto.meTraslada() })
+    return self.cosasCon(auto).any({ objeto => objeto.meTraslada() })
   }
-
+  method hayMetaEnPosicionDelAuto(){
+    return self.cosasCon(auto).any({elem => elem.esMeta()})
+  }
+  method cosasCon(obj){
+    return game.colliders(obj)
+  }
+  method hayAlgoAgarrableEn(position){
+    return self.cosasEnLaPosicion(position).any({obj =>  obj != auto and obj.esAgarrable()})
+  }
   method removerTodasLasVisuales() {
     game.allVisuals().forEach({v => game.removeVisual(v)})
   }
 
   method estaDentroDeLosLimites(position) = position.x().between(0, game.width() - 1) and position.y().between(0, game.height() - 3)
 
-  method haySolidoEn(_position){
-    return self.cosasDeLaPosicionActual(_position).any({ cosa => cosa.solida() })
+  method haySolidoEn(position){
+    return self.cosasEnLaPosicion(position).any({ cosa => cosa.solida() })
   }
 
-  method cosasDeLaPosicionActual(_position) {
-    return game.getObjectsIn(_position)
+  method cosasEnLaPosicion(position) {
+    return game.getObjectsIn(position)
   }
 
   method estaEnElTablero(unaCosa){
     return game.allVisuals().contains(unaCosa)
   }
-    
 }
 
 
@@ -227,13 +236,11 @@ object c1 {
   }
 }
 
-
 // Calle inicial
 object c2 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Inicio(position = position))
   }
-
 }
 // Calle final
 object c3 {
@@ -252,7 +259,7 @@ object c5 {
   method crearEn(mapa, position){
     calleAccionar2.position(position)
     mapa.agregarElemento(calleAccionar2)
-  }
+  }
 }
 
 //Calles con objetos
@@ -288,32 +295,36 @@ object ca {
 object mc {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Manzanita(position = position))
+    manzanita.position(position)
+    mapa.agregarElemento(manzanita)
   }
 }
 object o2 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Bizcochitos(position = position))
+    bizcochitos.position(position)
+    mapa.agregarElemento(bizcochitos)
   }
 } 
 object o3 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Palmeritas(position = position))
+    palmeritas.position(position)
+    mapa.agregarElemento(palmeritas)
   }
-
 } 
 object o4 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Faso(position = position))
+    faso.position(position)
+    mapa.agregarElemento(faso)
   }
 } 
 object o5 {
   method crearEn(mapa, position){
     mapa.agregarElemento(new Calle(position = position))
-    mapa.agregarElemento(new Medialuna(position = position))
+    medialuna.position(position)
+    mapa.agregarElemento(medialuna)
   }
 }
 object pp {
@@ -482,7 +493,3 @@ object es {
   }
 }
 
-object termo inherits Termo(image = "termo--.png"){}
-object yerba inherits Yerba (image =  "yerba--.png"){}
-object agua inherits Agua (image =  "agua--.png") {}
-object mate inherits Mate (image =  "mate--.png"){}
