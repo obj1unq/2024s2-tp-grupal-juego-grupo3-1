@@ -56,7 +56,7 @@ object mapaInicial inherits SuperMapa(objetoImportante = yerba){
 object recorridoDeLibertario inherits Recorrido{
   const property camino =  [game.at(6,2) , game.at(6,3) , game.at(6,4) ,
                             game.at(6,5) , game.at(6,6) , game.at(6,7) ,
-                            game.at(7,7) , game.at(8,7) , game.at(9,7),
+                            game.at(7,7) , game.at(8,7) , game.at(9,7) ,
                             game.at(10,7), game.at(11,7), game.at(12,7),
                             game.at(13,7), game.at(14,7), game.at(15,7),
                             game.at(16,7), game.at(17,7), game.at(18,7),
@@ -92,7 +92,7 @@ object libertario inherits Obstaculo(position = miRecorrido.primeraPosicion(), i
   method dibujarLibertarioQueCorre(){
     self.agregarDialogo()
     self.interaccion()
-    game.onTick(100, "Libertario camina", {self.caminar()}) 
+    game.onTick(150, "Libertario camina", {self.caminar()}) 
   }
 
   method interaccion(){
@@ -110,7 +110,6 @@ object libertario inherits Obstaculo(position = miRecorrido.primeraPosicion(), i
 
   method escapar(){
     game.removeTickEvent("Libertario camina")
-
   }
 }
 
@@ -161,8 +160,7 @@ object mapa1 inherits SuperMapa(objetoImportante = termo){
 }
 
 object recorridoDeViejita inherits Recorrido{
-  const property camino = [game.at(3,3), game.at(3,4), game.at(4,5)] 
-  
+  const property camino = [game.at(3,3), game.at(3,4), game.at(4,5)]  
 }
 
 object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido = recorridoDeViejita, dialogo = new Dialogo(image = "dialogo-viejita-.png" )){
@@ -171,12 +169,6 @@ object viejita inherits ObstaculoInteractivo(image = "viejita.png", miRecorrido 
     if(activo){
       reloj.descontarTiempo(15)
     } 
-  }
-
-  override method inicializar(){
-    activo = true
-    game.addVisual(self)
-    game.onTick(600, "object", {self.caminar()})
   }
 }
 
@@ -212,8 +204,7 @@ object recorridoBondi inherits Recorrido{
                             game.at(8,3) , game.at(9,3) , game.at(10,3),
                             game.at(11,3), game.at(12,3), game.at(13,3),
                             game.at(14,3), game.at(15,3), game.at(16,3),
-                            game.at(17,3), game.at(18,3), game.at(19,3)] 
-  
+                            game.at(17,3), game.at(18,3), game.at(19,3)]  
 }
 
 object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = recorridoBondi, dialogo = new Dialogo(image = "dialogo-bondi-.png" )){
@@ -222,7 +213,6 @@ object bondi inherits ObstaculoInteractivo(image = "324-.png",miRecorrido = reco
       reloj.descontarTiempo(5)
     } 
   }
-
 }
 
 object mapa3 inherits SuperMapa(objetoImportante = mate){
@@ -250,6 +240,10 @@ object mapa3 inherits SuperMapa(objetoImportante = mate){
 }
 
 object policia inherits ObstaculoInteractivo(miRecorrido = recorridoPoli, image = "elPoli.png", dialogo = new Dialogo(image = "dialogo-policia-.png" )){
+  override method repeticionCaminar(){
+    game.onTick(300, "poli", {self.caminar()})
+  }
+  
   override method casitigoPorAtraparlo(){
     if(activo){
       reloj.descontarTiempo(10)
@@ -273,5 +267,3 @@ object recorridoPoli inherits Recorrido{
     return camino
   }
 }
-
-

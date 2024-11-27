@@ -7,7 +7,7 @@ class SuperMapa {
   method posicionAuto()
   method imagenAuto()
   method obstaculo() = obstaculoVacio
-  
+
   var property elementosCreados = []
   const property objetoImportante = null
 
@@ -39,5 +39,6 @@ object obstaculoVacio inherits Obstaculo(position = game.at(0,0), image = null, 
 }
 
 object recorridoVacio inherits Recorrido{
-  override method camino(){}
+  override method camino(){
+  }
 }
