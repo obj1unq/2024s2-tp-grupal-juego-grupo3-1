@@ -27,9 +27,11 @@ describe "Testeo movilidad del auto" {
   
   test "Mover derecha pero no puede" {
     assert.equals(auto.position(), game.at(1, 0))
-    
-    assert.notThat(auto.sePuedeMover(derecha.siguiente(auto.position())))
     auto.mover(derecha)
+    assert.equals(auto.position(), game.at(1, 0))
+
+    assert.notThat(auto.sePuedeMover(derecha.siguiente(auto.position())))
+    
   }
   
   test "Mover izquierda" {
@@ -42,9 +44,10 @@ describe "Testeo movilidad del auto" {
   
   test "Mover izquierda pero no puede" {
     assert.equals(auto.position(), game.at(1, 0))
-    
-    assert.notThat(auto.sePuedeMover(izquierda.siguiente(auto.position())))
     auto.mover(izquierda)
+    assert.equals(auto.position(), game.at(1, 0))
+
+    assert.notThat(auto.sePuedeMover(izquierda.siguiente(auto.position())))
   }
   
   test "Mover abajo" {
@@ -58,9 +61,10 @@ describe "Testeo movilidad del auto" {
   test "No puede mover abajo" {
     auto.position(game.at(2, 4))
     assert.equals(auto.position(), game.at(2, 4))
-    
-    assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
     auto.mover(abajo)
+    assert.equals(auto.position(), game.at(2, 4))
+
+    assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
   }
   
   test "Mover arriba" {
@@ -73,9 +77,10 @@ describe "Testeo movilidad del auto" {
   test "No puede mover arriba" {
     auto.position(game.at(1, 4)) // en esta posicion no se puede mover arriba 
     assert.equals(auto.position(), game.at(1, 4))
+    auto.mover(arriba)
+    assert.equals(auto.position(), game.at(1, 4))
     
     assert.notThat(auto.sePuedeMover(arriba.siguiente(auto.position())))
-    auto.mover(arriba)
   }
 }
 
@@ -139,7 +144,6 @@ describe "Trasladar el auto hacia otro mapa desde el actual" {
     superTablero.agregarARecogidos(yerba)
     auto.mover(arriba)
     
-    
     assert.equals(2, superTablero.mapas().size())
   }
 }
@@ -154,6 +158,9 @@ describe "Probar si puede pasar por encima de un objeto que no es atravesable" {
   
   test "no puede moverse hacia abajo porque esta la patrulla que es un objeto que no es atravesable" {
     auto.position(game.at(6, 2))
+    assert.equals(auto.position(), game.at(6, 2))
+    auto.mover(abajo)
+    assert.equals(auto.position(), game.at(6, 2))
     
     assert.notThat(auto.sePuedeMover(abajo.siguiente(auto.position())))
   }

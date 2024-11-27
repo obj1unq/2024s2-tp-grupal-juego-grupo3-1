@@ -15,11 +15,8 @@ object setUp {
     game.width(mapaActual.mapa().get(0).size())
     (0 .. (game.width() - 1)).forEach(
       { x => (0 .. (game.height() - 1)).forEach(
-          { y => mapaActual.mapa().get(y).get(x).crearEn(
-              mapaActual,
-              game.at(x, y)
-            ) }
-        ) }
+          { y => mapaActual.mapa().get(y).get(x).crearEn( mapaActual, game.at(x, y))}
+      )}
     )
   }
   
