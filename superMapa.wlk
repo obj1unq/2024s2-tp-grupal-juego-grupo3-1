@@ -33,7 +33,11 @@ class SuperMapa {
     self.obstaculo().activo(false)
   }
 }
-object obstaculoVacio inherits Obstaculo(position = game.at(0,0), image = null, dialogo = null, miRecorrido = null){
+object obstaculoVacio inherits Obstaculo(position = game.at(0,0), image = null, dialogo = new Dialogo(image = null), miRecorrido = recorridoVacio){
   override method inicializar(){
   }
+}
+
+object recorridoVacio inherits Recorrido{
+  override method camino(){}
 }

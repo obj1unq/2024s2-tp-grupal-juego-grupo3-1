@@ -48,6 +48,7 @@ object pantallaFinal inherits Historia{
         if (self.seguirMostrando()) {
         orden += 1        
       } else {
+        fin.ejecutar()
         game.stop()
       }
     }
@@ -85,3 +86,8 @@ object finDeJuegoGano{
   method ordenInicial() = 3
   method limiteDeMuestra() = 4
 } 
+
+object fin inherits Historia{
+  override method image() = "fin.png"
+
+}
