@@ -71,7 +71,9 @@ object finDeJuegoNoAgarro inherits Historia {
   
   override method ejecutar() {
     super()
-    game.stop()
+    game.schedule(5000, {game.addVisual(fin)})
+    game.schedule(10000, {game.stop()})
+    
   }
 } 
 
