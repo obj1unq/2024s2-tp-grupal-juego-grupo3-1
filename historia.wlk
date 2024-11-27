@@ -8,6 +8,7 @@ class Historia {
   method image()
   
   method ejecutar() {
+    game.removeTickEvent("reloj")
     game.addVisual(self)
   }
 }
