@@ -49,7 +49,6 @@ object pantallaFinal inherits Historia{
         orden += 1        
       } else {
         fin.ejecutar()
-        game.stop()
       }
     }
   }
@@ -71,9 +70,7 @@ object finDeJuegoNoAgarro inherits Historia {
   
   override method ejecutar() {
     super()
-    game.schedule(5000, {game.addVisual(fin)})
-    game.schedule(10000, {game.stop()})
-    
+    keyboard.enter().onPressDo({fin.ejecutar()})    
   }
 } 
 
@@ -91,5 +88,10 @@ object finDeJuegoGano{
 
 object fin inherits Historia{
   override method image() = "fin.png"
+
+  override method ejecutar(){
+    super()
+    game.stop()
+  }
 
 }
