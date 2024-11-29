@@ -3,7 +3,7 @@ import wollok.game.*
 import historia.*
 
 object reloj {
-  var property segundos = 100
+  var property segundos = 120
   var property position = null
   
   method text() = if (self.sigueEnTiempo()) segundos.toString() else ""

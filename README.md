@@ -20,12 +20,11 @@ El problema es que faltan pocos minutos para que empiece la clase y si no logran
 ## Reglas de Juego / Instrucciones
 
 El juego será de búsqueda. En el camino habrá obstáculos que te restan tiempo y objetos que recolectar. 
-El jugador irá eligiendo el camino, de chocarse con un obstáculo éste le descontará tiempo. 
-Al encontrar los objetos a recolectar, algunos de ellos le sumaran tiempo. No todos los objetos repartidos en los mapas son obligatorios, pero de no recolectar los objetos obligatorios se pierde automáticamente. En la barra superior se veran reflejados los objetos obligatorios, y como bonus aquellos que puede recolectar si quiere. 
-Una vez que tengan todos los objetos, deben volver a la facultad antes de que comience la clase.
-
-
-
+El jugador irá eligiendo el camino, sin poder volver al mapa anterior. 
+Cuidado!! De chocarse con un obstáculo éste le descontará tiempo. 
+Al encontrar los objetos a recolectar, algunos de ellos le sumaran tiempo. 
+No todos los objetos repartidos en los mapas son obligatorios, pero de no recolectar los objetos obligatorios (mate, yerba, agua y termo) se pierde automáticamente. En la barra superior se veran reflejados los objetos obligatorios, y como bonus aquellos que puede recolectar si quiere. 
+Una vez que tengan todos los objetos y hayas recorrido todos los mapas, debes cruzar la linea de meta, volviendo a ingresar a la facultad antes de que comience la clase.
 
 
 ## Otros
